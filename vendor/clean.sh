@@ -1,0 +1,73 @@
+#!/bin/bash
+# Cleanup all bytecompiled vendor packages
+#
+#
+# Copyright Fabián Ezequiel Gallina, All Rights Reserved
+#
+# Permission to use, copy, modify, and distribute this software and
+# its documentation for any purpose and without fee is hereby granted,
+# provided that the above copyright notice appear in all copies and
+# that both that copyright notice and this permission notice appear in
+# supporting documentation, and that the name of Fabián Ezequiel
+# Gallina not be used in advertising or publicity pertaining to
+# distribution of the software without specific, written prior
+# permission.
+#
+# FABIÁN EZEQUIEL GALLINA DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS
+# SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+# FITNESS, IN NO EVENT SHALL DOUG HELLMANN BE LIABLE FOR ANY SPECIAL,
+# INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER
+# RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF
+# CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
+# CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+cd `dirname $0`
+PACKAGES=$(find . -maxdepth 1 -type d \( ! -iname "." \) -printf "%f\n")
+
+HELP=""
+
+for package in $PACKAGES; do
+    HELP="$HELP
+    * $package"
+done
+
+HELP="
+You should call this script using $0 [options...]
+
+Where valid options are:
+
+    * all (for all packages)$HELP
+"
+
+if [[ -z "$@" || "$@" = "help" ]]; then
+    echo "$HELP";
+    exit 1;
+fi
+
+if [[ "$@" == "all" ]]; then
+    options=$PACKAGES
+else
+    options="$@"
+fi
+
+for option in $options; do
+    case "$option" in
+        cedet)
+            pushd cedet
+            make clean-all
+            git checkout semantic/bovine/semantic-skeleton-by.el semantic/semantic-grammar-wy.el
+            popd
+            ;;
+        magit)
+            (cd magit && make clean);;
+        org-mode)
+            (cd org-mode && make clean);;
+        zencoding)
+            (cd zencoding && rm -f zencoding-trie.el && rm -f *.elc);;
+        *)
+            (cd "$option" && find -name "*.elc" -type f -delete)
+            ;;
+    esac
+done
+
+echo -e "\nFinished cleaning:" $(echo $options)

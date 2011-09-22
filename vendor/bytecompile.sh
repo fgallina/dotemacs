@@ -1,0 +1,79 @@
+#!/bin/bash
+# Bytecompile all available vendor packages
+#
+#
+# Copyright Fabián Ezequiel Gallina, All Rights Reserved
+#
+# Permission to use, copy, modify, and distribute this software and
+# its documentation for any purpose and without fee is hereby granted,
+# provided that the above copyright notice appear in all copies and
+# that both that copyright notice and this permission notice appear in
+# supporting documentation, and that the name of Fabián Ezequiel
+# Gallina not be used in advertising or publicity pertaining to
+# distribution of the software without specific, written prior
+# permission.
+#
+# FABIÁN EZEQUIEL GALLINA DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS
+# SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+# FITNESS, IN NO EVENT SHALL DOUG HELLMANN BE LIABLE FOR ANY SPECIAL,
+# INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER
+# RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF
+# CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
+# CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+cd `dirname $0`
+PACKAGES=$(find . -maxdepth 1 -type d \( ! -iname "." \) -printf "%f\n")
+
+HELP=""
+
+for package in $PACKAGES; do
+    HELP="$HELP
+    * $package"
+done
+
+HELP="
+You should call this script using $0 [options...]
+
+Where valid options are:
+
+    * all (for all packages)$HELP
+"
+
+if [[ -z "$@" || "$@" = "help" ]]; then
+    echo "$HELP";
+    exit 1;
+fi
+
+if [[ "$@" == "all" ]]; then
+    options=$PACKAGES
+else
+    options="$@"
+fi
+
+for option in $options; do
+    case "$option" in
+        cedet)
+            (cd cedet && make);;
+        deft)
+            (cd deft && emacs --batch -L . --eval "(byte-compile-file \"deft.el\")");;
+        full-ack)
+            (cd full-ack && emacs --batch -L . --eval "(byte-compile-file \"full-ack.el\")");;
+        magit)
+            (cd magit && make);;
+        org-mode)
+            (cd org-mode && make);;
+        php-mode)
+            (cd php-mode && emacs --batch -L . --eval "(byte-compile-file \"php-mode.el\")");;
+        python-mode)
+            (cd python-mode && emacs --batch -L . --eval "(byte-compile-file \"python.el\")");;
+        rainbow-mode)
+            (cd rainbow-mode && emacs --batch -L . --eval "(byte-compile-file \"rainbow-mode.el\")");;
+        yasnippet)
+            (cd yasnippet && emacs --batch -L . --eval "(and (byte-compile-file \"yasnippet.el\") (byte-compile-file \"dropdown-list.el\"))");;
+        zencoding)
+            (cd zencoding && make);;
+        *) echo "Warning: compile rule for $option not found";;
+    esac
+done
+
+echo -e "\nFinished compiling:" $(echo $options)

@@ -1,0 +1,63 @@
+[submodule "vendor/full-ack"]
+	path = vendor/full-ack
+	url = https://github.com/nschum/full-ack.git
+[submodule "vendor/deft"]
+	path = vendor/deft
+	url = git://jblevins.org/git/deft.git
+[submodule "vendor/yasnippet"]
+	path = vendor/yasnippet
+	url = https://github.com/emacsmirror/yasnippet.git
+[submodule "vendor/zencoding"]
+	path = vendor/zencoding
+	url = https://github.com/rooney/zencoding.git
+[submodule "vendor/mulled"]
+	path = vendor/mulled
+	url = https://github.com/k-talo/multiple-line-edit.el.git
+[submodule "vendor/cedet"]
+	path = vendor/cedet
+	url = https://github.com/emacsmirror/cedet.git
+[submodule "vendor/magit"]
+	path = vendor/magit
+	url = https://github.com/magit/magit.git
+[submodule "vendor/php-mode"]
+	path = vendor/php-mode
+	url = https://github.com/ejmr/php-mode.git
+[submodule "vendor/yaml-mode"]
+	path = vendor/yaml-mode
+	url = https://github.com/yoshiki/yaml-mode.git
+[submodule "vendor/org-mode"]
+	path = vendor/org-mode
+	url = git://orgmode.org/org-mode.git
+[submodule "vendor/color-theme"]
+	path = vendor/color-theme
+	url = https://github.com/emacsmirror/color-theme.git
+[submodule "vendor/color-theme-tangotango"]
+	path = vendor/color-theme-tangotango
+	url = https://github.com/juba/color-theme-tangotango.git
+[submodule "vendor/rainbow-mode"]
+	path = vendor/rainbow-mode
+	url = git://git.naquadah.org/rainbow.git
+[submodule "vendor/python-mode"]
+	path = vendor/python-mode
+	url = https://github.com/fgallina/python.el.git
+[submodule "vendor/multi-web-mode"]
+	path = vendor/multi-web-mode
+	url = https://github.com/fgallina/multi-web-mode.git
+[submodule "vendor/projutils"]
+	path = vendor/projutils
+	url = https://github.com/fgallina/projutils.el.git
+[submodule "vendor/startupd"]
+	path = vendor/startupd
+	url = https://github.com/fgallina/startupd.el.git
+[submodule "vendor/identica-mode"]
+	path = vendor/identica-mode
+	url = http://git.savannah.gnu.org/cgit/identica-mode.git
+[submodule "vendor/twittering-mode"]
+	path = vendor/twittering-mode
+	url = git://github.com/hayamiz/twittering-mode.git
+[submodule "vendor/oauth"]
+	path = vendor/oauth
+	url = https://github.com/psanford/emacs-oauth.git
+[submodule "vendor/pastebin"]
+	path = vendor/pastebin
+	url = https://github.com/nicferrier/elpastebin.git
