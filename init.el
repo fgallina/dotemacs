@@ -1,6 +1,10 @@
 (add-to-list 'load-path "~/.emacs.d/vendor")
-(progn (cd "~/.emacs.d/vendor")
-       (normal-top-level-add-subdirs-to-load-path))
+(progn
+  (cd "~/.emacs.d/vendor")
+  (normal-top-level-add-subdirs-to-load-path)
+  (cd "~/.emacs.d"))
+
+(ignore-errors (load-file "~/.emacs.d/secrets.el"))
 
 (require 'startupd)
 (startupd-load-files)
