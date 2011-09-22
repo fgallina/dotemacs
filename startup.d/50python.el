@@ -63,7 +63,7 @@
 
 (add-hook 'python-mode-hook
 	  (lambda ()
-            (setq hippie-expand-try-functions-list
+            (set (make-local-variable 'hippie-expand-try-functions-list)
                   '(yas/hippie-try-expand
                     try-complete-file-name
                     try-complete-ropemacs))))
