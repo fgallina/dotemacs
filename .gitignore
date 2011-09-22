@@ -1,0 +1,6 @@
+history
+auto-save-list
+*.elc
+customizations.el
+secrets.el
+*~
