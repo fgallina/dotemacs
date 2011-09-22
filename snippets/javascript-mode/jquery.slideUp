@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : slideUp
+#key : .slideUp
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.slideUp('${1:slow/400/fast}')$0

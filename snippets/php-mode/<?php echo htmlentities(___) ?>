@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : <?php echo htmlentities(___) ?>
+#key : echoh
+# --
+<?${php echo} htmlentities(${1:\$var}, ENT_QUOTES, 'utf-8') ?>$0

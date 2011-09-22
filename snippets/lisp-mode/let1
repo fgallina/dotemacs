@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : let1
+#key : let1
+# --
+(let ((${1:variable} ${2:value}))
+	($0))

@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : new array( )
+#key : array
+# --
+\$${1:arrayName} = array('$2' => $3${4:,} $0);

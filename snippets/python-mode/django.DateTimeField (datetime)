@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# This was cloned from a TextMate bundle for yasnippet.
+#name : DateTimeField
+#group: django
+#key : datetime
+#condition: (when (boundp 'python-django) python-django)
+# --
+${1:FIELDNAME} = models.DateTimeField(${2:blank=True}${3:, default=datetime.datetime.now})

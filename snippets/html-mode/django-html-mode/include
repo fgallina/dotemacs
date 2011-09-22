@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : include
+#key : include
+# --
+{% include ${1:"$2"} %}

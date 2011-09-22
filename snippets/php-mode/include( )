@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : include( )
+#key : incl
+# --
+include '${1:file}';$0

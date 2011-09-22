@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : text-shadow: none (text)
+#key : text
+# --
+text-shadow: none;$0

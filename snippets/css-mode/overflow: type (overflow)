@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : overflow: type (overflow)
+#key : overflow
+# --
+overflow: ${1:visible/hidden/scroll/auto};$0

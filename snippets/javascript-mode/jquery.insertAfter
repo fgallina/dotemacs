@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : insertAfter
+#key : .insertAfter
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.insertAfter('${1:selector expression}')$0

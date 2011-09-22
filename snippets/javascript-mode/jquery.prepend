@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : prepend
+#key : .prepend
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.prepend('${1:Some text <b>and bold!</b>}')$0

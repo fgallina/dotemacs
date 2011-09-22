@@ -1,0 +1,14 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : PHPDoc interface
+#key : doc_i
+# --
+/**
+ * $1
+ *
+ * @package ${3:default}
+ * @author ${4:`user-full-name`}
+ **/
+interface ${1:TheInterface}
+{
+    $0
+} // END interface $1

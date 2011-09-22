@@ -1,0 +1,8 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : ready
+#key : ready
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+\$(document).ready(function() {
+    $0
+});

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# This was cloned from a TextMate bundle for yasnippet.
+#name : NullBooleanField (nullbool)
+#group: django
+#key : nullboolean
+#condition: (when (boundp 'python-django) python-django)
+# --
+${1:FIELDNAME} = models.NullBooleanField(${2:default=True})

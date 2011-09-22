@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : $_trim
+#key : $.trim
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+\$.trim('${1:string}')$0

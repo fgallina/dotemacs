@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : height
+#key : .height
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.height(${1:integer})$0

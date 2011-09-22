@@ -1,0 +1,4 @@
+#name : NickServ GHOST
+#key : nsi
+# --
+$0/msg NickServ IDENTIFY ${1:nickname} ${2:password}

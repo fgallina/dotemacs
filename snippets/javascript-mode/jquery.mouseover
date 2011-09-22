@@ -1,0 +1,8 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : mouseover
+#key : .mouseover
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.mouseover(${1:function() {
+    $0
+}});

@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : image
+#key : image
+# --
+.. image:: ${1:path}
+$0

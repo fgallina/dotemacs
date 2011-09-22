@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : list-style-type: marker(list)
+#key : list
+# --
+list-style-type: ${1:none/disc/circle/square};$0

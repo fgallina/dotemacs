@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : Object Value JS
+#key : :,
+# --
+${1:value_name}:${2:value},

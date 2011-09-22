@@ -1,0 +1,8 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : each
+#key : .each
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.each(function(index) {
+    $0
+});

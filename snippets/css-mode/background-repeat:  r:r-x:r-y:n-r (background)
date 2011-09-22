@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : background-repeat:  r:r-x:r-y:n-r (background)
+#key : background
+# --
+background-repeat: ${1:repeat/repeat-x/repeat-y/no-repeat};$0

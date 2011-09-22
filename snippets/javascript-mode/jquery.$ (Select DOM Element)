@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : $ (Select DOM Element)
+#key : $
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+\$($1${2:, }).$0

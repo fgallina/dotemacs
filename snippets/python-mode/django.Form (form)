@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# -*- mode: snippet -*-
+# name: django form
+#group: django
+# key: form
+# condition: (when (boundp 'python-django) python-django)
+# contributor: Fabián Ezequiel Gallina
+# --
+class ${1:Formname}Form(forms.Form):
+	${2:"""${3:docstring}"""}
+	$0

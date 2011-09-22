@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : font-family:   family (font)
+#key : font
+# --
+font-family: ${1:Arial, "MS Trebuchet"}, ${2:sans-}serif;$0

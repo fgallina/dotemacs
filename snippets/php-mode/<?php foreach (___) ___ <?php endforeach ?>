@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : <?php foreach (___) ___ <?php endforeach ?>
+#key : foreach
+# --
+<?$php foreach (\$${1:variable} as \$${2:key}${3: => \$${4:value}}): ?>
+	$0
+<?$php endforeach ?>

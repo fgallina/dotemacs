@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : $_SERVER['']
+#key : $_
+# --
+\$_SERVER['${1:variable}']

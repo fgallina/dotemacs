@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : section 1
+#key : s1
+# --
+${1:subsection name}
+${1:$(make-string (string-width text) ?\=)}
+$0

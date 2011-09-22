@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : if ?: a : b;
+#key : if?
+# --
+\$${1:retVal} = (${2:condition}) ? ${3:a} : ${4:b} ;

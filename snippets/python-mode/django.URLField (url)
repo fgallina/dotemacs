@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# This was cloned from a TextMate bundle for yasnippet.
+#name : URLField (url)
+#group: django
+#key : url
+#condition: (when (boundp 'python-django) python-django)
+# --
+${1:FIELDNAME} = models.URLField(${2:blank=True}, verify_exists=${3:True})

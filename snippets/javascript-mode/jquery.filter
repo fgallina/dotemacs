@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : filter
+#key : .filter
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.filter('${1:selector expression}')$0

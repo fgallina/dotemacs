@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : toggleClass
+#key : .toggleClass
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.toggleClass('${1:class name}')$0

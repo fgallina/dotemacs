@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : return FALSE;
+#key : ret0
+# --
+return FALSE;$0

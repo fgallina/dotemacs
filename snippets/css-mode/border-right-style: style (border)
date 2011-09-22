@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : border-right-style: style (border)
+#key : border
+# --
+border-right-style: ${1:none/hidden/dotted/dashed/solid/double/groove/ridge/inset/outset};$0

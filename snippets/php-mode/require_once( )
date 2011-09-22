@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : require_once( )
+#key : req1
+# --
+require_once '${1:file}';$0

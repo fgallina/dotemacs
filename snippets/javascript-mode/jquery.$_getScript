@@ -1,0 +1,11 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : $_getScript
+#key : $.getScript
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+\$.getScript(
+    '${1:url}'${2:,
+    ${3:data}}${4:,
+    function(data, textStatus) {$5}}
+});
+$0

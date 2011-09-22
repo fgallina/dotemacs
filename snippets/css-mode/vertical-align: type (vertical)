@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : vertical-align: type (vertical)
+#key : vertical
+# --
+vertical-align: ${1:baseline/sub/super/top/text-top/middle/bottom/text-bottom/length/%};$0

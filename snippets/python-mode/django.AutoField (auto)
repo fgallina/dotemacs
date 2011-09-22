@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# This was cloned from a TextMate bundle for yasnippet.
+#name : AutoField (auto)
+#group: django
+#key : auto
+#condition: (when (boundp 'python-django) python-django)
+# --
+${1:FIELDNAME} = models.AutoField()

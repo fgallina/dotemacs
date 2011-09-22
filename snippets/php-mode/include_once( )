@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : include_once( )
+#key : incl1
+# --
+include_once '${1:file}';$0

@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : font-size: size (font)
+#key : font
+# --
+font-size: ${1:100%};$0

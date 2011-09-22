@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : link
+#key : link
+# --
+
+\`${1:Title}<${2:http://link}>\`_

@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : wrap
+#key : .wrap
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.wrap('${1:<div class="extra-wrapper">;</div>;}')$0

@@ -1,0 +1,9 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : if( ) else( )
+#key : ifelse
+# --
+if (${1:condition}) {
+    $0
+} else {
+
+}

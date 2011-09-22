@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : :first
+#key : :
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+:first

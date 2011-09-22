@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : opacity: [for Safari, FF and IE] (opacity)
+#key : opacity
+# --
+opacity: ${1:0.5};${100:
+}-moz-opacity: ${1:0.5};${100:
+}filter:alpha(opacity=${2:${1/(1?)0?\.(.*)/$1$2/}${1/^\d*\.\d\d+$|^\d*$|(^\d\.\d$)/(?1:0)/}});$0

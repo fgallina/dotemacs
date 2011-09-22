@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# This was cloned from a TextMate bundle for yasnippet.
+#name : BooleanField (boolean)
+#group: django
+#key : boolean
+#condition: (when (boundp 'python-django) python-django)
+# --
+${1:FIELDNAME} = models.BooleanField(${2:default=True})

@@ -1,0 +1,8 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : bind
+#key : .bind
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.bind('${1:event name}', function(${2:event}) {
+    $0
+});

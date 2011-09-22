@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : Heredoc
+#key : <<<
+# --
+<<<${1:HTML}
+${2:content here}
+$1;

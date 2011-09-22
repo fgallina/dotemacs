@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : defined( )
+#key : def?
+# --
+defined('$2')$0

@@ -1,0 +1,12 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : loadIfModified
+#key : .loadIfModified
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+\$.loadIfModified(
+  "${1:mydomain.com/url}",
+  ${2:Element or Expression}${3:,
+}${4:function(responseText, status, response) {
+    $0
+}}
+);

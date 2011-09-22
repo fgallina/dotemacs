@@ -1,0 +1,16 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : PHPDoc header
+#key : doc_h
+# --
+/**
+ * $1
+ *
+ * @author ${2:`user-full-name`}
+ * @version \$Id\$
+ * @copyright $3
+ * @package ${4:default}
+ **/
+
+/**
+ * Define DocBlock
+ **/

@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : prev
+#key : .prev
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.prev('${1:selector expression}')$0

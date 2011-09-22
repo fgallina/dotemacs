@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : children
+#key : .children
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.children(${1:selector expression})$0

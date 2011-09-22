@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# This was cloned from a TextMate bundle for yasnippet.
+#name : ManyToManyField (manytomany)
+#group: django
+#key : manytomany
+#condition: (when (boundp 'python-django) python-django)
+# --
+${1:FIELDNAME} = models.ManyToManyField(${2:RELATED_MODEL})

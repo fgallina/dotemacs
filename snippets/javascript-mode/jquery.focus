@@ -1,0 +1,8 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : focus
+#key : .focus
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.focus(${1:function() {
+    $0
+}});

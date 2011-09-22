@@ -1,0 +1,11 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : $_getJSON
+#key : $.getJSON
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+\$.getJSON(
+    '${1:url}'${2:,
+    ${3:data}}${4:,
+    function(json) {$5}}
+});
+$0

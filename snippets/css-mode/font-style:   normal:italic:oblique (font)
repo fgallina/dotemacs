@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : font-style:   normal:italic:oblique (font)
+#key : font
+# --
+font-style: ${1:normal/italic/oblique};$0

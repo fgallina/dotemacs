@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : toggle (show:hide)
+#key : .toggle
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.toggle('${1:slow/400/fast}')$0

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# This was cloned from a TextMate bundle for yasnippet.
+#name : PositiveSmallIntegerField (possmall)
+#group: django
+#key : positivesmallinteger
+#condition: (when (boundp 'python-django) python-django)
+# --
+${1:FIELDNAME} = models.PositiveSmallIntegerField(${2:blank=True, null=True})

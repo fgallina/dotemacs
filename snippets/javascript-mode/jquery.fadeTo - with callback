@@ -1,0 +1,8 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : fadeTo - with callback
+#key : .fadeTo
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.fadeTo('${1:slow/400/fast}', ${2:0.5}, function() {
+    $0
+});

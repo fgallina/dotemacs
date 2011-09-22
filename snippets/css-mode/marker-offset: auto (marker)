@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : marker-offset: auto (marker)
+#key : marker
+# --
+marker-offset: auto;$0

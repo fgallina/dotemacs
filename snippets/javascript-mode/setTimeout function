@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : setTimeout function
+#key : timeout
+# --
+setTimeout(function() {$0}, ${1:10});

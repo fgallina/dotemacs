@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : Object Method String
+#key : '':f
+# --
+'${1:${2:#thing}:${3:click}}': function(element){
+	$0
+}${10:,}

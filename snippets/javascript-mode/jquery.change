@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : change
+#key : .change
+# --
+.change(${1:function() {
+    $0
+});

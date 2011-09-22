@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : setf
+#key : setf
+# --
+(setf ${1:place} ${2:value})

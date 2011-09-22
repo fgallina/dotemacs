@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : display: inline (display)
+#key : display
+# --
+display: inline;$0

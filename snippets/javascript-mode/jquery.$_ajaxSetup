@@ -1,0 +1,14 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : $_ajaxSetup
+#key : $.ajaxSetup
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+\$.ajaxSetup({
+  url: "${1:mydomain.com/url}",
+  type: "${2:POST}",
+  ${3:dataType: "${4:xml/html/script/json}",
+}${5:data: "${6:Element or Expression}",
+}${7:complete: function(XMLHttpRequest, textStatus) {$8},
+}${9:error: function(XMLHttpRequest, textStatus, errorThrown) {$10},
+}${11:success: function(data) {$12},}$0
+});

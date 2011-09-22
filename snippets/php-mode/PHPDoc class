@@ -1,0 +1,14 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : PHPDoc class
+#key : doc_c
+# --
+/**
+ * $2
+ *
+ * @package ${4:default}
+ * @author ${5:`user-full-name`}
+ **/
+class ${2:ClassName}
+{
+    $0
+} // END class $2

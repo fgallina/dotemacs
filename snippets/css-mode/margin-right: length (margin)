@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : margin-right: length (margin)
+#key : margin
+# --
+margin-right: ${1:20px};$0

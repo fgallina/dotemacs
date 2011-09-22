@@ -1,0 +1,11 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : $_getIfModified
+#key : $.getIfModified
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+\$.getIfModified(
+    '${1:url}'${2:,
+    ${3:data}}${4:,
+    function(data, textStatus) {$5}}
+});
+$0

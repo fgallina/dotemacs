@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : filter
+#key : filter
+# --
+{% filter $1 %}
+	$0
+{% endfilter %}

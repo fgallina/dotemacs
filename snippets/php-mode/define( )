@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : define( )
+#key : def
+# --
+define('$1', ${2:'$3'});
+$0

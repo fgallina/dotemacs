@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : addClass
+#key : .addClass
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.addClass('${1:class name}')$0

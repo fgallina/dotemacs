@@ -1,0 +1,8 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : fadeOut - with callback
+#key : .fadeOut
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.fadeOut('${1:slow/400/fast}', function() {
+    $0
+});

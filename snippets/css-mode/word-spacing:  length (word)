@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : word-spacing:  length (word)
+#key : word
+# --
+word-spacing: ${1:10px};$0

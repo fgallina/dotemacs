@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# This was cloned from a TextMate bundle for yasnippet.
+#name : SlugField (slug)
+#group: django
+#key : slug
+#condition: (when (boundp 'python-django) python-django)
+# --
+${1:slug} = models.SlugField(${2:prepopulate_from=("$3",$4)})

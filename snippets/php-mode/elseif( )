@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : elseif( )
+#key : elseif
+# --
+elseif (${1:condition}) {
+	$0
+}

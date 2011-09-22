@@ -1,0 +1,12 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : switch( )
+#key : switch
+# --
+switch (${1:variable}) {
+    case '${2:value}':
+        $0
+        break;
+
+    default:
+
+}

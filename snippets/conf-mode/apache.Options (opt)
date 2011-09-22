@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : Options (opt)
+#key : opt
+# --
+Options ${1:${2:All }${3:ExecCGI }${4:FollowSymLinks }${5:Includes }${6:IncludesNOEXEC }${7:Indexes }${8:MultiViews }${9:SymLinksIfOwnerMatch}}

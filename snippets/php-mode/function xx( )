@@ -1,0 +1,8 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : function xx( )
+#key : fun
+# --
+${1:public }function ${2:FunctionName}(${3:\$${4:value}${5:=''}})
+{
+    $0
+}

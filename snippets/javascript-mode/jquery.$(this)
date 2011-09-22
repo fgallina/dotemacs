@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : $(this)
+#key : this
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+\$(this).$0

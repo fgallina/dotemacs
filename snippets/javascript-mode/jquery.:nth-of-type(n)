@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : :nth-of-type(n)
+#key : :
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+:nth-of-type(${1:n})$0

@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : fadeIn
+#key : .fadeIn
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.fadeIn('${1:slow/400/fast}')$0

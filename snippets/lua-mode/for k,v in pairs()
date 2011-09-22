@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : for k,v in pairs()
+#key : forp
+# --
+for ${1:k},${2:v} in pairs(${3:table_name}) do
+	$0
+end

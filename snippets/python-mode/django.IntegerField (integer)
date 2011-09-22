@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# This was cloned from a TextMate bundle for yasnippet.
+#name : IntegerField (integer)
+#group: django
+#key : integer
+#condition: (when (boundp 'python-django) python-django)
+# --
+${1:FIELDNAME} = models.IntegerField(${2:blank=True, null=True})

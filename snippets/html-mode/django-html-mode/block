@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : block
+#key : block
+# --
+{% block $1 %}
+	$0
+{% endblock %}

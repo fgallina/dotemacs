@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : margin: T R B L (margin)
+#key : margin
+# --
+margin: ${1:20px} ${2:0px} ${3:40px} ${4:0px};$0

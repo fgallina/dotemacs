@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : cursor: url (cursor)
+#key : cursor
+# --
+cursor: url($1);$0

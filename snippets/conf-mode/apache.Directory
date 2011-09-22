@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : Directory
+#key : dir
+# --
+<Directory ${1:/Library/WebServer/${2:example/}}>
+	$0
+</Directory>

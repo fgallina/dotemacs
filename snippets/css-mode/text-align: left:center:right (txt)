@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : text-align: left:center:right (txt)
+#key : text
+# --
+text-align: ${1:left/right/center/justify};$0

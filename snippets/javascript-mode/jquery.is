@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : is
+#key : .is
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.is('${1:selector expression}')$0

@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : defparameter
+#key : par
+# --
+(defparameter *${1:name}* ${2:value}
+	"${3:Documentation for $1.}")

@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : animate
+#key : .animate
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.animate({${1:param1: value1, param2: value2}}, ${2:speed})$0

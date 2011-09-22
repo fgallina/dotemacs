@@ -1,0 +1,8 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : blur
+#key : .blur
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.blur(${1:function() {
+    $0
+});

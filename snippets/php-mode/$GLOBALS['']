@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : $GLOBALS['']
+#key : globals
+# --
+\$GLOBALS['${1:variable}']${2: = }${3:something}${4:;}$0

@@ -1,0 +1,12 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : $_get
+#key : $.get
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+\$.get(
+    '${1:url}'${2:,
+    ${3:data}}${4:,
+    function(data, textStatus) {$5}}${6:,
+    ${7:"xml/html/script/json"}}
+});
+$0

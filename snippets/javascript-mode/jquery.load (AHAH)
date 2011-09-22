@@ -1,0 +1,11 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : load (AHAH)
+#key : .load
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.load(
+    '${1:/path/to/file.htm}'
+    ${2:${3:data},
+}${4:function(){
+    $0
+}});

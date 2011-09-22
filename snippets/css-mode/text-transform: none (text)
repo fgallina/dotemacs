@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : text-transform: none (text)
+#key : text
+# --
+text-transform: none;$0

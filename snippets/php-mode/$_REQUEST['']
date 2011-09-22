@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : $_REQUEST['']
+#key : $_
+# --
+\$_REQUEST['${1:variable}']

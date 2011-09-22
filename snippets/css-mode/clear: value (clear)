@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : clear: value (clear)
+#key : clear
+# --
+clear: ${1:left/right/both/none};$0

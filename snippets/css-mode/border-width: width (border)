@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : border-width: width (border)
+#key : border
+# --
+border-width: ${1:1px};$0

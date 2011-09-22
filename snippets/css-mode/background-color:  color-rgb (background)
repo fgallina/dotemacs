@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : background-color:  color-rgb (background)
+#key : background
+# --
+background-color: rgb(${1:255},${2:255},${3:255});$0

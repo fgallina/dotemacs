@@ -1,0 +1,9 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : try { ___ } catch (___) { ___ }
+#key : try
+# --
+try {
+    $0
+} catch (${1:Exception} ${2:\$e}) {
+
+}

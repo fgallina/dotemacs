@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# This was cloned from a TextMate bundle for yasnippet.
+#name : Model Skeleton (model)
+#group: django
+#key : model
+#condition: (when (boundp 'python-django) python-django)
+# --
+class ${1:Modelname}(models.Model):
+	${2:"""${3:docstring}"""}
+	$0
+
+	def __unicode__(self):
+		return $4

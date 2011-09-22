@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : background-image:  none (background)
+#key : background
+# --
+background-image: none;$0

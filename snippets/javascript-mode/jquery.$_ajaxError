@@ -1,0 +1,8 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : $_ajaxError
+#key : $.ajaxError
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.ajaxError(function(${1:request, settings}) {
+    $0
+});

@@ -1,0 +1,38 @@
+# -*- mode: snippet -*-
+# name: django model fields
+# key: field
+#group: django
+# condition: (when (boundp 'python-django) python-django)
+# contributor: Fabián Ezequiel Gallina
+# --
+${1:FIELDNAME} = models.${$$(yas/choose-value
+'(
+  "AutoField"
+  "BigIntegerField"
+  "BooleanField"
+  "CharField"
+  "CommaSeparatedIntegerField"
+  "DateField"
+  "DateTimeField"
+  "DecimalField"
+  "EmailField"
+  "FileField"
+  "FilePathField"
+  "FloatField"
+  "ForeignKey"
+  "ImageField"
+  "IntegerField"
+  "IPAddressField"
+  "GenericIPAddressField"
+  "ManyToManyField"
+  "NullBooleanField"
+  "OneToOneField"
+  "PositiveIntegerField"
+  "PositiveSmallIntegerField"
+  "SlugField"
+  "SmallIntegerField"
+  "TextField"
+  "TimeField"
+  "URLField"
+  "XMLField"
+))}($0)

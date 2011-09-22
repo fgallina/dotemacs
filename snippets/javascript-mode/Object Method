@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : Object Method
+#key : :f
+# --
+${1:method_name}: function(${3:attribute}){
+	$0
+}${10:,}

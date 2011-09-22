@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : defmacro
+#key : mac
+# --
+(defmacro ${1:name} (${2:parameters})
+	"${3:Documentation for $1.}"
+	($0))

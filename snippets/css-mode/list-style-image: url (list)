@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : list-style-image: url (list)
+#key : list
+# --
+list-style-image: url($1);$0

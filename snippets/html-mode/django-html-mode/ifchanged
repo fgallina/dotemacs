@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : ifchanged
+#key : ifchanged
+# --
+{% ifchanged %}$1{% endifchanged %}

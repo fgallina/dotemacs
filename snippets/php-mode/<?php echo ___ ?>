@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : <?php echo ___ ?>
+#key : echo
+# --
+<?${php echo} ${1:\$var} ?>$0

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# This was cloned from a TextMate bundle for yasnippet.
+#name : FileField (file)
+#group: django
+#key : file
+#condition: (when (boundp 'python-django) python-django)
+# --
+${1:FIELDNAME} = models.FileField(upload_to=${2:/path/for/upload})

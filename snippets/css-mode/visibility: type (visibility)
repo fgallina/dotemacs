@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : visibility: type (visibility)
+#key : visibility
+# --
+visibility: ${1:visible/hidden/collapse};$0

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# This was cloned from a TextMate bundle for yasnippet.
+#name : EmailField (email)
+#group: django
+#key : email
+#condition: (when (boundp 'python-django) python-django)
+# --
+${1:FIELDNAME} = models.EmailField()

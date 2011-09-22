@@ -1,0 +1,8 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : mouseout
+#key : .mouseout
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.mouseout(${1:function() {
+    $0
+}});

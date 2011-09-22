@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : local x = 1
+#key : local
+# --
+local ${1:x} = $0

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# This was cloned from a TextMate bundle for yasnippet.
+#name : CommaSeparatedIntegerField (commaseparatedinteger)
+#group: django
+#key : commaseparatedinteger
+#condition: (when (boundp 'python-django) python-django)
+# --
+${1:FIELDNAME} = models.CommaSeparatedIntegerField(max_length=$2)

@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : ifequal
+#key : ifequal
+# --
+{% ifequal $1 $2 %}
+	$0
+{% endifequal %}

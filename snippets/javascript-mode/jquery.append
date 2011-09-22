@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : append
+#key : .append
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.append('${1:Some text <b>and bold!</b>}')$0

@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : val
+#key : .val
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.val('${1:text}')$0

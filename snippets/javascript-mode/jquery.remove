@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : remove
+#key : .remove
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.remove()$0

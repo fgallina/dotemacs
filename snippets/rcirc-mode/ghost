@@ -1,0 +1,4 @@
+#name : NickServ GHOST
+#key : nsg
+# --
+$0/msg NickServ GHOST ${1:nickname} ${2:password}

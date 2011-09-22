@@ -1,0 +1,8 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : mousemove
+#key : .mousemove
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.mousemove(${1:function() {
+    $0
+}});

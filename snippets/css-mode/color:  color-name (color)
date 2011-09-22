@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : color:  color-name (color)
+#key : color
+# --
+color: ${1:red};$0

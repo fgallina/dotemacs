@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : list-style-type: other (list)
+#key : list
+# --
+list-style-type: ${1:hebrew/armenian/georgian};$0

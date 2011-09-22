@@ -1,0 +1,8 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : show - with callback
+#key : .show
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.show('${1:slow/400/fast}', function() {
+    $0
+});

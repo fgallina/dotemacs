@@ -1,0 +1,8 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : dblclick
+#key : .dblclick
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.dblclick(${1:function() {
+    $0
+}});

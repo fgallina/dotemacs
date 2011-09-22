@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# This was cloned from a TextMate bundle for yasnippet.
+#name : IPAddressField (ipaddress)
+#group: django
+#key : ipaddress
+#condition: (when (boundp 'python-django) python-django)
+# --
+${1:FIELDNAME} = models.IPAddressField(${2:blank=True})

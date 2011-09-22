@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : $_FILES['']
+#key : $_
+# --
+\$_FILES['${1:variable}']

@@ -1,0 +1,8 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : reset
+#key : .reset
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.reset(${1:function() {
+    $0
+}});

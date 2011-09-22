@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# This was cloned from a TextMate bundle for yasnippet.
+#name : Try:Except:Else:Finally
+#key : try
+# --
+try:
+	${1:pass}
+except${2: ${3:Exception}, ${4:e}}:
+	${5:raise}
+else:
+	${6:pass}
+finally:
+	${7:pass}

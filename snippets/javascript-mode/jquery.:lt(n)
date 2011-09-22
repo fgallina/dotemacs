@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : :lt(n)
+#key : :
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+:lt(${1:n})$0

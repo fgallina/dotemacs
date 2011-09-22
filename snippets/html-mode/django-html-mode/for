@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : for
+#key : for
+# --
+{% for $1 in $2 %}
+	$0
+{% endfor %}

@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : comment
+#key : comment
+# --
+{% comment %}
+	$1
+{% endcomment %}

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# This was cloned from a TextMate bundle for yasnippet.
+#name : CharField (char)
+#group: django
+#key : char
+#condition: (when (boundp 'python-django) python-django)
+# --
+${1:FIELDNAME} = models.CharField(${2:blank=True, }max_length=${3:100})

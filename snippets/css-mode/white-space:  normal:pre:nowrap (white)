@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : white-space:  normal:pre:nowrap (white)
+#key : white
+# --
+white-space: ${1:normal/pre/nowrap};$0

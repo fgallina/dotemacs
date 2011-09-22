@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : require( )
+#key : req
+# --
+require '${1:file}';$0

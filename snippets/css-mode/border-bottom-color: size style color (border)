@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : border-bottom-color: size style color (border)
+#key : border
+# --
+border-bottom-color: #${1:999};$0

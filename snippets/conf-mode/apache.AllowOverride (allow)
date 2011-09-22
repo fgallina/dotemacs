@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : AllowOverride (allow)
+#key : allow
+# --
+AllowOverride ${1:${2:AuthConfig }${3:FileInfo }${4:Indexes }${5:Limit }${6:Options}}

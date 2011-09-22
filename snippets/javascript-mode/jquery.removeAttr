@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : removeAttr
+#key : .removeAttr
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.removeAttr('${1:attribute name}')$0

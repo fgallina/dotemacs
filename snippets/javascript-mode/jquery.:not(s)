@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : :not(s)
+#key : :
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+:not(${1:s})$0

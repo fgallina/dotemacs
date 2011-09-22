@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : foreach( )
+#key : foreach
+# --
+foreach (\$${1:variable} as \$${2:key}${3: => \$${4:value}}) {
+    $0
+}

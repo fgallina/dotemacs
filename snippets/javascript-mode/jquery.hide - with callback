@@ -1,0 +1,8 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : hide - with callback
+#key : .hide
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.hide(${1:slow/400/fast}, function() {
+    $0
+});

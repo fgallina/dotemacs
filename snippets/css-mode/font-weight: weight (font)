@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : font-weight: weight (font)
+#key : font
+# --
+font-weight: ${1:normal/bold};$0

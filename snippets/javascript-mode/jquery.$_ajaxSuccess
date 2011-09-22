@@ -1,0 +1,8 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : $_ajaxSuccess
+#key : $.ajaxSuccess
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.ajaxSuccess(function() {
+    $0
+});

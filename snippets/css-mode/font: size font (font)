@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : font: size font (font)
+#key : font
+# --
+font: ${1:75%} ${2:"Lucida Grande", "Trebuchet MS", Verdana,} ${3:sans-}serif;$0

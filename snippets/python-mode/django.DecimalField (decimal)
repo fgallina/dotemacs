@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# This was cloned from a TextMate bundle for yasnippet.
+#name : DecimalField
+#group: django
+#key : decimal
+#condition: (when (boundp 'python-django) python-django)
+# --
+${1:FIELDNAME} = models.DecimalField(max_digits=$2, decimal_places=$3)

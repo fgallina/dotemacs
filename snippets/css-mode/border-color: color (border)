@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : border-color: color (border)
+#key : border
+# --
+border-color: ${1:999};$0

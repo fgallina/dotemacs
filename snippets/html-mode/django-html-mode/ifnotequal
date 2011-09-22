@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : ifnotequal
+#key : ifnotequal
+# --
+{% ifnotequal $1 $2 %}
+	$0
+{% endifnotequal %}

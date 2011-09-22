@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : contains
+#key : .contains
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.contains('${1:text to find}')$0

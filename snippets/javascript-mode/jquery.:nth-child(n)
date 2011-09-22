@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : :nth-child(n)
+#key : :
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+:nth-child(${1:n})$0

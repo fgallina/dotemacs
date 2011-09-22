@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : before
+#key : .before
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.before('${1:Some text <b>and bold!</b>}')$0

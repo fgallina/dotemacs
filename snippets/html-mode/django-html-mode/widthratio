@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : widthratio
+#key : widthratio
+# --
+{% widthratio ${1:this_value} ${2:max_value} ${3:100} %}

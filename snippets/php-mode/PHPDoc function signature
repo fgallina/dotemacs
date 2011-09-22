@@ -1,0 +1,11 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : PHPDoc function signature
+#key : doc_s
+# --
+/**
+ * $2
+ *
+ * @return ${5:void}
+ * @author ${6:`user-full-name`}
+ **/
+function ${2:func_name}($3);$0

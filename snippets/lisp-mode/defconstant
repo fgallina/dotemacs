@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : defconstant
+#key : const
+# --
+(defconstant +${1:name}+ ${2:value}
+	"${3:Documentation for $1.}"))

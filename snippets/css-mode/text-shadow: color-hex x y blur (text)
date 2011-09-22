@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : text-shadow: color-hex x y blur (text)
+#key : text
+# --
+text-shadow: #${1:DDD} ${2:10px} ${3:10px} ${4:2px};$0

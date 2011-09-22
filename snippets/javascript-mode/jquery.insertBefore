@@ -1,0 +1,6 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : insertBefore
+#key : .insertBefore
+#condition : (when (boundp 'jquery-project) jquery-project)
+# --
+.insertBefore('${1:selector expression}')$0

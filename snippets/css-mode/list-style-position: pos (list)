@@ -1,0 +1,5 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : list-style-position: pos (list)
+#key : list
+# --
+list-style-position: ${1:inside/outside};$0

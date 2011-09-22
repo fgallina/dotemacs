@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# -*- mode: snippet -*-
+# name: django model admin
+#group: django
+# key: modela
+# condition: (when (boundp 'python-django) python-django)
+# contributor: Fabián Ezequiel Gallina
+# --
+class ${1:Model}Admin(admin.ModelAdmin):
+	${2:"""${3:docstring}"""}
+	$0

@@ -1,0 +1,15 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : class { }
+#key : class
+# --
+/**
+* $1
+*/
+class ${2:ClassName}${3: extends ${4:AnotherClass}}
+{
+	$5
+	function ${6:__construct}(${7:argument})
+	{
+		$0
+	}
+}

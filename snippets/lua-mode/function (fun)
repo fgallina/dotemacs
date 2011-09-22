@@ -1,0 +1,7 @@
+# This was cloned from a TextMate bundle for yasnippet.
+#name : function (fun)
+#key : fun
+# --
+function ${1:function_name}( ${2:...} )
+	$0
+end
