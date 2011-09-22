@@ -1,0 +1,7 @@
+;(load-file "~/.emacs.d/vendor/cedet/common/cedet.el")
+;(require 'semantic-ia)
+;(setq semanticdb-default-save-directory "~/emacs-meta/semantic.cache/")
+;(semantic-load-enable-excessive-code-helpers)
+;(global-semantic-stickyfunc-mode -1)
+;(global-semantic-decoration-mode -1)
+;(global-senator-minor-mode -1)
