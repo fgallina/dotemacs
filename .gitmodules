@@ -64,3 +64,6 @@
 [submodule "vendor/smart-tab"]
 	path = vendor/smart-tab
 	url = https://github.com/genehack/smart-tab.git
+[submodule "vendor/auto-complete"]
+	path = vendor/auto-complete
+	url = https://github.com/m2ym/auto-complete.git

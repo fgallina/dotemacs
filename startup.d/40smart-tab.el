@@ -17,6 +17,20 @@
 
 (setq smart-tab-using-hippie-expand t)
 
+(defun smart-tab-call-completion-function ()
+  "Get a completion function according to current major mode."
+  (let ((completion-function
+         (cdr (assq major-mode smart-tab-completion-functions-alist))))
+    (if (null completion-function)
+        (if (and (not (minibufferp))
+                 (memq 'auto-complete-mode minor-mode-list)
+                 auto-complete-mode)
+            (auto-complete)
+          (if smart-tab-using-hippie-expand
+              (hippie-expand nil)
+            (dabbrev-expand nil)))
+      (funcall completion-function))))
+
 ;;;###autoload
 (defun smart-tab (&optional prefix)
   "Try to 'do the smart thing' when tab is pressed.

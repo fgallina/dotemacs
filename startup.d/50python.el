@@ -61,12 +61,31 @@
                                    (cdr he-tried-table)))
         t))))
 
+
+(remove-hook 'python-mode-hook 'ac-ropemacs-setup)
+(defvar ac-ropemacs-completions-cache nil)
+(defvar ac-source-ropemacs
+  '((init
+     . (lambda ()
+         (setq ac-ropemacs-completions-cache
+               (delete-duplicates
+                (mapcar
+                 (lambda (completion)
+                   (concat ac-prefix
+                           (strip-whitespace
+                            (nth 0 (split-string completion ":")))))
+                 (ignore-errors
+                   (rope-completions)))
+                :test 'string=))))
+    (candidates . ac-ropemacs-completions-cache)))
+
 (add-hook 'python-mode-hook
 	  (lambda ()
             (set (make-local-variable 'hippie-expand-try-functions-list)
                   '(yas/hippie-try-expand
                     try-complete-file-name
-                    try-complete-ropemacs))))
+                    try-complete-ropemacs))
+            (setq ac-sources '(ac-source-ropemacs))))
 
 (setq pdb-path '/usr/lib/python2.7/pdb.py
       gud-pdb-command-name (symbol-name pdb-path))
