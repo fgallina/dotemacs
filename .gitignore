@@ -6,3 +6,4 @@ secrets.el
 *~
 emacs-meta
 
+/ac-comphist.dat
