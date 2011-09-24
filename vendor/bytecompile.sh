@@ -52,6 +52,8 @@ fi
 
 for option in $options; do
     case "$option" in
+        auto-complete)
+            (cd auto-complete && make byte-compile);;
         cedet)
             (cd cedet && make);;
         deft)
@@ -68,11 +70,16 @@ for option in $options; do
             (cd python-mode && emacs --batch -L . --eval "(byte-compile-file \"python.el\")");;
         rainbow-mode)
             (cd rainbow-mode && emacs --batch -L . --eval "(byte-compile-file \"rainbow-mode.el\")");;
+        twittering-mode)
+            (cd twittering-mode && emacs --batch -L . --eval "(byte-compile-file \"twittering-mode.el\")");;
         yasnippet)
             (cd yasnippet && emacs --batch -L . --eval "(and (byte-compile-file \"yasnippet.el\") (byte-compile-file \"dropdown-list.el\"))");;
         zencoding)
-            (cd zencoding && make);;
-        *) echo "Warning: compile rule for $option not found";;
+            pushd zencoding
+            make
+            emacs --batch -L . --eval "(and (byte-compile-file \"zencoding-trie.el\") (byte-compile-file \"zencoding-mode.el\"))"
+            popd;;
+        *) make "Warning: compile rule for $option not found";;
     esac
 done
 
