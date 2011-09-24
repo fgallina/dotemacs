@@ -78,7 +78,7 @@
                    (rope-completions)))
                 :test 'string=))))
     (candidates . ac-ropemacs-completions-cache)))
-
+(remove-hook 'python-mode-hook 'wisent-python-default-setup)
 (add-hook 'python-mode-hook
 	  (lambda ()
             (set (make-local-variable 'hippie-expand-try-functions-list)
