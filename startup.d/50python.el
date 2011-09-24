@@ -85,7 +85,7 @@
                   '(yas/hippie-try-expand
                     try-complete-file-name
                     try-complete-ropemacs))
-            (setq ac-sources '(ac-source-ropemacs))))
+            (setq ac-sources '(ac-source-ropemacs ac-source-yasnippet ac-source-filename))))
 
 (setq pdb-path '/usr/lib/python2.7/pdb.py
       gud-pdb-command-name (symbol-name pdb-path))
