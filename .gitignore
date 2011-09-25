@@ -1,10 +1,9 @@
-history
-auto-save-list
+/history
+/auto-save-list
 *.elc
-customizations.el
-secrets.el
+/customizations.el
+/secrets.el
 *~
-emacs-meta
-
+/emacs-meta
 /ac-comphist.dat
 /tramp
