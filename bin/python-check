@@ -1,0 +1,6 @@
+#!/bin/bash
+
+pylint --output-format=parseable --reports=n "$1" 2>/dev/null
+pyflakes "$1" 2>/dev/null
+pep8 "$1" 2>/dev/null
+true
