@@ -1,18 +1,10 @@
 (setenv "PYMACS_PYTHON" "python2")
 
-(add-to-list 'load-path "~/Workspace/python-mode")
 (require 'pymacs)
 (require 'python)
+(require 'flymake)
 
 (setq python-shell-interpreter "python2")
-
-;; (setq
-;;  python-shell-interpreter "ipython"
-;;  python-shell-interpreter-args ""
-;;  python-shell-prompt-regexp "In \\[[0-9]+\\]: "
-;;  python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
-;;  python-shell-completion-setup-code ""
-;;  python-shell-completion-string-code "';'.join(__IP.complete('''%s'''))\n")
 
 (autoload 'pymacs-apply "pymacs")
 (autoload 'pymacs-call "pymacs")
@@ -77,15 +69,67 @@
                  (ignore-errors
                    (rope-completions)))
                 :test 'string=))))
+    (symbol . "py")
     (candidates . ac-ropemacs-completions-cache)))
+
 (remove-hook 'python-mode-hook 'wisent-python-default-setup)
-(add-hook 'python-mode-hook
-	  (lambda ()
-            (set (make-local-variable 'hippie-expand-try-functions-list)
-                  '(yas/hippie-try-expand
-                    try-complete-file-name
-                    try-complete-ropemacs))
-            (setq ac-sources '(ac-source-ropemacs ac-source-yasnippet ac-source-filename))))
+
+(defun flymake-python-init ()
+  (let* ((process-environment (python-shell-calculate-process-environment))
+         (exec-path (python-shell-calculate-exec-path))
+         (checker (executable-find "python-check")))
+    (when checker
+      (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                         'flymake-create-temp-inplace))
+             (local-file (file-relative-name
+                          temp-file
+                          (file-name-directory buffer-file-name))))
+        (list checker (list local-file))))))
+
+(add-to-list 'flymake-allowed-file-name-masks
+             '("\\.py\\'" flymake-python-init))
+
+(defun python-flymake-setup ()
+  (interactive)
+  (flymake-mode)
+  (local-set-key [S-up]
+                 (lambda ()
+                   (interactive)
+                   (flymake-goto-prev-error)
+                   (message "%s"
+                            (flymake-ler-text
+                             (caar (flymake-find-err-info
+                                    flymake-err-info
+                                    (flymake-current-line-no)))))))
+  (local-set-key [S-down]
+                 (lambda ()
+                   (interactive)
+                   (flymake-goto-next-error)
+                   (message "%s"
+                            (flymake-ler-text
+                             (caar (flymake-find-err-info
+                                    flymake-err-info
+                                    (flymake-current-line-no))))))))
+
+(defadvice flymake-start-syntax-check-process (around python-flymake-start-syntax-check-process
+                                                      (cmd args dir))
+  "`flymake-start-syntax-check-process' with virtualenv support."
+  (if (eq major-mode 'python-mode)
+      (let* ((process-environment (python-shell-calculate-process-environment))
+             (exec-path (python-shell-calculate-exec-path)))
+        ad-do-it)
+    ad-do-it))
+(ad-activate 'flymake-start-syntax-check-process)
+
+(defun python-setup ()
+  (set (make-local-variable 'hippie-expand-try-functions-list)
+       '(yas/hippie-try-expand
+         try-complete-file-name
+         try-complete-ropemacs))
+  (setq ac-sources '(ac-source-ropemacs ac-source-yasnippet ac-source-filename)))
+
+(add-hook 'python-mode-hook 'python-flymake-setup)
+(add-hook 'python-mode-hook 'python-setup)
 
 (setq pdb-path '/usr/lib/python2.7/pdb.py
       gud-pdb-command-name (symbol-name pdb-path))
