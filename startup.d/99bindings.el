@@ -8,6 +8,5 @@
 (global-set-key (kbd "C-c C-f") 'insert-file-name)
 (global-set-key (kbd "M-Y") 'yank-pop-backwards)
 (global-set-key (kbd "C-z") 'repeat)
-(global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-M-}") 'forward-page)
 (global-set-key (kbd "C-M-{") 'backward-page)
