@@ -8,4 +8,5 @@
 /ac-comphist.dat
 /tramp
 /session*
-/overrides.el
+/pre-startup.el
+/post-startup.el
