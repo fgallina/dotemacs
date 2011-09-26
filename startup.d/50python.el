@@ -50,8 +50,8 @@
 
 
 (remove-hook 'python-mode-hook 'ac-ropemacs-setup)
-(defvar ac-ropemacs-completions-cache nil)
-(defvar ac-source-ropemacs
+(setq ac-ropemacs-completions-cache nil)
+(setq ac-source-ropemacs
   '((init
      . (lambda ()
          (setq ac-ropemacs-completions-cache
