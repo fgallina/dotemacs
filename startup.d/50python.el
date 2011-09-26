@@ -18,12 +18,6 @@
       ropemacs-enable-autoimport t
       ropemacs-completing-read-function 'completing-read)
 
-(defun strip-whitespace (string)
-  "Return STRING stripped of all whitespace."
-  (while (string-match "[\r\n\t ]+" string)
-    (setq string (replace-match "" t t string)))
-  string)
-
 (defun try-complete-ropemacs (old)
   (save-excursion
     (unless old
@@ -36,7 +30,8 @@
                       (mapcar
                        (lambda (completion)
                          (concat he-search-string
-                                 (strip-whitespace
+                                 (replace-regexp-in-string
+                                  "^[\r\n\t ]+\\|[\r\n\t ]+$" ""
                                   (nth 0 (split-string completion ":")))))
                        (ignore-errors
                          (rope-completions)))
@@ -64,12 +59,13 @@
                 (mapcar
                  (lambda (completion)
                    (concat ac-prefix
-                           (strip-whitespace
+                           (replace-regexp-in-string
+                            "^[\r\n\t ]+\\|[\r\n\t ]+$" ""
                             (nth 0 (split-string completion ":")))))
                  (ignore-errors
                    (rope-completions)))
                 :test 'string=))))
-    (symbol . "py")
+    (symbol . "p")
     (candidates . ac-ropemacs-completions-cache)))
 
 (remove-hook 'python-mode-hook 'wisent-python-default-setup)
