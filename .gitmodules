@@ -36,7 +36,7 @@
 	url = https://github.com/juba/color-theme-tangotango.git
 [submodule "vendor/rainbow-mode"]
 	path = vendor/rainbow-mode
-	url = git://git.naquadah.org/rainbow.git
+	url = git://github.com/emacsmirror/rainbow-mode.git
 [submodule "vendor/python-mode"]
 	path = vendor/python-mode
 	url = https://github.com/fgallina/python.el.git
@@ -63,7 +63,7 @@
 	url = https://github.com/nicferrier/elpastebin.git
 [submodule "vendor/smart-tab"]
 	path = vendor/smart-tab
-	url = https://github.com/genehack/smart-tab.git
+	url = git://github.com/fgallina/smart-tab.git
 [submodule "vendor/auto-complete"]
 	path = vendor/auto-complete
 	url = https://github.com/m2ym/auto-complete.git
