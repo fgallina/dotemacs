@@ -72,7 +72,7 @@ for option in $options; do
             (cd python-mode && emacs --batch -L . --eval "(byte-compile-file \"python.el\")");;
         rainbow-mode)
             (cd rainbow-mode && emacs --batch -L . --eval "(byte-compile-file \"rainbow-mode.el\")");;
-        rainbow-mode)
+        smart-tab)
             (cd smart-tab && emacs --batch -L . --eval "(byte-compile-file \"smart-tab.el\")");;
         twittering-mode)
             (cd twittering-mode && emacs --batch -L . --eval "(byte-compile-file \"twittering-mode.el\")");;
