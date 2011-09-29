@@ -21,8 +21,10 @@
 # CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
 # CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-cd `dirname $0`
-PACKAGES=$(find ~/.emacs.d/vendor -maxdepth 1 -type d \( ! -iname "." \) -printf "%f\n")
+
+VENDOR_DIR=$HOME"/.emacs.d/vendor"
+cd "$VENDOR_DIR"
+PACKAGES=$(find . -maxdepth 1 -type d \( ! -iname "." \) -printf "%f\n")
 
 HELP=""
 
@@ -70,6 +72,8 @@ for option in $options; do
             (cd python-mode && emacs --batch -L . --eval "(byte-compile-file \"python.el\")");;
         rainbow-mode)
             (cd rainbow-mode && emacs --batch -L . --eval "(byte-compile-file \"rainbow-mode.el\")");;
+        rainbow-mode)
+            (cd smart-tab && emacs --batch -L . --eval "(byte-compile-file \"smart-tab.el\")");;
         twittering-mode)
             (cd twittering-mode && emacs --batch -L . --eval "(byte-compile-file \"twittering-mode.el\")");;
         yasnippet)
@@ -79,7 +83,7 @@ for option in $options; do
             make
             emacs --batch -L . --eval "(and (byte-compile-file \"zencoding-trie.el\") (byte-compile-file \"zencoding-mode.el\"))"
             popd;;
-        *) make "Warning: compile rule for $option not found";;
+        *) "Warning: compile rule for $option not found";;
     esac
 done
 
