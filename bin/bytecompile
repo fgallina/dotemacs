@@ -22,7 +22,7 @@
 # CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 cd `dirname $0`
-PACKAGES=$(find . -maxdepth 1 -type d \( ! -iname "." \) -printf "%f\n")
+PACKAGES=$(find ~/.emacs.d/vendor -maxdepth 1 -type d \( ! -iname "." \) -printf "%f\n")
 
 HELP=""
 
