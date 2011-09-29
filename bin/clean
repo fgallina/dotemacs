@@ -36,7 +36,7 @@ You should call this script using $0 [options...]
 
 Where valid options are:
 
-    * all (for all packages)$HELP
+    * --all (for all packages)$HELP
 "
 
 if [[ -z "$@" || "$@" = "help" ]]; then
@@ -44,7 +44,7 @@ if [[ -z "$@" || "$@" = "help" ]]; then
     exit 1;
 fi
 
-if [[ "$@" == "all" ]]; then
+if [[ "$@" == "--all" ]]; then
     options=$PACKAGES
 else
     options="$@"
