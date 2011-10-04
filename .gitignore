@@ -10,3 +10,4 @@
 /session*
 /pre-startup.el
 /post-startup.el
+/rcirc-log
