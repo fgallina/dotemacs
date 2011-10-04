@@ -46,12 +46,5 @@
 					  target input)))))
 
 (setq rcirc-log-flag t)
-(setq rcirc-server-alist
-      '(("irc.freenode.net"
-         :channels ("#rcirc" "#emacs" "#lugro" "#lugro-mesh"
-                    "#python" "#pyar" "#django-es" "#django"
-                    "#django-dev" "#archlinux" "#the_it_crowd"
-                    "#machinalis""#anue" "#org-mode" "#python.el"
-                    "#jquery" "#logn" "#logn-ar"))))
 (setq rcirc-time-format "%Y-%m-%d %H:%M ")
 (rcirc-track-minor-mode 1)
