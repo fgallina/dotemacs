@@ -87,28 +87,33 @@
 
 (defun python-flymake-setup ()
   (interactive)
-  (flymake-mode)
-  (local-set-key [S-up]
-                 (lambda ()
-                   (interactive)
-                   (flymake-goto-prev-error)
-                   (message "%s"
-                            (flymake-ler-text
-                             (caar (flymake-find-err-info
-                                    flymake-err-info
-                                    (flymake-current-line-no)))))))
-  (local-set-key [S-down]
-                 (lambda ()
-                   (interactive)
-                   (flymake-goto-next-error)
-                   (message "%s"
-                            (flymake-ler-text
-                             (caar (flymake-find-err-info
-                                    flymake-err-info
-                                    (flymake-current-line-no))))))))
+  ;; Do not active when using sudo or in a server
+  (when (not (file-remote-p default-directory))
+    (flymake-mode 1)
+    (flymake-start-syntax-check)
+    (local-set-key [S-up]
+                   (lambda ()
+                     (interactive)
+                     (ignore-errors
+                       (flymake-goto-prev-error)
+                       (message "%s"
+                                (flymake-ler-text
+                                 (caar (flymake-find-err-info
+                                        flymake-err-info
+                                        (flymake-current-line-no))))))))
+    (local-set-key [S-down]
+                   (lambda ()
+                     (interactive)
+                     (ignore-errors
+                       (flymake-goto-next-error)
+                       (message "%s"
+                                (flymake-ler-text
+                                 (caar (flymake-find-err-info
+                                        flymake-err-info
+                                        (flymake-current-line-no))))))))))
 
-(defadvice flymake-start-syntax-check-process (around python-flymake-start-syntax-check-process
-                                                      (cmd args dir))
+(defadvice flymake-start-syntax-check-process
+  (around python-flymake-start-syntax-check-process (cmd args dir))
   "`flymake-start-syntax-check-process' with virtualenv support."
   (if (eq major-mode 'python-mode)
       (let* ((process-environment (python-shell-calculate-process-environment))
@@ -122,7 +127,8 @@
        '(yas/hippie-try-expand
          try-complete-file-name
          try-complete-ropemacs))
-  (setq ac-sources '(ac-source-ropemacs ac-source-yasnippet ac-source-filename)))
+  (setq ac-sources
+        '(ac-source-ropemacs ac-source-yasnippet ac-source-filename)))
 
 (add-hook 'python-mode-hook 'python-flymake-setup)
 (add-hook 'python-mode-hook 'python-setup)
@@ -133,5 +139,5 @@
 (defadvice pdb (before gud-query-cmdline activate)
   "Provide a better default command line when called interactively."
   (interactive
-   (list (gud-query-cmdline pdb-path (file-name-nondirectory
-				      buffer-file-name)))))
+   (list (gud-query-cmdline
+          pdb-path (file-name-nondirectory buffer-file-name)))))
