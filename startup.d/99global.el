@@ -35,6 +35,13 @@
 (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
 (setq warning-suppress-types nil)
 
+(defadvice flymake-start-syntax-check-process
+  (after my-flymake-start-syntax-check-process
+         (cmd args dir) activate compile)
+  ;; set flag to allow exit without query on any active flymake
+  ;; processes
+  (set-process-query-on-exit-flag ad-return-value nil))
+
 ;; (add-hook 'find-file-hook (lambda ()
 ;;                             (when (and buffer-file-name
 ;;                                        (not (file-writable-p buffer-file-name))
