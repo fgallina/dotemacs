@@ -64,3 +64,9 @@
 [submodule "vendor/lua-mode"]
 	path = vendor/lua-mode
 	url = git://github.com/immerrr/lua-mode.git
+[submodule "vendor/slime"]
+	path = vendor/slime
+	url = git://github.com/emacsmirror/slime.git
+[submodule "vendor/clojure-mode"]
+	path = vendor/clojure-mode
+	url = git://github.com/jochu/clojure-mode.git
