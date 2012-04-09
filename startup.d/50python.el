@@ -2,7 +2,6 @@
 
 (require 'pymacs)
 (require 'python)
-(require 'flymake)
 
 (setq python-shell-interpreter "python2")
 
@@ -70,58 +69,6 @@
 
 (remove-hook 'python-mode-hook 'wisent-python-default-setup)
 
-(defun flymake-python-init ()
-  (let* ((process-environment (python-shell-calculate-process-environment))
-         (exec-path (python-shell-calculate-exec-path))
-         (checker (executable-find "python-check")))
-    (when checker
-      (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                         'flymake-create-temp-inplace))
-             (local-file (file-relative-name
-                          temp-file
-                          (file-name-directory buffer-file-name))))
-        (list checker (list local-file))))))
-
-(add-to-list 'flymake-allowed-file-name-masks
-             '("\\.py\\'" flymake-python-init))
-
-(defun python-flymake-setup ()
-  (interactive)
-  ;; Do not active when using sudo or in a server
-  (when (not (file-remote-p default-directory))
-    (flymake-mode 1)
-    (flymake-start-syntax-check)
-    (local-set-key [S-up]
-                   (lambda ()
-                     (interactive)
-                     (ignore-errors
-                       (flymake-goto-prev-error)
-                       (message "%s"
-                                (flymake-ler-text
-                                 (caar (flymake-find-err-info
-                                        flymake-err-info
-                                        (flymake-current-line-no))))))))
-    (local-set-key [S-down]
-                   (lambda ()
-                     (interactive)
-                     (ignore-errors
-                       (flymake-goto-next-error)
-                       (message "%s"
-                                (flymake-ler-text
-                                 (caar (flymake-find-err-info
-                                        flymake-err-info
-                                        (flymake-current-line-no))))))))))
-
-(defadvice flymake-start-syntax-check-process
-  (around python-flymake-start-syntax-check-process (cmd args dir))
-  "`flymake-start-syntax-check-process' with virtualenv support."
-  (if (eq major-mode 'python-mode)
-      (let* ((process-environment (python-shell-calculate-process-environment))
-             (exec-path (python-shell-calculate-exec-path)))
-        ad-do-it)
-    ad-do-it))
-(ad-activate 'flymake-start-syntax-check-process)
-
 (defun python-setup ()
   (set (make-local-variable 'hippie-expand-try-functions-list)
        '(yas/hippie-try-expand
@@ -130,7 +77,6 @@
   (setq ac-sources
         '(ac-source-ropemacs ac-source-yasnippet ac-source-filename)))
 
-(add-hook 'python-mode-hook 'python-flymake-setup)
 (add-hook 'python-mode-hook 'python-setup)
 
 (setq pdb-path '/usr/lib/python2.7/pdb.py

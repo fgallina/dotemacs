@@ -1,6 +1,17 @@
 #!/bin/bash
 
-epylint "$1" 2>/dev/null
-pyflakes "$1" 2>/dev/null
-pep8 "$1" 2>/dev/null
-true
+check () {
+    epylint "$1" 2>/dev/null
+    epylint_status=$?
+    pyflakes "$1" 2>/dev/null
+    pyflakes_status=$?
+    pep8 "$1" 2>/dev/null
+    pep8_status=$?
+    if [[ $epylint_status -eq 0 || $pyflakes_status -eq 0 || $pep8_status -eq 0 ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+check $1
