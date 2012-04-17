@@ -1,2 +1,2 @@
 (when (boundp 'custom-safe-themes)
-  (load-theme 'misterioso t))
+  (load-theme 'tango-dark t))
