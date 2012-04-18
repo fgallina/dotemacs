@@ -62,6 +62,8 @@ for option in $options; do
             (cd deft && emacs --batch -L . --eval "(byte-compile-file \"deft.el\")");;
         full-ack)
             (cd full-ack && emacs --batch -L . --eval "(byte-compile-file \"full-ack.el\")");;
+        fuzzy)
+            (cd fuzzy && emacs --batch -L . --eval "(byte-compile-file \"fuzzy.el\")");;
         magit)
             (cd magit && make);;
         org-mode)
@@ -70,6 +72,8 @@ for option in $options; do
             (cd php-mode && emacs --batch -L . --eval "(byte-compile-file \"php-mode.el\")");;
         python-mode)
             (cd python-mode && emacs --batch -L . --eval "(byte-compile-file \"python.el\")");;
+        popup)
+            (cd popup && emacs --batch -L . --eval "(byte-compile-file \"popup.el\")");;
         rainbow-mode)
             (cd rainbow-mode && emacs --batch -L . --eval "(byte-compile-file \"rainbow-mode.el\")");;
         smart-tab)

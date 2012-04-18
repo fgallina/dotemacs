@@ -73,3 +73,9 @@
 [submodule "vendor/org-s5"]
 	path = vendor/org-s5
 	url = git://github.com/eschulte/org-S5.git
+[submodule "vendor/fuzzy"]
+	path = vendor/fuzzy
+	url = git://github.com/m2ym/fuzzy-el.git
+[submodule "vendor/popup"]
+	path = vendor/popup
+	url = https://github.com/m2ym/popup-el
