@@ -82,3 +82,6 @@
 [submodule "vendor/coffee-mode"]
 	path = vendor/coffee-mode
 	url = git://github.com/defunkt/coffee-mode.git
+[submodule "vendor/nyan-mode"]
+	path = vendor/nyan-mode
+	url = https://github.com/TeMPOraL/nyan-mode.git
