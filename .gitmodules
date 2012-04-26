@@ -79,3 +79,6 @@
 [submodule "vendor/popup"]
 	path = vendor/popup
 	url = https://github.com/m2ym/popup-el
+[submodule "vendor/coffee-mode"]
+	path = vendor/coffee-mode
+	url = git://github.com/defunkt/coffee-mode.git
