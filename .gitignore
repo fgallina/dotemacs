@@ -1,3 +1,6 @@
+ede-projects.el
+srecode-map.el
+swank/
 /history
 /auto-save-list
 *.elc
