@@ -88,3 +88,6 @@
 [submodule "vendor/o-blog"]
 	path = vendor/o-blog
 	url = git://github.com/renard/o-blog.git
+[submodule "vendor/emms"]
+	path = vendor/emms
+	url = git://git.sv.gnu.org/emms.git
