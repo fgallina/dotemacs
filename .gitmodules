@@ -91,3 +91,6 @@
 [submodule "vendor/emms"]
 	path = vendor/emms
 	url = git://git.sv.gnu.org/emms.git
+[submodule "vendor/w3m"]
+	path = vendor/w3m
+	url = git://github.com/emacsmirror/w3m.git
