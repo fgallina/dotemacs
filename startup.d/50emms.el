@@ -1,5 +1,5 @@
 (require 'emms-setup)
-(emms-standard)
+(emms-devel)
 (emms-default-players)
 
 
@@ -33,6 +33,37 @@ tree."
     (emms-add-directory-tree truc))
    ((file-exists-p truc)
     (emms-add-file truc))))
+
+;; Libtag support
+(require 'emms-info-libtag)
+(setq emms-info-functions '(emms-info-libtag))
+
+;; Stolen and adapted from TWB
+(defun my-emms-info-track-description (track)
+  "Return a description of the current track."
+  (if (and (emms-track-get track 'info-artist)
+           (emms-track-get track 'info-title))
+      (let ((pmin (emms-track-get track 'info-playing-time-min))
+            (psec (emms-track-get track 'info-playing-time-sec))
+            (ptot (emms-track-get track 'info-playing-time))
+            (art  (emms-track-get track 'info-artist))
+            (tit  (emms-track-get track 'info-title)))
+        (cond ((and pmin psec) (format "%s - %s [%02d:%02d]" art tit pmin psec))
+              (ptot (format  "%s - %s [%02d:%02d]" art tit (/ ptot 60) (% ptot 60)))
+              (t (emms-track-simple-description track))))
+    (let ((name (emms-track-name (emms-playlist-current-selected-track))))
+      (when name
+        (file-name-nondirectory name)))))
+
+(setq emms-track-description-function 'my-emms-info-track-description)
+
+(setq
+ emms-info-asynchronously t
+ emms-info-functions '(emms-info-libtag)
+ later-do-interval 0.0001
+ emms-mode-line-format " %s "
+ emms-show-format "NP: %s")
+
 
 (define-key emms-playlist-mode-map "A" 'emms-awim)
 (define-key emms-playlist-mode-map "P" 'emms-pwim)
