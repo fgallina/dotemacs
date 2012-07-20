@@ -53,16 +53,24 @@ fi
 
 for option in $options; do
     case "$option" in
+        auto-complete)
+            (cd auto-complete && make clean);;
         cedet)
             pushd cedet
             make clean-all
             git checkout semantic/bovine/semantic-skeleton-by.el semantic/semantic-grammar-wy.el
             popd
             ;;
+        emms)
+            (cd emms && make clean);;
         magit)
             (cd magit && make clean);;
         org-mode)
             (cd org-mode && make clean);;
+        w3m)
+            (cd w3m && make clean);;
+        yaml)
+            (cd yaml && make clean);;
         zencoding)
             (cd zencoding && rm -f zencoding-trie.el && rm -f *.elc);;
         *)

@@ -58,14 +58,28 @@ for option in $options; do
             (cd auto-complete && make byte-compile);;
         cedet)
             (cd cedet && make);;
+        clojure-mode)
+            (cd clojure-mode && emacs --batch -L . --eval "(byte-compile-file \"clojure-mode.el\")");;
+        coffee-mode)
+            (cd coffee-mode && emacs --batch -L . --eval "(byte-compile-file \"coffee-mode.el\")");;
         deft)
             (cd deft && emacs --batch -L . --eval "(byte-compile-file \"deft.el\")");;
+        emms)
+            pushd emms
+            make EMACS="emacs -L ~/.emacs.d/vendor/w3m"
+            make emms-print-metadata
+            cp src/emms-print-metadata ../../bin/
+            popd;;
         full-ack)
             (cd full-ack && emacs --batch -L . --eval "(byte-compile-file \"full-ack.el\")");;
         fuzzy)
             (cd fuzzy && emacs --batch -L . --eval "(byte-compile-file \"fuzzy.el\")");;
+        lua-mode)
+            (cd lua-mode && make compile);;
         magit)
             (cd magit && make);;
+        nyan-mode)
+            (cd nyan-mode && emacs --batch -L . --eval "(byte-compile-file \"nyan-mode.el\")");;
         org-mode)
             (cd org-mode && make);;
         php-mode)
@@ -76,10 +90,16 @@ for option in $options; do
             (cd popup && emacs --batch -L . --eval "(byte-compile-file \"popup.el\")");;
         rainbow-mode)
             (cd rainbow-mode && emacs --batch -L . --eval "(byte-compile-file \"rainbow-mode.el\")");;
+        scss-mode)
+            (cd scss-mode && emacs --batch -L . --eval "(byte-compile-file \"scss-mode.el\")");;
         smart-tab)
             (cd smart-tab && emacs --batch -L . --eval "(byte-compile-file \"smart-tab.el\")");;
         twittering-mode)
             (cd twittering-mode && emacs --batch -L . --eval "(byte-compile-file \"twittering-mode.el\")");;
+        w3m)
+            (cd w3m && autoconf && ./configure && make);;
+        yaml)
+            (cd yaml && make);;
         yasnippet)
             (cd yasnippet && emacs --batch -L . --eval "(and (byte-compile-file \"yasnippet.el\") (byte-compile-file \"dropdown-list.el\"))");;
         zencoding)
