@@ -15,3 +15,7 @@ swank/
 /post-startup.el
 /rcirc-log
 /abbrev_defs
+bin/emms-print-metadata
+elpa/
+emms/
+url/
