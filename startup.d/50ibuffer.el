@@ -1,22 +1,30 @@
+(setq ibuffer-show-empty-filter-groups nil)
 (setq ibuffer-saved-filter-groups
-      (quote (("default"
-	       ("python" (mode . python-mode))
-	       ("elisp" (mode . emacs-lisp-mode))
-	       ("lua" (mode . lua-mode))
-	       ("javascript" (mode . js-mode))
-	       ("html" (mode . html-mode))
-	       ("css" (mode . css-mode))
-	       ("irc" (mode . rcirc-mode))
-	       ("term" (mode . term-mode))
-	       ("magit" (name . "^\\*magit"))
-	       ("emacs" (or
-			 (name . "^\\*scratch\\*$")
-			 (name . "^\\*Compile-Log\\*$")
-			 (name . "^\\*Occur\\*$")
-			 (name . "^\\*Pymacs\\*$")
-			 (name . "^\\*Completions\\*$")
-			 (name . "^\\*Messages\\*$")))))))
+      (list (append
+             (cons "default"
+                   ;; Generate filters by major modes from the
+                   ;; auto-mode-alist
+                   (let ((mode-filters))
+                     (dolist (element auto-mode-alist)
+                       (when (ignore-errors (fboundp (cdr element)))
+                         (let* ((mode (cdr element))
+                                (name (if (string-match "\\(-mode\\)?\\'"
+                                                        (symbol-name mode))
+                                          (capitalize
+                                           (substring (symbol-name mode)
+                                                      0 (match-beginning 0)))
+                                        (symbol-name mode)))
+                                (previous-value ))
+                           (when (not (assoc-string name mode-filters))
+                             (setq mode-filters
+                                   (cons (list name (cons 'mode mode))
+                                         mode-filters))))))
+                     mode-filters))
+             ;; Custom added filters.
+             '(("Magit" (name . "^\\*magit"))
+               ("Irc" (mode . rcirc-mode))
+               ("W3m" (name . "^\\*w3m"))))))
 
 (add-hook 'ibuffer-mode-hook
-	  (lambda ()
-	    (ibuffer-switch-to-saved-filter-groups "default")))
+          (lambda ()
+            (ibuffer-switch-to-saved-filter-groups "default")))
