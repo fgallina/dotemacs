@@ -70,7 +70,8 @@ tree."
  later-do-interval 0.0001
  emms-mode-line-format " %s "
  emms-show-format "NP: %s"
- emms-info-libtag-program-name "~/.emacs.d/bin/emms-print-metadata")
+ emms-info-libtag-program-name "~/.emacs.d/bin/emms-print-metadata"
+ emms-repeat-playlist t)
 
 (emms-cache -1)
 (emms-mode-line 1)
@@ -79,6 +80,9 @@ tree."
 (define-key emms-playlist-mode-map "A" 'my-emms-awim)
 (define-key emms-playlist-mode-map "P" 'my-emms-pwim)
 (define-key emms-playlist-mode-map "S" 'emms-streams)
+(define-key emms-playlist-mode-map "h" 'describe-mode)
+(define-key emms-playlist-mode-map "H" 'describe-mode)
+(define-key emms-playlist-mode-map "?" 'emms-shuffle)
 (define-key emms-stream-mode-map "q" 'emms)
 (define-key emms-stream-mode-map "Q" 'emms)
 (global-set-key (kbd "C-x m") 'my-emms)
