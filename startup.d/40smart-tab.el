@@ -8,7 +8,7 @@
       '(org-mode term-mode inferior-python-mode rcirc-mode))
 
 (setq hippie-expand-try-functions-list
-      '(yas/hippie-try-expand
+      '(yas-hippie-try-expand
         try-expand-dabbrev
         try-expand-dabbrev-all-buffers
         try-expand-dabbrev-from-kill
