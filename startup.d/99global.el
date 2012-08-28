@@ -6,7 +6,7 @@
 (tool-bar-mode -1)
 (menu-bar-mode 1)
 (ido-mode 1)
-(transient-mark-mode -1)
+(transient-mark-mode 1)
 (show-paren-mode 1)
 (line-number-mode 1)
 (column-number-mode 1)
