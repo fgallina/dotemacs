@@ -19,7 +19,12 @@
    (format "%s@%s:%s"
            (or (file-remote-p default-directory 'user) user-login-name)
            (or (file-remote-p default-directory 'host) system-name)
-           (or (buffer-file-name) (buffer-name)))))
+           (or (buffer-file-name)
+               (and (member (current-buffer) (emms-playlist-buffer-list))
+                    (emms-playlist-current-selected-track)
+                    (emms-track-description
+                     (emms-playlist-current-selected-track)))
+               (buffer-name)))))
 (setq-default indent-tabs-mode nil)
 (setq x-select-enable-clipboard t)
 (setq inhibit-startup-screen t)
