@@ -43,3 +43,13 @@
              :category "Category"
              :categories "Categories"
              :license-terms "Published under the terms of the")))))
+
+(defun o-blog-update-last-modified ()
+  (let ((time-stamp-line-limit 5)
+        (time-stamp-format "%04y-%02m-%02d %02H:%02M:%02S")
+        (time-stamp-start "^#\\+DATE:\\S+")
+        (time-stamp-end "$"))
+    (and (string= org-state "DONE")
+         (time-stamp))))
+
+(add-hook 'org-after-todo-state-change-hook 'o-blog-update-last-modified)
