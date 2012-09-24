@@ -48,7 +48,7 @@
 	url = https://github.com/psanford/emacs-oauth.git
 [submodule "vendor/smart-tab"]
 	path = vendor/smart-tab
-	url = git://github.com/fgallina/smart-tab.git
+	url = git://github.com/genehack/smart-tab.git
 [submodule "vendor/auto-complete"]
 	path = vendor/auto-complete
 	url = https://github.com/auto-complete/auto-complete.git
