@@ -51,7 +51,7 @@
 	url = git://github.com/fgallina/smart-tab.git
 [submodule "vendor/auto-complete"]
 	path = vendor/auto-complete
-	url = https://github.com/m2ym/auto-complete.git
+	url = https://github.com/auto-complete/auto-complete.git
 [submodule "vendor/lua-mode"]
 	path = vendor/lua-mode
 	url = git://github.com/immerrr/lua-mode.git
@@ -69,10 +69,10 @@
 	url = git://github.com/eschulte/org-S5.git
 [submodule "vendor/fuzzy"]
 	path = vendor/fuzzy
-	url = git://github.com/m2ym/fuzzy-el.git
+	url = git://github.com/auto-complete/fuzzy-el.git
 [submodule "vendor/popup"]
 	path = vendor/popup
-	url = https://github.com/m2ym/popup-el
+	url = https://github.com/auto-complete/popup-el
 [submodule "vendor/coffee-mode"]
 	path = vendor/coffee-mode
 	url = git://github.com/defunkt/coffee-mode.git
