@@ -23,6 +23,7 @@
              ;; Custom added filters.
              '(("Magit" (name . "^\\*magit"))
                ("Irc" (mode . rcirc-mode))
+               ("Css" (mode . scss-mode))
                ("W3m" (name . "^\\*w3m"))))))
 
 (add-hook 'ibuffer-mode-hook
