@@ -78,6 +78,8 @@ for option in $options; do
             (cd lua-mode && make compile);;
         magit)
             (cd magit && make);;
+        multi-web-mode)
+            (cd multi-web-mode && emacs --batch -L . --eval "(byte-compile-file \"multi-web-mode.el\")");;
         nyan-mode)
             (cd nyan-mode && emacs --batch -L . --eval "(byte-compile-file \"nyan-mode.el\")");;
         org-mode)
