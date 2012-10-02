@@ -94,3 +94,6 @@
 [submodule "vendor/tsv-mode"]
 	path = vendor/tsv-mode
 	url = git://github.com/emacsmirror/tsv-mode.git
+[submodule "vendor/async"]
+	path = vendor/async
+	url = git://github.com/jwiegley/emacs-async.git
