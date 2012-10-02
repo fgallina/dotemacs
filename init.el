@@ -21,11 +21,14 @@
         (:name org-s5
                :description "Org-mode html export of S5 slideshow presentations"
                :type github
-               :pkgname "eschulte/org-S5")
+               :pkgname "eschulte/org-S5"
+               :features nil)
         (:name startupd
                :description "Modular loading of Emacs configuration"
                :type github
-               :pkgname "fgallina/startupd.el")))
+               :pkgname "fgallina/startupd.el"
+               :features startupd))
+ el-get-user-package-directory "~/.emacs.d/conf")
 
 (setq my:el-get-packages
       '(async
@@ -41,7 +44,7 @@
         multi-web-mode
         nyan-mode
         org-mode
-;        org-s5
+        org-s5
         o-blog
         php-mode-improved
         python
@@ -53,17 +56,13 @@
         startupd
         yaml-mode
         yasnippet
-        zencoding-mode
-        ))
+        zencoding-mode))
 
 (el-get 'sync my:el-get-packages)
 
 (ignore-errors (load-file "~/.emacs.d/secrets.el"))
 (ignore-errors (load-file "~/.emacs.d/pre-startup.el"))
-
-(require 'startupd)
 (startupd-load-files)
-
 (ignore-errors (load-file "~/.emacs.d/post-startup.el"))
 
 (setq custom-file "~/.emacs.d/customizations.el")
