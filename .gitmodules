@@ -91,3 +91,6 @@
 [submodule "vendor/scss-mode"]
 	path = vendor/scss-mode
 	url = git://github.com/antonj/scss-mode.git
+[submodule "vendor/tsv-mode"]
+	path = vendor/tsv-mode
+	url = git://github.com/emacsmirror/tsv-mode.git
