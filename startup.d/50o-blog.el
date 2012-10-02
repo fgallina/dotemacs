@@ -1,3 +1,4 @@
+(require 'org)
 (require 'o-blog)
 
 (add-to-list

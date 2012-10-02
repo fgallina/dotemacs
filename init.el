@@ -11,11 +11,13 @@
       '((:name async
                :description "Simple library for asynchronous processing in Emacs"
                :type github
-               :pkgname "jwiegley/emacs-async")
+               :pkgname "jwiegley/emacs-async"
+               :features async)
         (:name multi-web-mode
                :description "Multi Web Mode is a minor mode which makes web editing in Emacs much easier"
                :type github
-               :pkgname "fgallina/multi-web-mode")
+               :pkgname "fgallina/multi-web-mode"
+               :features multi-web-mode)
         (:name org-s5
                :description "Org-mode html export of S5 slideshow presentations"
                :type github
@@ -39,7 +41,7 @@
         multi-web-mode
         nyan-mode
         org-mode
-        org-s5
+;        org-s5
         o-blog
         php-mode-improved
         python
