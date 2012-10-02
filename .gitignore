@@ -19,3 +19,5 @@ bin/emms-print-metadata
 elpa/
 emms/
 url/
+image-dired/
+semanticdb/
