@@ -27,11 +27,38 @@
                :description "Modular loading of Emacs configuration"
                :type github
                :pkgname "fgallina/startupd.el"
-               :features startupd))
- el-get-user-package-directory "~/.emacs.d/conf")
+               :features startupd)
+        (:name pymacs2
+               :description "Interface between Emacs Lisp and Python"
+               :type github
+               :pkgname "pinard/Pymacs"
+               :features pymacs
+               :prepare
+               (progn
+                 (autoload 'pymacs-load "pymacs" nil t)
+                 (autoload 'pymacs-eval "pymacs" nil t)
+                 (autoload 'pymacs-exec "pymacs" nil t)
+                 (autoload 'pymacs-call "pymacs")
+                 (autoload 'pymacs-apply "pymacs"))
+               :build ("make PYTHON=python2"))
+        (:name pymacs3
+               :description "Interface between Emacs Lisp and Python"
+               :type github
+               :pkgname "pinard/Pymacs"
+               :features pymacs
+               :prepare
+               (progn
+                 (autoload 'pymacs-load "pymacs" nil t)
+                 (autoload 'pymacs-eval "pymacs" nil t)
+                 (autoload 'pymacs-exec "pymacs" nil t)
+                 (autoload 'pymacs-call "pymacs")
+                 (autoload 'pymacs-apply "pymacs"))
+               :build ("make PYTHON=python")))
+        el-get-user-package-directory "~/.emacs.d/conf")
 
 (setq my:el-get-packages
-      '(async
+      '(ace-jump-mode
+        async
         auto-complete
         clojure-mode
         coffee-mode
@@ -41,17 +68,22 @@
         full-ack
         lua-mode
         magit
+        mark-multiple
         multi-web-mode
         nyan-mode
         org-mode
         org-s5
         o-blog
         php-mode-improved
+        pymacs2
+        pymacs3
         python
         rainbow-mode
+        ropemacs
+        rcirc-groups
         scss-mode
-        sass-mode
         slime
+        smex
         smart-tab
         startupd
         yaml-mode
