@@ -3,7 +3,7 @@
         (text-mode . dabbrev-completion)))
 
 (setq smart-tab-disabled-major-modes
-      '(org-mode term-mode inferior-python-mode rcirc-mode))
+      '(org-mode term-mode inferior-python-mode rcirc-mode term-mode))
 
 (setq hippie-expand-try-functions-list
       '(yas-hippie-try-expand
