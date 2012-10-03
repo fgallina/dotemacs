@@ -56,5 +56,3 @@ If the current buffer is:
          tab-width 8))
 
 (add-hook 'term-mode-hook 'term-my-hook)
-
-(global-set-key (kbd "<f2>") 'ansi-term-visit-dwim)

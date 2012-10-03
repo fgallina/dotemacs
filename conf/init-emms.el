@@ -164,4 +164,3 @@ This function assumes TRACK's filename is in any of the formats:
 (define-key emms-playlist-mode-map " " 'emms-playlist-mode-play-smart)
 (define-key emms-stream-mode-map "q" 'emms)
 (define-key emms-stream-mode-map "Q" 'emms)
-(global-set-key (kbd "C-x m") 'my-emms)
