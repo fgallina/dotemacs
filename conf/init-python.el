@@ -3,6 +3,8 @@
 
 (setq python-shell-interpreter "python2")
 
+(pymacs-load "ropemacs" "rope-")
+
 (setq ropemacs-codeassist-maxfixes 5
       ropemacs-guess-project t
       ropemacs-enable-autoimport t
