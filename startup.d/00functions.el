@@ -91,5 +91,3 @@ With argument, do this that many times."
   (if arg
       (insert (expand-file-name filename))
     (insert filename)))
-
-(provide 'caffeine-utils)
