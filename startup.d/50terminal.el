@@ -23,8 +23,11 @@ If the current buffer is:
   (interactive)
   (let ((is-term (string= "term-mode" major-mode))
         (is-running (term-check-proc (buffer-name)))
-        (term-cmd "/bin/bash")
-        (anon-term (get-buffer "*ansi-term*")))
+        (anon-term (get-buffer "*ansi-term*"))
+        (program (or explicit-shell-file-name
+                     (getenv "ESHELL")
+                     (getenv "SHELL")
+                     "/bin/sh")))
     (if is-term
         (if is-running
             (if (string= "*ansi-term*" (buffer-name))
@@ -34,15 +37,15 @@ If the current buffer is:
                   (rename-buffer newname))
               (if anon-term
                   (switch-to-buffer "*ansi-term*")
-                (ansi-term term-cmd)))
+                (ansi-term program)))
           (kill-buffer (buffer-name))
-          (ansi-term term-cmd))
+          (ansi-term program))
       (if anon-term
           (if (term-check-proc "*ansi-term*")
               (switch-to-buffer "*ansi-term*")
             (kill-buffer "*ansi-term*")
-            (ansi-term term-cmd))
-        (ansi-term term-cmd)))))
+            (ansi-term program))
+        (ansi-term program)))))
 
 (defun term-my-hook ()
    (make-local-variable 'mouse-yank-at-point)
