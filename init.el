@@ -53,7 +53,21 @@
                  (autoload 'pymacs-exec "pymacs" nil t)
                  (autoload 'pymacs-call "pymacs")
                  (autoload 'pymacs-apply "pymacs"))
-               :build ("make PYTHON=python")))
+               :build ("make PYTHON=python"))
+        (:name region-bindings-mode
+               :description "A minor mode that enables custom bindings when mark is active."
+               :type github
+               :pkgname "fgallina/region-bindings-mode"
+               :features region-bindings-mode)
+	(:name undo-tree
+	       :description "Treat undo history as a tree"
+	       :type github
+               :pkgname "emacsmirror/undo-tree"
+	       :prepare (progn
+			  (autoload 'undo-tree-mode "undo-tree.el"
+			    "Undo tree mode; see undo-tree.el for details" t)
+			  (autoload 'global-undo-tree-mode "undo-tree.el"
+			    "Global undo tree mode" t))))
         el-get-user-package-directory "~/.emacs.d/conf")
 
 (setq my:el-get-packages
@@ -68,7 +82,7 @@
         full-ack
         lua-mode
         magit
-        mark-multiple
+        multiple-cursors
         multi-web-mode
         nyan-mode
         org-mode
@@ -79,10 +93,12 @@
         pymacs3
         python
         rainbow-mode
+        region-bindings-mode
         ropemacs
         rcirc-groups
         scss-mode
         slime
+        undo-tree
         smex
         smart-tab
         startupd
