@@ -1,5 +1,3 @@
-(require 'smart-tab)
-
 (setq smart-tab-completion-functions-alist
       '((emacs-lisp-mode . lisp-complete-symbol)
         (text-mode . dabbrev-completion)))

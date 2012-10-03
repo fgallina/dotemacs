@@ -1,4 +1,3 @@
-(require 'emms-setup)
 (emms-devel)
 (emms-default-players)
 

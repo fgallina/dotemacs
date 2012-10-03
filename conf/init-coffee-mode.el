@@ -1,5 +1,3 @@
-(require 'coffee-mode)
-
 (setq coffee-js-mode 'js-mode)
 (setq coffee-args-compile '("-c"))
 (setq coffee-cleanup-whitespace t)
