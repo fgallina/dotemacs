@@ -1,21 +1,12 @@
-(setenv "PYMACS_PYTHON" "python2")
-
 (require 'pymacs)
 (require 'python)
 
 (setq python-shell-interpreter "python2")
 
-(autoload 'pymacs-apply "pymacs")
-(autoload 'pymacs-call "pymacs")
-(autoload 'pymacs-eval "pymacs" nil t)
-(autoload 'pymacs-exec "pymacs" nil t)
-(autoload 'pymacs-load "pymacs" nil t)
-
-(pymacs-load "ropemacs" "rope-")
 (setq ropemacs-codeassist-maxfixes 5
       ropemacs-guess-project t
       ropemacs-enable-autoimport t
-      ropemacs-completing-read-function 'completing-read)
+      ropemacs-completing-read-function 'ido-completing-read)
 
 (defun try-complete-ropemacs (old)
   (save-excursion
@@ -46,7 +37,6 @@
         (setq he-tried-table (cons (car he-expand-list)
                                    (cdr he-tried-table)))
         t))))
-
 
 (remove-hook 'python-mode-hook 'ac-ropemacs-setup)
 (setq ac-ropemacs-completions-cache nil)

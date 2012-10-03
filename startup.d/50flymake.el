@@ -61,4 +61,11 @@
 (defun flymake-find-file-hook-noerror ()
   (ignore-errors (flymake-find-file-hook)))
 
+(defadvice flymake-start-syntax-check-process
+  (after my-flymake-start-syntax-check-process
+         (cmd args dir) activate compile)
+  ;; set flag to allow exit without query on any active flymake
+  ;; processes
+  (set-process-query-on-exit-flag ad-return-value nil))
+
 (add-hook 'find-file-hook 'flymake-find-file-hook-noerror)
