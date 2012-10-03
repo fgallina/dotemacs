@@ -13,6 +13,21 @@
                :type github
                :pkgname "jwiegley/emacs-async"
                :features async)
+        (:name emms
+               :description "The Emacs Multimedia System"
+               :type git
+               :url "git://git.sv.gnu.org/emms.git"
+               :info "doc"
+               :load-path ("./lisp")
+               :features emms-setup
+               :build `(("mkdir" "-p" ,(expand-file-name (format "%s/emms" user-emacs-directory)))
+                        ("make" ,(format "EMACS=%s" el-get-emacs)
+                         ,(format "SITEFLAG=\\\"--no-site-file -L %s/emacs-w3m/ \\\""
+                                  el-get-dir)
+                         "autoloads" "lisp" "docs")
+                        ("make" "emms-print-metadata")
+                        ("mv" "src/emms-print-metadata" ,(expand-file-name "bin/" user-emacs-directory)))
+               :depends emacs-w3m)
         (:name multi-web-mode
                :description "Multi Web Mode is a minor mode which makes web editing in Emacs much easier"
                :type github
@@ -59,15 +74,15 @@
                :type github
                :pkgname "fgallina/region-bindings-mode"
                :features region-bindings-mode)
-	(:name undo-tree
-	       :description "Treat undo history as a tree"
-	       :type github
+        (:name undo-tree
+               :description "Treat undo history as a tree"
+               :type github
                :pkgname "emacsmirror/undo-tree"
-	       :prepare (progn
-			  (autoload 'undo-tree-mode "undo-tree.el"
-			    "Undo tree mode; see undo-tree.el for details" t)
-			  (autoload 'global-undo-tree-mode "undo-tree.el"
-			    "Global undo tree mode" t))))
+               :prepare (progn
+                          (autoload 'undo-tree-mode "undo-tree.el"
+                            "Undo tree mode; see undo-tree.el for details" t)
+                          (autoload 'global-undo-tree-mode "undo-tree.el"
+                            "Global undo tree mode" t))))
         el-get-user-package-directory "~/.emacs.d/conf")
 
 (setq my:el-get-packages
