@@ -4,4 +4,4 @@
 (defun yas-not-activate ()
   (memq major-mode '(term-mode)))
 
-(set-default 'yas--dont-activate (cons #'yas-not-activate yas--dont-activate))
+(set-default 'yas-dont-activate (cons #'yas-not-activate yas-dont-activate))
