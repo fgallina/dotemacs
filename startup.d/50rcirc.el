@@ -1,6 +1,8 @@
 (eval-after-load 'rcirc
   '(progn
 
+     (require 'rcirc-notify nil t)
+
      (defun rcirc-mark-all-as-read ()
        (interactive)
        (progn (setq rcirc-activity nil)
