@@ -1,8 +1,6 @@
 (and (boundp 'custom-safe-themes)
      (load-theme 'deeper-blue t))
 
-(set-face-attribute 'default nil :height 105)
-
 (setq-default
  frame-title-format
  '(:eval
