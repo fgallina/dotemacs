@@ -95,8 +95,10 @@
         emms
         expand-region
         full-ack
+        jquery-doc
         lua-mode
         magit
+        markdown-mode
         multiple-cursors
         multi-web-mode
         nyan-mode
@@ -111,6 +113,7 @@
         region-bindings-mode
         ropemacs
         rcirc-groups
+        rcirc-notify
         scss-mode
         slime
         undo-tree
