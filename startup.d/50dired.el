@@ -1,15 +1,35 @@
-;; Extracted from http://www.emacswiki.org/emacs/dired-extension.el
-(defun dired-gnome-open-file ()
-  "Opens the current file in a Dired buffer."
+;; Originally taken from
+;; http://ergoemacs.org/emacs/emacs_dired_open_file_in_ext_apps.html.
+;; Minor cleanups applied.
+(defun open-in-external-app ()
+  "Open the current file or dired marked files in external app.
+Works in Microsoft Windows, Mac OS X, Linux."
   (interactive)
-  (gnome-open-file (dired-get-file-for-visit)))
-
-(defun gnome-open-file (filename)
-  "gnome-opens the specified file."
-  (interactive "fFile to open: ")
-  (let ((process-connection-type nil))
-    (start-process "" nil "/usr/bin/gnome-open" filename)))
+  (let ((myFileList
+         (cond
+          ((string-equal major-mode "dired-mode") (dired-get-marked-files))
+          (t (list (buffer-file-name))))))
+    (and
+     (or (<= (length myFileList) 5)
+         (y-or-n-p "Open more than 5 files?"))
+     (cond
+      ((string-equal system-type "gnu/linux")
+       (mapc (lambda (fPath)
+               (let ((process-connection-type nil))
+                 (start-process "" nil
+                                (or (executable-find "mimeo")
+                                    (executable-find "xdg-open"))
+                                fPath)))
+             myFileList))
+      ((string-equal system-type "windows-nt")
+       (mapc (lambda (fPath)
+               (w32-shell-execute "open" (replace-regexp-in-string "/" "\\" fPath t t)))
+             myFileList))
+      ((string-equal system-type "darwin")
+       (mapc (lambda (fPath)
+               (let ((process-connection-type nil))
+                 (start-process "" nil "open" fPath))) myFileList))))))
 
 (add-hook 'dired-mode-hook
           (lambda ()
-            (local-set-key "E" 'dired-gnome-open-file)))
+            (local-set-key "E" 'open-in-external-app)))
