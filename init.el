@@ -37,8 +37,9 @@
         (:name org-s5
                :description "Org-mode html export of S5 slideshow presentations"
                :type github
-               :pkgname "eschulte/org-S5"
-               :features nil)
+               :pkgname "fgallina/org-S5"
+               :branch "provide-org-s5"
+               :features org-export-as-s5)
         (:name startupd
                :description "Modular loading of Emacs configuration"
                :type github
