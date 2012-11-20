@@ -2,36 +2,33 @@
 (emms-default-players)
 
 
-;;; From http://www.gnu.org/software/emms/configs/lb-emms.el
-;; play what i mean
-(defun my-emms-pwim (truc &optional rien)
-  "Plays the TRUC specified, whatever it is. The function tries to
-guess the type of TRUC, between playlist, directory containing
-playable tracks, and files. If the directory does not contain
-playable tracks, but some sub-directories, it will play the
-tree."
-  (interactive
-   (find-file-read-args "Play what? " t))
-  (cond
-   ((file-directory-p truc)
-    (emms-play-directory-tree truc))
-   ((file-exists-p truc)
-    (emms-play-file truc))))
-
 ;; add what i mean
-(defun my-emms-awim (truc &optional rien)
-  "Adds the TRUC specified, whatever it is. The function tries to
-guess the type of TRUC, between playlist, directory containing
-playable tracks, and files. If the directory does not contain
-playable tracks, but some sub-directories, it will add the
-tree."
+(defun my-emms-awim (filename &optional arg)
+  "Adds the FILENAME specified, whatever it is.
+It will expand wildcards.  With ARG clear the playlist before
+adding files."
   (interactive
-   (find-file-read-args "Add what? " t))
-  (cond
-   ((file-directory-p truc)
-    (emms-add-directory-tree truc))
-   ((file-exists-p truc)
-    (emms-add-file truc))))
+   (let* ((fname (car (find-file-read-args "Add what? " nil)))
+          (dirpart (file-name-directory fname))
+          (fnames
+           (or
+            (and dirpart (string-match "[*]$" fname)
+                 (file-expand-wildcards fname))
+            (and (file-exists-p fname) (list fname)))))
+     (list fnames
+           current-prefix-arg)))
+  (when arg
+    (emms-stop)
+    (emms-playlist-clear))
+  (dolist (fname filename)
+    (cond
+     ((file-directory-p fname)
+      (emms-add-directory-tree fname))
+     ((file-exists-p fname)
+      (emms-add-file fname))))
+  (when arg
+    (goto-char (point-min))
+    (emms-playlist-mode-play-current-track)))
 
 (defun my-emms ()
   "Same as `emms' but allow creating an empty playlist."
