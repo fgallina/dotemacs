@@ -62,6 +62,11 @@
                    (autoload 'pymacs-call "pymacs")
                    (autoload 'pymacs-apply "pymacs"))
                  :build (("make" "PYTHON=python2")))
+          (:name python-django
+                 :description "An Emacs package for managing Django projects"
+                 :type github
+                 :pkgname "fgallina/python-django.el"
+                 :features python-django)
           (:name region-bindings-mode
                  :description "A minor mode that enables custom bindings when mark is active."
                  :type github
@@ -102,6 +107,7 @@
           ropemacs
           pymacs2
           python
+          python-django
           rainbow-mode
           region-bindings-mode
           rcirc-groups

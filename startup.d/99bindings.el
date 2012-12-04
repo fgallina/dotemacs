@@ -13,6 +13,7 @@
 (global-set-key (kbd "C-x t") 'deft)
 (global-set-key (kbd "C-x m") 'my-emms)
 (global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x j") 'python-django-open-project)
 (global-set-key (kbd "C-x _") 'undo-tree-visualize)
 (global-set-key (kbd "S-SPC") 'er/expand-region)
 (global-set-key (kbd "M-m") 'mc/mark-more-like-this-extended)
