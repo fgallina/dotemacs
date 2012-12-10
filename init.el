@@ -90,6 +90,7 @@
           clojure-mode
           coffee-mode
           deft
+          dired-details
           emms
           expand-region
           full-ack
@@ -114,6 +115,8 @@
           rcirc-notify
           scss-mode
           slime
+          sunrise-commander
+          sunrise-x-loop
           undo-tree
           smex
           smart-tab
