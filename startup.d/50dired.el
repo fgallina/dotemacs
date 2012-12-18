@@ -7,7 +7,8 @@ Works in Microsoft Windows, Mac OS X, Linux."
   (interactive)
   (let ((myFileList
          (cond
-          ((string-equal major-mode "dired-mode") (dired-get-marked-files))
+          ((memq major-mode '(dired-mode sr-mode))
+           (dired-get-marked-files))
           (t (list (buffer-file-name))))))
     (and
      (or (<= (length myFileList) 5)
