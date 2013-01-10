@@ -94,6 +94,8 @@
           emms
           expand-region
           full-ack
+          gh
+          gist
           jquery-doc
           lua-mode
           magit
@@ -116,6 +118,7 @@
           scss-mode
           slime
           sunrise-commander
+          sunrise-x-buttons
           sunrise-x-loop
           undo-tree
           smex
