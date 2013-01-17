@@ -102,7 +102,6 @@
           markdown-mode
           multiple-cursors
           multi-web-mode
-          nyan-mode
           org-mode
           org-s5
           o-blog
