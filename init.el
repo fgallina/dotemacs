@@ -30,6 +30,13 @@
                           ("make" "emms-print-metadata")
                           ("mv" "src/emms-print-metadata" ,(expand-file-name "bin/" user-emacs-directory)))
                  :depends emacs-w3m)
+          (:name jedi
+                 :description "An awesome Python auto-completion for Emacs"
+                 :type github
+                 :pkgname "tkf/emacs-jedi"
+                 :build (("PYTHON=python2" "make" "requirements"))
+                 :submodule nil
+                 :depends (epc auto-complete))
           (:name multi-web-mode
                  :description "Multi Web Mode is a minor mode which makes web editing in Emacs much easier"
                  :type github
@@ -62,6 +69,11 @@
                    (autoload 'pymacs-call "pymacs")
                    (autoload 'pymacs-apply "pymacs"))
                  :build (("make" "PYTHON=python2")))
+          (:name python
+                 :description "Python's flying circus support for Emacs"
+                 :type github
+                 :branch "emacs-24"
+                 :pkgname "fgallina/python.el")
           (:name python-django
                  :description "An Emacs package for managing Django projects"
                  :type github
@@ -96,6 +108,7 @@
           full-ack
           gh
           gist
+          jedi
           jquery-doc
           lua-mode
           magit
