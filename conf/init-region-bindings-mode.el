@@ -4,6 +4,8 @@
 (define-key region-bindings-mode-map "P" 'mc/unmark-previous-like-this)
 (define-key region-bindings-mode-map "N" 'mc/unmark-next-like-this)
 (define-key region-bindings-mode-map "m" 'mc/mark-more-like-this-extended)
+(define-key region-bindings-mode-map "f" 'er/expand-region)
+(define-key region-bindings-mode-map "b" 'er/contract-region)
 (setq region-bindings-mode-disabled-modes '(term-mode))
 (setq region-bindings-mode-disable-predicates
       (list
