@@ -1,31 +1,9 @@
-;; By Fabián Ezequiel Gallina
-(defun copy-line ()
-  "Copy line from point"
-  (interactive)
-  (save-excursion
-    (let ((start (point-marker)))
-      (end-of-line)
-      (kill-ring-save start (point-marker)))))
-
-;; http://www.emacswiki.org/emacs/BackwardDeleteWord
-(defun delete-word (arg)
-  "Delete characters forward until encountering the end of a word.
-With argument, do this that many times."
-  (interactive "p")
-  (delete-region (point) (progn (forward-word arg) (point))))
-
-;; http://www.emacswiki.org/emacs/BackwardDeleteWord
-(defun backward-delete-word (arg)
-  "Delete characters backward until encountering the end of a word.
-With argument, do this that many times."
-  (interactive "p")
-  (delete-word (- arg)))
-
 ;; http://www.emacswiki.org/emacs/JorgenSchaefersEmacsConfig
 ;; Credits to Jorgen Schaefers
 (defun insert-date (prefix)
-  "Insert the current date. With prefix-argument, use ISO format. With
-   two prefix arguments, write out the day and month name."
+  "Insert the current date.
+With PREFIX, use ISO format.  With two PREFIX arguments, write
+out the day and month name."
   (interactive "P")
   (let ((format (cond
                  ((not prefix) "%d.%m.%Y")
@@ -34,7 +12,7 @@ With argument, do this that many times."
     (insert (format-time-string format))))
 
 (defun su ()
-  "Reopen current file as root"
+  "Reopen current file as root."
   (interactive)
   (when buffer-file-name
     (find-alternate-file
@@ -42,7 +20,7 @@ With argument, do this that many times."
 
 
 (defun sudo ()
-  "Reopen current file as sudoer"
+  "Reopen current file as sudoer."
   (interactive)
   (when buffer-file-name
     (find-alternate-file
@@ -50,44 +28,28 @@ With argument, do this that many times."
 
 ;; http://www.emacswiki.org/emacs/DefaultKillingAndYanking
 (defun yank-pop-backwards ()
-  "Yank backwards"
+  "Yank backwards."
   (interactive)
-  (yank-pop -1)
-  (message "yanking backwards"))
+  (yank-pop -1))
 
-;; Replace regex all buffers (query) By Fabián Ezequiel Gallina
-(defun query-replace-regexp-all-buffers (regexp replace)
-  "Runs query replace regexp in all open buffers"
-  (interactive
-   (list
-    (read-string "Regexp to replace in all buffers: " "" nil "")
-    (read-string "Replace: " "" nil "")))
-  (let ((buffers ()))
-    ;; Get all the buffers we are interested in
-    (dolist (buffer (buffer-list))
-      (if (and (not (string= (substring (buffer-name buffer) 0 1) " "))
-               (not (null (buffer-file-name buffer))))
-          (add-to-list 'buffers buffer)))
-    ;; Run query replace in all buffers...
-    (save-excursion
-      (dolist (buffer buffers)
-        (save-restriction
-          (widen)
-          (beginning-of-buffer)
-          (query-replace-regexp regexp replace)
-          (switch-to-buffer buffer))))))
-
-;; http://www.emacswiki.org/emacs/InsertFileName
-(defun insert-file-name (arg filename)
+;; Modified to work with positives prefix args.
+;; http://www.emacswiki.org/emacs/InsertFileName.
+(defun insert-file-name (filename &optional arg)
   "Insert name of file FILENAME into buffer after point.
-  Set mark after the inserted text.
 
-  Prefixed with \\[universal-argument], expand the file name to
-  its fully canocalized path.
+  With \\[universal-argument] ARG <= 1, insert filename's
+  relative path.  See `file-relative-name' for details.
 
-  See `expand-file-name'."
-  ;; Based on insert-file in Emacs -- ashawley 2008-09-26
-  (interactive "*P\nfInsert file name: ")
-  (if arg
-      (insert (expand-file-name filename))
-    (insert filename)))
+  With 1 < \\[universal-argument] ARG <= 4, insert filename's
+  fully canocalized path.  See `expand-file-name'.
+
+  With \\[universal-argument] ARG > 4, insert the file name
+  exactly as it appears in the minibuffer prompt."
+  ;; Based on insert-file in Emacs -- ashawley 20080926
+  (interactive "*fInsert file name: \np")
+  (cond ((<= 1 arg)
+         (insert (file-relative-name filename)))
+        ((<= 4 arg)
+         (insert (expand-file-name filename)))
+        (t
+         (insert filename))))
