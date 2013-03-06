@@ -52,23 +52,6 @@
                  :type github
                  :pkgname "fgallina/startupd.el"
                  :features startupd)
-          (:name pymacs2
-                 :description "Interface between Emacs Lisp and Python"
-                 :type github
-                 :pkgname "pinard/Pymacs"
-                 :features pymacs
-                 :prepare
-                 (progn
-                   (el-get-envpath-prepend "PYTHONPATH" (expand-file-name "~/.emacs.d/el-get/pymacs2/"))
-                   (el-get-envpath-prepend "PYTHONPATH" (expand-file-name "~/.emacs.d/el-get/rope/"))
-                   (el-get-envpath-prepend "PYTHONPATH" (expand-file-name "~/.emacs.d/el-get/ropemode/"))
-                   (el-get-envpath-prepend "PYTHONPATH" (expand-file-name "~/.emacs.d/el-get/ropemacs/"))
-                   (autoload 'pymacs-load "pymacs" nil t)
-                   (autoload 'pymacs-eval "pymacs" nil t)
-                   (autoload 'pymacs-exec "pymacs" nil t)
-                   (autoload 'pymacs-call "pymacs")
-                   (autoload 'pymacs-apply "pymacs"))
-                 :build (("make" "PYTHON=python2")))
           (:name python
                  :description "Python's flying circus support for Emacs"
                  :type github
@@ -119,8 +102,6 @@
           org-s5
           o-blog
           php-mode-improved
-          ropemacs
-          pymacs2
           python
           python-django
           rainbow-mode
@@ -140,6 +121,7 @@
           yasnippet
           zencoding-mode))
 
+  (package-initialize)
   (el-get 'sync my:el-get-packages)
 
   (ignore-errors (load-file "~/.emacs.d/secrets.el"))

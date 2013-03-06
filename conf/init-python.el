@@ -1,46 +1,37 @@
-(require 'pymacs)
 (require 'python)
+(require 'flymake)
 
 (setq jedi:setup-keys t)
 (setq jedi:complete-on-dot t)
 
-(setq python-shell-interpreter "python2")
+
+;;; Flymake
+(defun python-flymake-init ()
+  (let* ((process-environment (python-shell-calculate-process-environment))
+         (exec-path (python-shell-calculate-exec-path))
+         (checker (executable-find "python-check")))
+    (when checker
+      (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                         'flymake-create-temp-inplace))
+             (local-file (file-relative-name
+                          temp-file
+                          (file-name-directory buffer-file-name))))
+        (list checker (list local-file))))))
 
-(pymacs-load "ropemacs" "rope-")
+(defadvice flymake-start-syntax-check-process
+  (around python-flymake-start-syntax-check-process (cmd args dir)
+          activate compile)
+  "`flymake-start-syntax-check-process' with virtualenv support."
+  (if (eq major-mode 'python-mode)
+      (let* ((process-environment (python-shell-calculate-process-environment))
+             (exec-path (python-shell-calculate-exec-path)))
+        ad-do-it)
+    ad-do-it))
 
-(setq ropemacs-codeassist-maxfixes 5
-      ropemacs-guess-project t
-      ropemacs-enable-autoimport t
-      ropemacs-completing-read-function 'ido-completing-read)
+(add-to-list 'flymake-allowed-file-name-masks
+             '("\\.py\\'" python-flymake-init))
 
-(remove-hook 'python-mode-hook 'ac-ropemacs-setup)
-(setq ac-ropemacs-completions-cache nil)
-(setq ac-source-ropemacs
-  '((init
-     . (lambda ()
-         (setq ac-ropemacs-completions-cache
-               (delete-duplicates
-                (mapcar
-                 (lambda (completion)
-                   (concat ac-prefix
-                           (replace-regexp-in-string
-                            "^[\r\n\t ]+\\|[\r\n\t ]+$" ""
-                            (nth 0 (split-string completion ":")))))
-                 (ignore-errors
-                   (rope-completions)))
-                :test 'string=))))
-    (symbol . "p")
-    (candidates . ac-ropemacs-completions-cache)))
-
+
+;;; Hooks
 (remove-hook 'python-mode-hook 'wisent-python-default-setup)
-
 (add-hook 'python-mode-hook 'jedi:setup)
-
-(setq pdb-path '/usr/lib/python2.7/pdb.py
-      gud-pdb-command-name (symbol-name pdb-path))
-
-(defadvice pdb (before gud-query-cmdline activate)
-  "Provide a better default command line when called interactively."
-  (interactive
-   (list (gud-query-cmdline
-          pdb-path (file-name-nondirectory buffer-file-name)))))
