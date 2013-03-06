@@ -98,7 +98,6 @@
           markdown-mode
           multiple-cursors
           multi-web-mode
-          org-mode
           org-s5
           o-blog
           php-mode-improved
