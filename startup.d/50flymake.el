@@ -24,7 +24,7 @@ Argument NUM is the number of error moves."
   (interactive "p")
   (flymake-goto-error-and-message (or num 1)))
 
-(defun flymake-goto-prev-error-and-message ()
+(defun flymake-goto-prev-error-and-message (&optional num)
   "Goto prev error message.
 Argument NUM is the number of error moves."
   (interactive "p")
