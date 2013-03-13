@@ -99,6 +99,7 @@
           lua-mode
           magit
           markdown-mode
+          mu4e
           multiple-cursors
           multi-web-mode
           org-mode
