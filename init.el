@@ -26,7 +26,7 @@
                           ("make" ,(format "EMACS=%s" el-get-emacs)
                            ,(format "SITEFLAG=\\\"--no-site-file -L %s/emacs-w3m/ \\\""
                                     el-get-dir)
-                           "autoloads" "lisp" "docs")
+                           "docs" "lisp")
                           ("make" "emms-print-metadata")
                           ("mv" "src/emms-print-metadata" ,(expand-file-name "bin/" user-emacs-directory)))
                  :depends emacs-w3m)
