@@ -1,0 +1,103 @@
+fgallina's Emacs configuration.
+
+* Info
+
+  + Author: Fabián Ezequiel Gallina
+  + Contact: fabian at anue dot biz
+  + My Blog: http://www.from-the-cloud.com
+
+* Introduction
+
+  This is just my Emacs configuration. It auto-installs all packages
+  using el-get.
+
+  For a glance of all installed packages check =my:el-get-packages=
+  variable.
+
+* Requirements
+
+These are the necessary packages for all enabled plugins.
+
+  + Emacs 24.x
+  + Bazaar: for package downloads.
+  + CVS: for package downloads.
+  + Git: for package downloads and magit.
+  + Mercurial: for package downloads.
+  + SVN: for package downloads.
+  + GNU Make: for package builds.
+  + GNU texinfo 4.13[0]: for building builds.
+  + taglib (development files): For emms-print-metadata build.
+  + python (2.6 or 2.7): for building jedi.
+  + xapian-core: for building mu (mu4e).
+  + libtool: for building mu (mu4e).
+  + gmime: for building mu (mu4e).
+  + sqlite3: for building mu (mu4e).
+  + gtk2: for building mu (mu4e).
+  + webkitgtk2: for building mu (mu4e).
+
+See "Disabling packages" section for a way to avoid some requirements.
+
+[0] Version 5.0 breaks when building some docs.
+
+** Arch GNU/Linux
+Installation of all requirements in Arch is quite simple.
+
+#+BEGIN_SRC sh
+sudo pacman -S emacs bzr cvs git mercurial subversion\
+ make texinfo taglib python2 xapian-core libtool gmime\
+ sqlite3 gtk2 webkitgtk2
+#+END_SRC
+
+Arch's current texinfo is 5.0 so if you need to install the older 4.13
+version, download it from here:
+  + x86_64: http://arm.konnichi.com/2013/02/15/core/os/x86_64/texinfo-4.13a-8-x86_64.pkg.tar.xz
+  + i686: http://arm.konnichi.com/2013/02/15/core/os/i686/texinfo-4.13a-8-x86_64.pkg.tar.xz
+
+Depending on your system (x86_64, i686), this will do it:
+
+#+BEGIN_SRC sh
+wget http://arm.konnichi.com/2013/02/15/core/os/x86_64/texinfo-4.13a-8-x86_64.pkg.tar.xz
+sudo pacman -U texinfo-4.13a-8-x86_64.pkg.tar.xz
+#+END_SRC
+
+* Installation
+
+  When you meet all requirements, everything should install
+  automatically after you launch Emacs. If some package fail because
+  of a network connection failure or anything, restarting Emacs will
+  continue installation from that point.
+
+  There are 3 non-required important files you might want to check out:
+    + ~/.emacs.d/secrets.el: This is a file I'm using to store my IRC
+      password and other sensible stuff.
+    + ~/.emacs.d/pre-startup.el: This file might contain any lisp
+      that's intended to be run *before* all packages are loaded and
+      initialized.
+    + ~/.emacs.d/post-startup.el: This file might contain any lisp
+      that's intended to be run *after* all packages are loaded and
+      initialized.
+
+* Disabling packages
+
+If you don't want to install some packages you can use
+the *pre-startup.el* file to modify the =my:el-get-disabled-packages=
+variable.
+
+#+BEGIN_SRC emacs-lisp
+;;; pre-startup.el
+;; Avoid installing/loading some packages.
+(setq my:el-get-disabled-packages '(mu4e o-blog org-mode))
+#+END_SRC
+
+* Bug Reports
+
+  If you find a configuration bug please report it in the github
+  tracker. Any package bugs must be reported in their upstream bug
+  tracker.
+
+* License
+
+  See each package located at ~/.emacs.d/el-get/* for their licenses.
+  The ~/.emacs.d/init.el is on the public domain.  All
+  ~/.emacs.d/init-*.el and ~/.emacs.d/startup.d/*.el are on the public
+  domain unless otherwise stated in the header.
