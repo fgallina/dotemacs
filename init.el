@@ -106,7 +106,6 @@
           python-django
           rainbow-mode
           region-bindings-mode
-          rcirc-groups
           rcirc-notify
           scss-mode
           slime
