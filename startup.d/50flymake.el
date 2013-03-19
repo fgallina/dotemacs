@@ -38,18 +38,4 @@ Argument NUM is the number of error moves."
   "Keymap for flymake minor mode.")
 
 (add-to-list 'minor-mode-map-alist `(flymake-mode . ,flymake-minor-mode-map) t)
-
-;; FIXME: Is this still necessary?
-(defun flymake-find-file-hook-noerror ()
-  "Same as `flymake-find-file-hook' but does not signal errors."
-  (ignore-errors (flymake-find-file-hook)))
-
-(defadvice flymake-start-syntax-check-process
-  (after my-flymake-start-syntax-check-process
-         (cmd args dir) activate compile)
-  "Set query-on-exit to nil in the active flymake process.
-This way questions about closing the running process when closing
-the current buffer are avoided."
-  (set-process-query-on-exit-flag ad-return-value nil))
-
-(add-hook 'find-file-hook 'flymake-find-file-hook-noerror)
+(add-hook 'find-file-hook 'flymake-find-file-hook)
