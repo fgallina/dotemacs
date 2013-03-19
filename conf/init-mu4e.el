@@ -107,21 +107,23 @@ field.  Note that all msmtp accounts should defined in the
       mu4e-get-mail-command "offlineimap -o"
       mu4e-headers-date-format "%b, %d %Y. %H:%M"
       mu4e-headers-fields '((:maildir . 12)
-                            (:human-date . 12)
+                            (:human-date . 20)
                             (:flags . 6)
                             (:mailing-list . 10)
                             (:from . 20)
                             (:subject . nil))
       mu4e-headers-leave-behavior 'apply
+      mu4e-headers-results-limit 500
       mu4e-html2text-command nil
-      mu4e-headers-include-related t
+      mu4e-view-prefer-html nil
+      mu4e-headers-include-related nil
       mu4e-maildir (expand-file-name "~/Maildir")
       mu4e-org-contacts-file (expand-file-name "~/Org/contacts.org")
       mu4e-sent-messages-behavior 'delete
       mu4e-use-fancy-chars t
       mu4e-view-image-max-width 800
       mu4e-view-show-addresses t
-      mu4e-view-show-images t
+      mu4e-view-show-images nil
       mail-user-agent 'mu4e
       message-kill-buffer-on-exit t
       message-send-mail-function 'message-send-mail-with-sendmail
