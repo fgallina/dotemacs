@@ -50,12 +50,6 @@ these it will use MSG or ask for one using completing read."
 
 (defun my:mu4e-set-folder (var msg)
   "Set account folder VAR using MSG as detection element."
-  (unless (member var '(mu4e-sent-folder
-                        mu4e-drafts-folder
-                        mu4e-trash-folder
-                        mu4e-refile-folder))
-    (mu4e-error "Folder must be either mu4e-sent-folder,
-    mu4e-drafts-folder or mu4e-trash-folder (not %S)" var))
   (let ((varval
          (assoc
           var (cdr
