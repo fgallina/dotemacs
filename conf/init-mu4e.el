@@ -56,7 +56,7 @@ these it will use MSG or ask for one using completing read."
                (assoc (my:mu4e-get-account msg)
                       my:mu4e-account-alist)))))
     (if varval
-        (set var (cdr varval))
+        (set (make-local-variable var) (cdr varval))
       (mu4e-error "Account not found"))))
 
 ;; Inspired from: https://github.com/wunki/wunki-dotfiles
@@ -70,7 +70,7 @@ these it will use MSG or ask for one using completing read."
          (account-vars (cdr (assoc account my:mu4e-account-alist))))
     (when account-vars
       (mapc #'(lambda (var)
-                (set (car var) (cdr var)))
+                (set (make-local-variable (car var)) (cdr var)))
             account-vars))
     (message "Using account %s" account)))
 
