@@ -3,6 +3,6 @@
 #name : SlugField (slug)
 #group: django
 #key : slug
-#condition: (when (boundp 'python-django) python-django)
+#condition: (when (boundp 'python-django-project-root) python-django-project-root)
 # --
 ${1:slug} = models.SlugField(${2:prepopulate_from=("$3",$4)})

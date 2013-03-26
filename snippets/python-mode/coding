@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: coding
+# key: coding
+# --
+# -*- coding: ${1:utf-8} -*-
+$0

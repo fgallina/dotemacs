@@ -5,7 +5,7 @@
 # --
 try:
 	${1:pass}
-except${2: ${3:Exception}, ${4:e}}:
+except${2: Exception${3: as $4}}:
 	${5:raise}
 else:
 	${6:pass}

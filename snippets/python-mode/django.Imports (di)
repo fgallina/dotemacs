@@ -2,7 +2,7 @@
 # name: django common imports
 # key: di
 #group: django
-# condition: (when (boundp 'python-django) python-django)
+# condition: (when (boundp 'python-django-project-root) python-django-project-root)
 # contributor: Fabián Ezequiel Gallina
 # --
 ${1:$$(yas/choose-value

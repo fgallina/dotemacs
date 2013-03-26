@@ -3,6 +3,6 @@
 #name : NullBooleanField (nullbool)
 #group: django
 #key : nullboolean
-#condition: (when (boundp 'python-django) python-django)
+#condition: (when (boundp 'python-django-project-root) python-django-project-root)
 # --
 ${1:FIELDNAME} = models.NullBooleanField(${2:default=True})

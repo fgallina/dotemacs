@@ -3,6 +3,6 @@
 #name : DecimalField
 #group: django
 #key : decimal
-#condition: (when (boundp 'python-django) python-django)
+#condition: (when (boundp 'python-django-project-root) python-django-project-root)
 # --
 ${1:FIELDNAME} = models.DecimalField(max_digits=$2, decimal_places=$3)

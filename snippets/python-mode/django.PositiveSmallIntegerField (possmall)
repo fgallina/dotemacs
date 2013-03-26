@@ -3,6 +3,6 @@
 #name : PositiveSmallIntegerField (possmall)
 #group: django
 #key : positivesmallinteger
-#condition: (when (boundp 'python-django) python-django)
+#condition: (when (boundp 'python-django-project-root) python-django-project-root)
 # --
 ${1:FIELDNAME} = models.PositiveSmallIntegerField(${2:blank=True, null=True})

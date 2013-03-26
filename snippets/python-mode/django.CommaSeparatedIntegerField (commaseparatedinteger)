@@ -3,6 +3,6 @@
 #name : CommaSeparatedIntegerField (commaseparatedinteger)
 #group: django
 #key : commaseparatedinteger
-#condition: (when (boundp 'python-django) python-django)
+#condition: (when (boundp 'python-django-project-root) python-django-project-root)
 # --
 ${1:FIELDNAME} = models.CommaSeparatedIntegerField(max_length=$2)

@@ -3,7 +3,7 @@
 # name: django model form
 #group: django
 # key: form
-# condition: (when (boundp 'python-django) python-django)
+# condition: (when (boundp 'python-django-project-root) python-django-project-root)
 # contributor: Fabián Ezequiel Gallina
 # --
 class ${1:Formname}Form(forms.ModelForm):

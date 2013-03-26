@@ -3,6 +3,6 @@
 #name : ForeignKey (fk)
 #group: django
 #key : fk
-#condition: (when (boundp 'python-django) python-django)
+#condition: (when (boundp 'python-django-project-root) python-django-project-root)
 # --
 ${1:FIELDNAME} = models.ForeignKey(${2:RELATED_MODEL})

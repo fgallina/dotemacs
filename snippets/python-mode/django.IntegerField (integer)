@@ -3,6 +3,6 @@
 #name : IntegerField (integer)
 #group: django
 #key : integer
-#condition: (when (boundp 'python-django) python-django)
+#condition: (when (boundp 'python-django-project-root) python-django-project-root)
 # --
 ${1:FIELDNAME} = models.IntegerField(${2:blank=True, null=True})

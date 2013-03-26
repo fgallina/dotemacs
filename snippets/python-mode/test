@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: TestCase
-# key: testcase
+# key: test
 # --
 class Test${1:Component}(TestCase):
-      $0
+      def test_${2:}(self):
+          $0

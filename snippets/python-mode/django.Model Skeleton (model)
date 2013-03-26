@@ -3,7 +3,7 @@
 #name : Model Skeleton (model)
 #group: django
 #key : model
-#condition: (when (boundp 'python-django) python-django)
+#condition: (when (boundp 'python-django-project-root) python-django-project-root)
 # --
 class ${1:Modelname}(models.Model):
 	${2:"""${3:docstring}"""}

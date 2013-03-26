@@ -3,6 +3,6 @@
 #name : ManyToManyField (manytomany)
 #group: django
 #key : manytomany
-#condition: (when (boundp 'python-django) python-django)
+#condition: (when (boundp 'python-django-project-root) python-django-project-root)
 # --
 ${1:FIELDNAME} = models.ManyToManyField(${2:RELATED_MODEL})

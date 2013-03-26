@@ -3,6 +3,6 @@
 #name : EmailField (email)
 #group: django
 #key : email
-#condition: (when (boundp 'python-django) python-django)
+#condition: (when (boundp 'python-django-project-root) python-django-project-root)
 # --
 ${1:FIELDNAME} = models.EmailField()

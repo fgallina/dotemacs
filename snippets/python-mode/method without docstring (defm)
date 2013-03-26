@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: defm (no docstring)
-# key: defm
-# --
-def ${1:name}(self${2:, }):
-    $0

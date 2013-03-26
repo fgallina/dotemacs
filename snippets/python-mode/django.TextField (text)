@@ -3,6 +3,6 @@
 #name : TextField (text)
 #group: django
 #key : text
-#condition: (when (boundp 'python-django) python-django)
+#condition: (when (boundp 'python-django-project-root) python-django-project-root)
 # --
 ${1:FIELDNAME} = models.TextField(${2:blank=True})

@@ -2,7 +2,7 @@
 # name: django model fields
 # key: field
 #group: django
-# condition: (when (boundp 'python-django) python-django)
+# condition: (when (boundp 'python-django-project-root) python-django-project-root)
 # contributor: Fabián Ezequiel Gallina
 # --
 ${1:FIELDNAME} = models.${$$(yas/choose-value

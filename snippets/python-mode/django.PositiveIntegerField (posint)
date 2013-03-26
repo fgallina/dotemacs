@@ -3,6 +3,6 @@
 #name : PositiveIntegerField (posint)
 #group: django
 #key : positiveinteger
-#condition: (when (boundp 'python-django) python-django)
+#condition: (when (boundp 'python-django-project-root) python-django-project-root)
 # --
 ${1:FIELDNAME} = models.PositiveIntegerField(${2:blank=True, null=True})

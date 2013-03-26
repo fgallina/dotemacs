@@ -3,6 +3,6 @@
 #name : BooleanField (boolean)
 #group: django
 #key : boolean
-#condition: (when (boundp 'python-django) python-django)
+#condition: (when (boundp 'python-django-project-root) python-django-project-root)
 # --
 ${1:FIELDNAME} = models.BooleanField(${2:default=True})
