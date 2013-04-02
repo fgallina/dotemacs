@@ -128,6 +128,14 @@
   (setq package--initialized t)
   (load "~/.emacs.d/pre-startup.el" 'noerror)
 
+  ;; Set common PATHs to search for executables.
+  (let ((bindirs (list
+                  (expand-file-name "~/.emacs.d/bin")
+                  (expand-file-name "~/bin"))))
+    (dolist (dir bindirs)
+      (setenv "PATH" (concat dir path-separator (getenv "PATH")))
+      (add-to-list 'exec-path dir)))
+
   (when my:el-get-disabled-packages
     (let ((package-list (copy-list my:el-get-packages)))
       (setq my:el-get-packages nil)
