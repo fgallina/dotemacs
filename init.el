@@ -99,12 +99,15 @@
           lua-mode
           magit
           markdown-mode
+          nrepl
+          ac-nrepl
           mu4e
           multiple-cursors
           multi-web-mode
           org-mode
           org-s5
           o-blog
+          paredit
           php-mode-improved
           python
           python-django
