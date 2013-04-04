@@ -72,6 +72,9 @@ these it will use MSG or ask for one using completing read."
       (mapc #'(lambda (var)
                 (set (make-local-variable (car var)) (cdr var)))
             account-vars))
+    (when (memq major-mode '(message-mode mu4e-compose-mode))
+      (message-remove-header "from")
+      (message-add-header (format "From: %s\n" user-mail-address)))
     (message "Using account %s" account)))
 
 (defun my:smtpmail-set-account ()
@@ -132,7 +135,7 @@ field.  Note that all msmtp accounts should defined in the
 
 (add-to-list 'mu4e-headers-actions '("org-contact-add" . mu4e-action-add-org-contact) t)
 (add-to-list 'mu4e-view-actions '("org-contact-add" . mu4e-action-add-org-contact) t)
-(add-hook 'mu4e-compose-pre-hook 'my:mu4e-set-account)
+(add-hook 'mu4e-compose-mode-hook 'my:mu4e-set-account)
 (add-hook 'message-send-mail-hook 'my:smtpmail-set-account)
 
 
