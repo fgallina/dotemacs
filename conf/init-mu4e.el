@@ -101,7 +101,7 @@ field.  Note that all msmtp accounts should defined in the
                (catch 'exit (my:mu4e-minibuffer-read-account))))))))
 
 (setq mu4e-sent-folder (apply-partially #'my:mu4e-set-folder 'mu4e-sent-folder)
-      mu4e-drafts-folder (apply-partially #'my:mu4e-set-folder 'mu4e-draft-folder)
+      mu4e-drafts-folder (apply-partially #'my:mu4e-set-folder 'mu4e-drafts-folder)
       mu4e-trash-folder (apply-partially #'my:mu4e-set-folder 'mu4e-trash-folder)
       mu4e-refile-folder (apply-partially #'my:mu4e-set-folder 'mu4e-refile-folder)
       mu4e-attachment-dir (expand-file-name "~/Downloads")
