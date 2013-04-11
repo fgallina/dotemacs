@@ -145,7 +145,8 @@
       (dolist (package package-list)
         (when (not (memq package my:el-get-disabled-packages))
           (setq my:el-get-packages
-                (cons package my:el-get-packages))))))
+                (cons package my:el-get-packages)))))
+    (setq my:el-get-packages (reverse my:el-get-packages)))
 
   (el-get 'sync my:el-get-packages)
   (startupd-load-files)
