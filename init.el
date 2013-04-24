@@ -40,6 +40,17 @@
                  :build (("PYTHON=python2" "make" "requirements"))
                  :submodule nil
                  :depends (epc auto-complete))
+          (:name magit
+                 :website "https://github.com/magit/magit#readme"
+                 :description "It's Magit! An Emacs mode for Git."
+                 :type github
+                 :pkgname "magit/magit"
+                 :info "."
+                 ;; let el-get care about autoloads so that it works with all OSes
+                 :build (if (version-list-<= (version-to-list "24.3") (version-to-list emacs-version))
+                            `(("make" ,(format "EMACS=%s" el-get-emacs) "all"))
+                          `(("make" ,(format "EMACS=%s" el-get-emacs) "docs")))
+                 :build/berkeley-unix (("touch" "`find . -name Makefile`") ("gmake")))
           (:name multi-web-mode
                  :description "Multi Web Mode is a minor mode which makes web editing in Emacs much easier"
                  :type github
