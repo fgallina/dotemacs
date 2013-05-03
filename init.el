@@ -18,6 +18,13 @@
                  :type github
                  :pkgname "jwiegley/emacs-async"
                  :features async)
+          (:name base16-themes
+                 :description "Base16 provides carefully chosen syntax highlighting and a default set of sixteen colors suitable for a wide range of applications."
+                 :website "http://chriskempson.github.io/base16/"
+                 :type github
+                 :pkgname "neil477/base16-emacs"
+                 :post-init (add-to-list 'custom-theme-load-path
+                                         default-directory))
           (:name emms
                  :description "The Emacs Multimedia System"
                  :type git
@@ -95,6 +102,7 @@
   (setq my:el-get-packages
         '(ace-jump-mode
           async
+          base16-themes
           auto-complete
           clojure-mode
           coffee-mode
