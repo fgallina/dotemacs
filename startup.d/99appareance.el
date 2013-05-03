@@ -1,20 +1,5 @@
-(when (and (boundp 'custom-safe-themes)
-           (load-theme 'deeper-blue t))
-  ;; Fix deeper blue theme terminal colors.
-  (face-spec-set 'default
-                 '((((class color)
-                     (min-colors 4096))
-                    (:background "#181a26" :foreground "gray80"))
-                   (((class color) (min-colors 89))
-                    (:background "#1c1c1c" :foreground "#e1e1e0"))))
-  (mapc (lambda (face)
-          (face-spec-set face
-                         '((((class color)
-                             (min-colors 4096))
-                            (:foreground "gray50"))
-                           (((class color) (min-colors 89))
-                            (:foreground "#808080")))))
-        '(font-lock-comment-delimiter-face font-lock-comment-face)))
+(when (boundp 'custom-safe-themes)
+  (load-theme 'base16-tomorrow t))
 
 (setq-default
  frame-title-format
