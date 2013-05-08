@@ -31,7 +31,19 @@
 
   (set-face-attribute
    'term-color-white nil
-   :foreground "#C5C8C6" :background "#E8E8D3")) ; 7 15
+   :foreground "#C5C8C6" :background "#E8E8D3") ; 7 15
+
+  ;; XXX: Some themes set colors the old way, enforce this.
+  (setq ansi-term-color-vector
+    [term
+     term-color-black
+     term-color-red
+     term-color-green
+     term-color-yellow
+     term-color-blue
+     term-color-magenta
+     term-color-cyan
+     term-color-white]))
 
 ;; Based on:
 ;; http://www.enigmacurry.com/2008/12/26/emacs-ansi-term-tricks/
