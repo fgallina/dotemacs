@@ -140,7 +140,6 @@
           sunrise-x-loop
           undo-tree
           smex
-          smart-tab
           startupd
           yaml-mode
           yasnippet
