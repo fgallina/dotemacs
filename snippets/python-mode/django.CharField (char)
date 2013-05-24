@@ -3,6 +3,6 @@
 #name : CharField (char)
 #group: django
 #key : char
-#condition: (when (boundp 'python-django) python-django)
+#condition: (when (boundp 'python-django-project-root) python-django-project-root)
 # --
 ${1:FIELDNAME} = models.CharField(${2:blank=True, }max_length=${3:100})
