@@ -73,11 +73,15 @@
                  :type github
                  :pkgname "fgallina/startupd.el"
                  :features startupd)
+          (:name python24
+                 :description "Python's flying circus support for Emacs (24.x)"
+                 :builtin "Emacs 24.3"
+                 :type http
+                 :url "http://repo.or.cz/w/emacs.git/blob_plain/refs/heads/emacs-24:/lisp/progmodes/python.el")
           (:name python
-                 :description "Python's flying circus support for Emacs"
-                 :type github
-                 :branch "emacs-24"
-                 :pkgname "fgallina/python.el")
+                 :description "Python's flying circus support for Emacs (trunk version, hopefully Emacs 24.x compatible)"
+                 :type http
+                 :url "http://repo.or.cz/w/emacs.git/blob_plain/master:/lisp/progmodes/python.el")
           (:name python-django
                  :description "An Emacs package for managing Django projects"
                  :type github
