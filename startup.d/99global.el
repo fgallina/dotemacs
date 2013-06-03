@@ -15,7 +15,6 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq auto-save-default nil)
 (setq warning-suppress-types nil)
 (setq max-specpdl-size 999999999)
@@ -25,10 +24,13 @@
 (setq x-select-enable-clipboard t)
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message "")
-(setq make-backup-files nil)
 (setq uniquify-buffer-name-style 'forward)
 (setq visible-bell t)
 (setq ido-enable-flex-matching t)
+(setq backup-directory-alist
+      `(("." . ,(expand-file-name
+                 (concat user-emacs-directory "backups")))))
+(setq vc-make-backup-files t)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
