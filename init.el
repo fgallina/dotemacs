@@ -73,6 +73,12 @@
                  :type github
                  :pkgname "fgallina/startupd.el"
                  :features startupd)
+          (:name powerline
+                 :website "https://github.com/milkypostman/powerline"
+                 :description "Powerline for Emacs"
+                 :type github
+                 :pkgname "milkypostman/powerline"
+                 :features powerline)
           (:name python24
                  :description "Python's flying circus support for Emacs (24.x)"
                  :builtin "Emacs 24.3"
@@ -132,6 +138,7 @@
           o-blog
           paredit
           php-mode-improved
+          powerline
           python
           python-django
           rainbow-mode
