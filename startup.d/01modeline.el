@@ -3,19 +3,21 @@
   `((auto-complete-mode . " α")
     (paredit-mode . " π")
     (undo-tree-mode . "")
-    (global-whitespace-mode . " _")
+    (global-whitespace-mode . " ω")
     (yas-minor-mode . "")
     ;; Major modes
     (clojure-mode . "Clj")
     (emacs-lisp-mode . "El")
     (js-mode . "Js")
     (lisp-interaction-mode . "λ")
-    (python-mode . "Py"))
+    (python-mode . "Py")
+    (rcirc-mode . "irc"))
   "Alist for `clean-mode-line'.
 
 When you add a new element to the alist, keep in mind that you
 must pass the correct minor/major mode symbol and a string you
 want to use in the modeline *in lieu of* the original.")
+
 
 (defun clean-mode-line ()
   (interactive)
@@ -44,3 +46,5 @@ want to use in the modeline *in lieu of* the original.")
 
 (add-hook 'after-change-major-mode-hook 'clean-mode-line)
 (defalias 'flymake-report-status 'flymake-report-status-slim)
+
+(which-function-mode 1)
