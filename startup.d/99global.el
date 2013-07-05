@@ -20,6 +20,7 @@
 (setq max-specpdl-size 999999999)
 (setq enable-recursive-minibuffers t)
 (setq redisplay-dont-pause t)
+(setq echo-keystrokes 0.01)
 (setq-default indent-tabs-mode nil)
 (setq x-select-enable-clipboard t)
 (setq inhibit-startup-screen t)
