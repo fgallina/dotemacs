@@ -133,7 +133,6 @@
           mu4e
           multiple-cursors
           multi-web-mode
-          org-mode
           org-s5
           o-blog
           paredit
