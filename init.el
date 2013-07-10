@@ -35,8 +35,7 @@
                  :build `(("mkdir" "-p" ,(expand-file-name (format "%s/emms" user-emacs-directory)))
                           ("make" ,(format "EMACS=%s" el-get-emacs)
                            ,(format "SITEFLAG=\\\"--no-site-file -L %s/emacs-w3m/ \\\""
-                                    el-get-dir)
-                           "docs" "lisp")
+                                    el-get-dir) "lisp")
                           ("make" "emms-print-metadata")
                           ("mv" "src/emms-print-metadata" ,(expand-file-name "bin/" user-emacs-directory)))
                  :depends emacs-w3m)
