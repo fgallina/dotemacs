@@ -145,7 +145,8 @@ This function assumes TRACK's filename is in any of the formats:
  emms-mode-line-format " %s "
  emms-show-format "NP: %s"
  emms-info-libtag-program-name "emms-print-metadata"
- emms-repeat-playlist t)
+ emms-repeat-playlist t
+ emms-player-mplayer-parameters '("-slave" "-quiet" "-really-quiet" "-af" "scaletempo"))
 
 (emms-cache 1)
 (emms-mode-line -1)
