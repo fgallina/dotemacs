@@ -111,6 +111,7 @@
   (setq my:el-get-packages
         '(ace-jump-mode
           async
+          auctex
           base16-themes
           auto-complete
           clojure-mode
