@@ -139,6 +139,7 @@
           paredit
           php-mode-improved
           powerline
+          projectile
           python
           python-django
           rainbow-mode
