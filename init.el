@@ -110,6 +110,7 @@
 
   (setq my:el-get-packages
         '(ace-jump-mode
+          ack-and-a-half
           async
           auctex
           base16-themes
@@ -121,7 +122,6 @@
           emms
           expand-region
           flx
-          full-ack
           gh
           gist
           jedi
