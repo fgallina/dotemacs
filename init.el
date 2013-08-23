@@ -120,6 +120,7 @@
           dired-details
           emms
           expand-region
+          flx
           full-ack
           gh
           gist

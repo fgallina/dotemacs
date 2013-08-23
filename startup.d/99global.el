@@ -28,6 +28,7 @@
 (setq uniquify-buffer-name-style 'forward)
 (setq visible-bell t)
 (setq ido-enable-flex-matching t)
+(setq ido-use-faces nil)
 (setq backup-directory-alist
       `(("." . ,(expand-file-name
                  (concat user-emacs-directory "backups")))))
