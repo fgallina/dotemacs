@@ -12,44 +12,7 @@
          (eval-print-last-sexp))
        (load-file "~/.emacs.d/init.el")))
 
-  (setq el-get-sources
-        '((:name emms
-                 :description "The Emacs Multimedia System"
-                 :type git
-                 :url "git://git.sv.gnu.org/emms.git"
-                 :info "doc"
-                 :load-path ("./lisp")
-                 :features emms-setup
-                 :build `(("mkdir" "-p" ,(expand-file-name (format "%s/emms" user-emacs-directory)))
-                          ("make" ,(format "EMACS=%s" el-get-emacs)
-                           ,(format "SITEFLAG=\\\"--no-site-file -L %s/emacs-w3m/ \\\""
-                                    el-get-dir) "lisp")
-                          ("make" "emms-print-metadata")
-                          ("mv" "src/emms-print-metadata" ,(expand-file-name "bin/" user-emacs-directory)))
-                 :depends emacs-w3m)
-          (:name jedi
-                 :description "An awesome Python auto-completion for Emacs"
-                 :type github
-                 :pkgname "tkf/emacs-jedi"
-                 :build (("PYTHON=python2" "make" "requirements"))
-                 :submodule nil
-                 :depends (epc auto-complete))
-          (:name startupd
-                 :description "Modular loading of Emacs configuration"
-                 :type github
-                 :pkgname "fgallina/startupd.el"
-                 :features startupd)
-          (:name powerline
-                 :website "https://github.com/milkypostman/powerline"
-                 :description "Powerline for Emacs"
-                 :type github
-                 :pkgname "milkypostman/powerline"
-                 :features powerline)
-          (:name python-django
-                 :description "An Emacs package for managing Django projects"
-                 :type github
-                 :pkgname "fgallina/python-django.el"
-                 :features python-django))
+  (setq el-get-recipe-path (cons "~/.emacs.d/recipes" el-get-recipe-path)
         el-get-user-package-directory "~/.emacs.d/conf")
 
   (setq my:el-get-packages
