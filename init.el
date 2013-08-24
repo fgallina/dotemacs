@@ -30,6 +30,7 @@
         flx
         gh
         gist
+        git-modes
         jedi
         jquery-doc
         lua-mode
