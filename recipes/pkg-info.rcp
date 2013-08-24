@@ -1,0 +1,6 @@
+(:name pkg-info
+       :website "https://github.com/lunaryorn/pkg-info.el"
+       :description "Provide information about Emacs packages"
+       :type github
+       :pkgname "lunaryorn/pkg-info.el"
+       :depends (dash s))
