@@ -28,6 +28,7 @@
         emms
         expand-region
         flx
+        flycheck
         gh
         gist
         git-modes
