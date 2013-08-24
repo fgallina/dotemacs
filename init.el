@@ -13,12 +13,7 @@
        (load-file "~/.emacs.d/init.el")))
 
   (setq el-get-sources
-        '((:name async
-                 :description "Simple library for asynchronous processing in Emacs"
-                 :type github
-                 :pkgname "jwiegley/emacs-async"
-                 :features async)
-          (:name base16-themes
+        '((:name base16-themes
                  :description "Base16 provides carefully chosen syntax highlighting and a default set of sixteen colors suitable for a wide range of applications."
                  :website "http://chriskempson.github.io/base16/"
                  :type github
@@ -111,7 +106,6 @@
   (setq my:el-get-packages
         '(ace-jump-mode
           ack-and-a-half
-          async
           auctex
           base16-themes
           auto-complete
