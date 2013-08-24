@@ -13,14 +13,7 @@
        (load-file "~/.emacs.d/init.el")))
 
   (setq el-get-sources
-        '((:name base16-themes
-                 :description "Base16 provides carefully chosen syntax highlighting and a default set of sixteen colors suitable for a wide range of applications."
-                 :website "http://chriskempson.github.io/base16/"
-                 :type github
-                 :pkgname "fgallina/base16-emacs"
-                 :post-init (add-to-list 'custom-theme-load-path
-                                         default-directory))
-          (:name emms
+        '((:name emms
                  :description "The Emacs Multimedia System"
                  :type git
                  :url "git://git.sv.gnu.org/emms.git"
@@ -63,7 +56,6 @@
         '(ace-jump-mode
           ack-and-a-half
           auctex
-          base16-themes
           auto-complete
           clojure-mode
           coffee-mode
