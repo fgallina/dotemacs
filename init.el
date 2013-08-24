@@ -41,27 +41,6 @@
                  :build (("PYTHON=python2" "make" "requirements"))
                  :submodule nil
                  :depends (epc auto-complete))
-          (:name magit
-                 :website "https://github.com/magit/magit#readme"
-                 :description "It's Magit! An Emacs mode for Git."
-                 :type github
-                 :pkgname "magit/magit"
-                 :info "."
-                 ;; let el-get care about autoloads so that it works with all OSes
-                 :build (if (version-list-<= (version-to-list "24.3") (version-to-list emacs-version))
-                            `(("make" ,(format "EMACS=%s" el-get-emacs) "all"))
-                          `(("make" ,(format "EMACS=%s" el-get-emacs) "docs")))
-                 :build/berkeley-unix (("touch" "`find . -name Makefile`") ("gmake")))
-          (:name multi-web-mode
-                 :description "Multi Web Mode is a minor mode which makes web editing in Emacs much easier"
-                 :type github
-                 :pkgname "fgallina/multi-web-mode"
-                 :features multi-web-mode)
-          (:name org-s5
-                 :description "Org-mode html export of S5 slideshow presentations"
-                 :type github
-                 :pkgname "fgallina/org-S5"
-                 :features org-export-as-s5)
           (:name startupd
                  :description "Modular loading of Emacs configuration"
                  :type github
@@ -73,34 +52,11 @@
                  :type github
                  :pkgname "milkypostman/powerline"
                  :features powerline)
-          (:name python24
-                 :description "Python's flying circus support for Emacs (24.x)"
-                 :builtin "Emacs 24.3"
-                 :type http
-                 :url "http://repo.or.cz/w/emacs.git/blob_plain/refs/heads/emacs-24:/lisp/progmodes/python.el")
-          (:name python
-                 :description "Python's flying circus support for Emacs (trunk version, hopefully Emacs 24.x compatible)"
-                 :type http
-                 :url "http://repo.or.cz/w/emacs.git/blob_plain/master:/lisp/progmodes/python.el")
           (:name python-django
                  :description "An Emacs package for managing Django projects"
                  :type github
                  :pkgname "fgallina/python-django.el"
-                 :features python-django)
-          (:name region-bindings-mode
-                 :description "A minor mode that enables custom bindings when mark is active."
-                 :type github
-                 :pkgname "fgallina/region-bindings-mode"
-                 :features region-bindings-mode)
-          (:name undo-tree
-                 :description "Treat undo history as a tree"
-                 :type github
-                 :pkgname "emacsmirror/undo-tree"
-                 :prepare (progn
-                            (autoload 'undo-tree-mode "undo-tree.el"
-                              "Undo tree mode; see undo-tree.el for details" t)
-                            (autoload 'global-undo-tree-mode "undo-tree.el"
-                              "Global undo tree mode" t))))
+                 :features python-django))
         el-get-user-package-directory "~/.emacs.d/conf")
 
   (setq my:el-get-packages
