@@ -1,5 +1,5 @@
 (when (boundp 'custom-safe-themes)
-  (load-theme 'deeper-blue t))
+  (load-theme 'base16-tomorrow-dark t))
 
 (setq-default
  frame-title-format

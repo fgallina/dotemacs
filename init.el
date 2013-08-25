@@ -21,6 +21,7 @@
         ack-and-a-half
         auctex
         auto-complete
+        base16-emacs
         clojure-mode
         coffee-mode
         deft
