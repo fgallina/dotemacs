@@ -9,10 +9,10 @@ fgallina's Emacs configuration.
 * Introduction
 
   This is just my Emacs configuration. It auto-installs all packages
-  using el-get.
+  using mostly elpa and some from el-get.
 
-  For a glance of all installed packages check =my:el-get-packages=
-  variable.
+  For a glance of all installed packages check all `user-package'
+  declarations.
 
 * Requirements
 
