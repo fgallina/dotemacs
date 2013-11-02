@@ -26,6 +26,7 @@ These are the necessary packages for all enabled plugins.
   + SVN: for package downloads.
   + GNU Make: for package builds.
   + GNU texinfo 4.13[0]: for building builds.
+  + leiningen 2.x: for nrepl and friends.
   + taglib (development files): For emms-print-metadata build.
   + python (2.6 or 2.7): for building jedi.
   + xapian-core: for building mu (mu4e).
