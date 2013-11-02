@@ -1,0 +1,6 @@
+(:name emms-info-mediainfo
+       :website "https://github.com/fgallina/emms-info-mediainfo"
+       :description "An EMMS info source for the mediainfo program."
+       :type github
+       :pkgname "fgallina/emms-info-mediainfo"
+       :post-init (add-to-list 'custom-theme-load-path default-directory))

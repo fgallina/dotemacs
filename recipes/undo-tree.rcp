@@ -1,5 +1,0 @@
-(:name undo-tree
-       :description "Treat undo history as a tree"
-       :type github
-       :website "http://www.dr-qubit.org/emacs.php"
-       :pkgname "emacsmirror/undo-tree")

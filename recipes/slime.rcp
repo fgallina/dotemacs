@@ -1,8 +1,0 @@
-(:name slime
-       :description "Superior Lisp Interaction Mode for Emacs"
-       :type github
-       :autoloads "slime-autoloads"
-       :pkgname "antifuchs/slime"
-       :load-path ("." "contrib")
-       :compile (".")
-       :post-init (slime-setup))
