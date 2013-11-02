@@ -1,7 +1,0 @@
-(:name jedi
-       :description "An awesome Python auto-completion for Emacs"
-       :type github
-       :pkgname "tkf/emacs-jedi"
-       :build (("PYTHON=python2" "make" "requirements"))
-       :submodule nil
-       :depends (epc auto-complete))
