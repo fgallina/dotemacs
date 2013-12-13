@@ -537,10 +537,24 @@ adding files."
   :diminish (paredit-mode . " π")
   :ensure paredit
   :config (progn
-            (dolist (hook '(clojure-mode-hook emacs-lisp-mode-hook lisp-mode-hook
-                                              nrepl-mode-hook eval-expression-minibuffer-setup-hook
-                                              ielm-mode-hook lisp-interaction-mode-hook scheme-mode-hook))
-              (add-hook hook 'enable-paredit-mode))))
+            (dolist (hook '(cider-repl-mode-hook
+                            clojure-mode-hook
+                            emacs-lisp-mode-hook
+                            eval-expression-minibuffer-setup-hook
+                            ielm-mode-hook
+                            ielm-mode-hook
+                            lisp-interaction-mode-hook
+                            lisp-interaction-mode-hook
+                            lisp-mode-hook
+                            scheme-mode-hook))
+              (when (boundp hook)
+                (add-hook hook 'enable-paredit-mode)))
+            ;; http://bit.ly/1bzJ3hT
+            (defun conditionally-enable-paredit-mode ()
+              "enable paredit-mode during eval-expression"
+              (if (eq this-command 'eval-expression)
+                  (paredit-mode 1)))
+            (add-hook 'minibuffer-setup-hook 'conditionally-enable-paredit-mode)))
 
 (user-package paren
   :config (show-paren-mode 1))
