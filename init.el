@@ -592,6 +592,11 @@ adding files."
   :if (not noninteractive)
   :bind ("C-z" . repeat))
 
+(user-package rainbow-delimiters
+  :if (not noninteractive)
+  :ensure rainbow-delimiters
+  :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
 (user-package region-bindings-mode
   :if (not noninteractive)
   :ensure region-bindings-mode
