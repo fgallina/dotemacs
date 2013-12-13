@@ -186,11 +186,21 @@ Disables all packages that are member of the
 (user-package emms
   :if (not noninteractive)
   :ensure emms
+  :bind ("C-x C-m" . my:emms)
+  :defer t
   :config
   (progn
     (user-package emms-info-mediainfo)
     (emms-devel)
     (emms-default-players)
+
+    (defun my:emms ()
+      "Same as `emms' but allow creating an empty playlist."
+      (interactive)
+      (and (or (null emms-playlist-buffer)
+               (not (buffer-live-p emms-playlist-buffer)))
+           (setq emms-playlist-buffer (emms-playlist-new)))
+      (emms-playlist-mode-go))
 
     ;; add what i mean
     (defun my:emms-awim (filename &optional arg)
@@ -239,14 +249,6 @@ adding files."
                           (file-name-nondirectory (emms-track-get track 'name)))))
           (format "%02d. %s - %s [%02d:%02d]" tracknumber artist title pmin psec))))
 
-    (defun my:emms ()
-      "Same as `emms' but allow creating an empty playlist."
-      (interactive)
-      (and (or (null emms-playlist-buffer)
-               (not (buffer-live-p emms-playlist-buffer)))
-           (setq emms-playlist-buffer (emms-playlist-new)))
-      (emms-playlist-mode-go))
-
     (setq
      emms-info-asynchronously t
      emms-info-functions '(emms-info-mediainfo)
@@ -257,7 +259,6 @@ adding files."
      emms-track-description-function 'my:emms-info-track-description
      later-do-interval 0.0001)
 
-    (emms-cache-enable)
     (emms-mode-line-disable)
     (emms-playing-time-enable-display)
 
@@ -269,8 +270,7 @@ adding files."
     (bind-key "g" 'emms-cache-sync emms-playlist-mode-map)
     (bind-key "SPC" 'emms-pause emms-playlist-mode-map)
     (bind-key "q" 'emms emms-stream-mode-map)
-    (bind-key "Q" 'emms emms-stream-mode-map)
-    (bind-key "C-x C-m" 'my:emms)))
+    (bind-key "Q" 'emms emms-stream-mode-map)))
 
 (user-package expand-region
   :if (not noninteractive)
