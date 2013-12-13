@@ -135,6 +135,8 @@ Disables all packages that are member of the
       :ensure ac-nrepl)
     (user-package clojure-cheatsheet
       :ensure clojure-cheatsheet)
+    (user-package clj-refactor
+      :ensure clj-refactor)
     (setq
      cider-lein-command (executable-find "lein")
      cider-popup-stacktraces t
@@ -142,6 +144,9 @@ Disables all packages that are member of the
      nrepl-hide-special-buffers t)
     (add-to-list 'same-window-buffer-names "*nrepl*")
     (add-hook 'clojure-mode-hook #'cider-mode)
+    (add-hook 'clojure-mode-hook #'(lambda ()
+                                     (cljr-add-keybindings-with-prefix "C-c")
+                                     (clj-refactor-mode 1)))
     (add-hook 'cider-mode-hook #'cider-turn-on-eldoc-mode)
     (add-hook 'cider-repl-mode-hook #'ac-nrepl-setup)
     (eval-after-load "auto-complete"
