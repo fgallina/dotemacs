@@ -532,30 +532,6 @@ adding files."
   :bind (("C-M-}" . forward-page)
          ("C-M-{" . backward-page)))
 
-(user-package paredit
-  :if (not noninteractive)
-  :diminish (paredit-mode . " π")
-  :ensure paredit
-  :config (progn
-            (dolist (hook '(cider-repl-mode-hook
-                            clojure-mode-hook
-                            emacs-lisp-mode-hook
-                            eval-expression-minibuffer-setup-hook
-                            ielm-mode-hook
-                            ielm-mode-hook
-                            lisp-interaction-mode-hook
-                            lisp-interaction-mode-hook
-                            lisp-mode-hook
-                            scheme-mode-hook))
-              (when (boundp hook)
-                (add-hook hook 'enable-paredit-mode)))
-            ;; http://bit.ly/1bzJ3hT
-            (defun conditionally-enable-paredit-mode ()
-              "enable paredit-mode during eval-expression"
-              (if (eq this-command 'eval-expression)
-                  (paredit-mode 1)))
-            (add-hook 'minibuffer-setup-hook 'conditionally-enable-paredit-mode)))
-
 (user-package paren
   :config (show-paren-mode 1))
 
@@ -639,6 +615,93 @@ adding files."
               (interactive)
               (yank-pop -1))
             (bind-key "M-Y" 'yank-pop-backwards)))
+
+(user-package smartparens
+  :if (not noninteractive)
+  :ensure smartparens
+  :diminish (smartparens-mode . " π")
+  :config (progn
+            (--each sp--html-modes
+              (eval-after-load (symbol-name it) '(require 'smartparens-html)))
+            (eval-after-load "latex" '(require 'smartparens-latex))
+            (eval-after-load "tex-mode" '(require 'smartparens-latex))
+
+            (sp-pair "'" nil :unless '(sp-point-after-word-p))
+
+            (sp-local-pair 'minibuffer-inactive-mode "'" nil :actions nil)
+
+            (sp-with-modes '(markdown-mode rst-mode)
+              (sp-local-pair "*" "*" :bind "C-*")
+              (sp-local-tag "2" "**" "**")
+              (sp-local-tag "s" "```scheme" "```")
+              (sp-local-tag "<"  "<_>" "</_>" :transform 'sp-match-sgml-tags))
+
+            (sp-with-modes '(tex-mode plain-tex-mode latex-mode)
+              (sp-local-tag "i" "\"<" "\">"))
+
+            (sp-with-modes '(html-mode sgml-mode)
+              (sp-local-pair "<" ">"))
+
+            (define-key sp-keymap (kbd "C-M-f") 'sp-forward-sexp)
+            (define-key sp-keymap (kbd "C-M-b") 'sp-backward-sexp)
+
+            (define-key sp-keymap (kbd "C-M-d") 'sp-down-sexp)
+            (define-key sp-keymap (kbd "C-M-a") 'sp-backward-down-sexp)
+            (define-key sp-keymap (kbd "C-S-a") 'sp-beginning-of-sexp)
+            (define-key sp-keymap (kbd "C-S-d") 'sp-end-of-sexp)
+
+            (define-key sp-keymap (kbd "C-M-e") 'sp-up-sexp)
+            (define-key emacs-lisp-mode-map (kbd ")") 'sp-up-sexp)
+            (define-key sp-keymap (kbd "C-M-u") 'sp-backward-up-sexp)
+            (define-key sp-keymap (kbd "C-M-t") 'sp-transpose-sexp)
+
+            (define-key sp-keymap (kbd "C-M-n") 'sp-next-sexp)
+            (define-key sp-keymap (kbd "C-M-p") 'sp-previous-sexp)
+
+            (define-key sp-keymap (kbd "C-M-k") 'sp-kill-sexp)
+            (define-key sp-keymap (kbd "C-M-w") 'sp-copy-sexp)
+
+            (define-key sp-keymap (kbd "M-<delete>") 'sp-unwrap-sexp)
+            (define-key sp-keymap (kbd "M-<backspace>") 'sp-backward-unwrap-sexp)
+
+            (define-key sp-keymap (kbd "C-<right>") 'sp-forward-slurp-sexp)
+            (define-key sp-keymap (kbd "C-<left>") 'sp-forward-barf-sexp)
+            (define-key sp-keymap (kbd "C-M-<left>") 'sp-backward-slurp-sexp)
+            (define-key sp-keymap (kbd "C-M-<right>") 'sp-backward-barf-sexp)
+
+            (define-key sp-keymap (kbd "M-D") 'sp-splice-sexp)
+            (define-key sp-keymap (kbd "C-M-<delete>") 'sp-splice-sexp-killing-forward)
+            (define-key sp-keymap (kbd "C-M-<backspace>") 'sp-splice-sexp-killing-backward)
+            (define-key sp-keymap (kbd "C-S-<backspace>") 'sp-splice-sexp-killing-around)
+
+            (define-key sp-keymap (kbd "C-]") 'sp-select-next-thing-exchange)
+            (define-key sp-keymap (kbd "C-<left_bracket>") 'sp-select-previous-thing)
+            (define-key sp-keymap (kbd "C-M-]") 'sp-select-next-thing)
+
+            (define-key sp-keymap (kbd "M-F") 'sp-forward-symbol)
+            (define-key sp-keymap (kbd "M-B") 'sp-backward-symbol)
+
+            (define-key sp-keymap (kbd "M-<backspace>") 'sp-backward-kill-word)
+            (define-key sp-keymap (kbd "M-<up>") 'sp-splice-sexp-killing-backward)
+            (define-key sp-keymap (kbd "M-<down>") 'sp-splice-sexp-killing-forward)
+            (define-key sp-keymap (kbd "C-<right>") 'sp-forward-slurp-sexp)
+            (define-key sp-keymap (kbd "C-<left>") 'sp-forward-barf-sexp)
+
+            (sp-with-modes sp--lisp-modes
+              ;; disable ', it's the quote character!
+              (sp-local-pair "'" nil :actions nil)
+              ;; also only use the pseudo-quote inside strings where it serve as
+              ;; hyperlink.
+              (sp-local-pair "`" "'" :when '(sp-in-string-p))
+              (sp-local-pair "(" nil :bind "M-("))
+
+            (add-hook 'smartparens-enabled-hook
+                      (lambda ()
+                        (when (memq major-mode sp--lisp-modes)
+                          (smartparens-strict-mode 1))))
+
+            (smartparens-global-mode t)
+            (show-smartparens-global-mode t)))
 
 (user-package smex
   :if (not noninteractive)
