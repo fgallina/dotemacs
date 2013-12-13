@@ -137,6 +137,8 @@ Disables all packages that are member of the
       :ensure clojure-cheatsheet)
     (user-package clj-refactor
       :ensure clj-refactor)
+    (user-package clojure-test-mode
+      :ensure clojure-test-mode)
     (setq
      cider-lein-command (executable-find "lein")
      cider-popup-stacktraces t
@@ -144,6 +146,7 @@ Disables all packages that are member of the
      nrepl-hide-special-buffers t)
     (add-to-list 'same-window-buffer-names "*nrepl*")
     (add-hook 'clojure-mode-hook #'cider-mode)
+    (add-hook 'clojure-mode-hook #'clojure-test-mode)
     (add-hook 'clojure-mode-hook #'(lambda ()
                                      (cljr-add-keybindings-with-prefix "C-c")
                                      (clj-refactor-mode 1)))
