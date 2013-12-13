@@ -150,8 +150,7 @@ Disables all packages that are member of the
 (user-package css-mode
   :if (not noninteractive)
   :ensure css-mode
-  :config (progn
-            (setq css-indent-offset 2)))
+  :config (setq css-indent-offset 2))
 
 (user-package cus-theme
   :config
@@ -568,6 +567,15 @@ adding files."
 (user-package repeat
   :if (not noninteractive)
   :bind ("C-z" . repeat))
+
+(user-package rainbow-mode
+  :if (not noninteractive)
+  :ensure rainbow-mode
+  :config (progn
+            (mapc (lambda (mode)
+                    (add-to-list 'rainbow-r-colors-major-mode-list mode))
+                  '(css-mode emacs-lisp-mode lisp-interaction-mode))
+            (add-hook 'prog-mode-hook #'rainbow-turn-on)))
 
 (user-package rainbow-delimiters
   :if (not noninteractive)
