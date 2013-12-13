@@ -134,24 +134,24 @@ Disables all packages that are member of the
   :ensure clojure-mode
   :config
   (progn
-    (user-package nrepl
-      :ensure nrepl
-      :config (user-package ac-nrepl
-                :ensure ac-nrepl
-                :config (progn
-                          (setq
-                           nrepl-lein-command (executable-find "lein")
-                           nrepl-hide-special-buffers nil
-                           nrepl-popup-stacktraces t
-                           nrepl-popup-stacktraces-in-repl t
-                           nrepl-mode-hook 'subword-mode)
-                          (add-to-list 'same-window-buffer-names "*nrepl*")
-                          (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
-                          (add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
-                          (eval-after-load "auto-complete"
-                            '(add-to-list 'ac-modes 'nrepl-mode)))))
+    (user-package cider
+      :ensure cider
+      :diminish cider-mode)
+    (user-package ac-nrepl
+      :ensure ac-nrepl)
     (user-package clojure-cheatsheet
-      :ensure clojure-cheatsheet)))
+      :ensure clojure-cheatsheet)
+    (setq
+     cider-lein-command (executable-find "lein")
+     cider-popup-stacktraces t
+     cider-repl-mode-hook #'subword-mode
+     nrepl-hide-special-buffers t)
+    (add-to-list 'same-window-buffer-names "*nrepl*")
+    (add-hook 'clojure-mode-hook #'cider-mode)
+    (add-hook 'cider-mode-hook #'cider-turn-on-eldoc-mode)
+    (add-hook 'cider-repl-mode-hook #'ac-nrepl-setup)
+    (eval-after-load "auto-complete"
+      '(add-to-list 'ac-modes #'cider-mode))))
 
 (user-package css-mode
   :if (not noninteractive)
