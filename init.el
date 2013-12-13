@@ -66,7 +66,7 @@ Disables all packages that are member of the
       (cddr (directory-files el-get-dir)))
 
 (setq el-get-sources
-      '(base16-emacs emms-info-mediainfo jquery-doc mu4e mu4e-multi python rcirc-groups))
+      '(emms-info-mediainfo jquery-doc mu4e mu4e-multi python rcirc-groups))
 
 (defalias 'el-get-init 'ignore
   "Don't use el-get for making packages available for use.")
@@ -119,12 +119,6 @@ Disables all packages that are member of the
                                        ac-source-words-in-same-mode-buffers))
             (global-auto-complete-mode 1)))
 
-(user-package base16-tomorrow-dark-theme
-  :config (when (boundp 'custom-safe-themes)
-            (add-to-list 'custom-theme-load-path
-                         (expand-file-name "base16-emacs" el-get-dir))
-            (load-theme 'base16-tomorrow-dark t)))
-
 (user-package browse-url
   :config (setq browse-url-browser-function 'browse-url-generic
                 browse-url-generic-program "firefox"))
@@ -158,6 +152,13 @@ Disables all packages that are member of the
   :ensure css-mode
   :config (progn
             (setq css-indent-offset 2)))
+
+(user-package cus-theme
+  :config
+  (progn
+    (user-package cyberpunk-theme
+      :ensure cyberpunk-theme)
+    (load-theme 'cyberpunk t)))
 
 (user-package deft
   :if (not noninteractive)
@@ -721,70 +722,6 @@ adding files."
 
 (user-package term
   :config (progn
-            (defun my:term-set-faces ()
-              "Force terminal colors using term-color-* faces.
-This is particularly useful as a workaround for themes which
-define term faces the old way."
-              (let ((color00 "#282A2E")
-                    (color01 "#A54242")
-                    (color02 "#B5BD68")
-                    (color03 "#DE935F")
-                    (color04 "#81A2BE")
-                    (color05 "#85678F")
-                    (color06 "#5E8D87")
-                    (color07 "#C5C8C6")
-                    (color08 "#373B41")
-                    (color09 "#CC6666")
-                    (color10 "#8C9440")
-                    (color11 "#f0c674")
-                    (color12 "#5F819D")
-                    (color13 "#B294BB")
-                    (color14 "#8ABEB7")
-                    (color15 "#E8E8D3"))
-                (set-face-attribute
-                 'term-color-black nil
-                 :foreground color00 :background color08)
-                (set-face-attribute
-                 'term-color-red nil
-                 :foreground color01 :background color09)
-                (set-face-attribute
-                 'term-color-green nil
-                 :foreground color02 :background color10)
-                (set-face-attribute
-                 'term-color-yellow nil
-                 :foreground color03 :background color11)
-                (set-face-attribute
-                 'term-color-blue nil
-                 :foreground color04 :background color12)
-                (set-face-attribute
-                 'term-color-magenta nil
-                 :foreground color05 :background color13)
-                (set-face-attribute
-                 'term-color-cyan nil
-                 :foreground color06 :background color14)
-                (set-face-attribute
-                 'term-color-white nil
-                 :foreground color07 :background color15)
-                (setq ansi-term-color-vector
-                      [term
-                       term-color-black
-                       term-color-red
-                       term-color-green
-                       term-color-yellow
-                       term-color-blue
-                       term-color-magenta
-                       term-color-cyan
-                       term-color-white])
-                (setq ansi-color-names-vector
-                      [color00
-                       color01
-                       color02
-                       color03
-                       color04
-                       color05
-                       color06
-                       color07])))
-
             ;; Based on:
             ;; http://www.enigmacurry.com/2008/12/26/emacs-ansi-term-tricks/
             (defun ansi-term-visit-dwim ()
@@ -822,7 +759,6 @@ If the current buffer is:
                     (ansi-term program)))))
 
             (defun my:term-mode-hook ()
-              (my:term-set-faces)
               (make-local-variable 'mouse-yank-at-point)
               (make-local-variable 'transient-mark-mode)
               (auto-fill-mode -1)
@@ -831,9 +767,6 @@ If the current buffer is:
                     term-scroll-show-maximum-output nil
                     term-buffer-maximum-size 2048))
 
-            (when (facep 'term)
-              ;; Use the new faces mechanism for term
-              (add-hook 'term-mode-hook 'my:term-set-faces))
             (add-hook 'term-mode-hook 'my:term-mode-hook)
 
             (bind-key "<f2>" #'ansi-term-visit-dwim)))
