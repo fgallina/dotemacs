@@ -90,9 +90,12 @@ Disables all packages that are member of the
   :bind (("C-c SPC" . ace-jump-mode)
          ("C-c C-SPC" . ace-jump-mode-pop-mark))
   :ensure ace-jump-mode
-  :config (progn
-            (setq ace-jump-mode-case-fold t)
-            (ace-jump-mode-enable-mark-sync)))
+  :config
+  (progn
+    (setq ace-jump-mode-case-fold t)
+    (ace-jump-mode-enable-mark-sync)
+    (setq ace-jump-mode-submode-list
+          '(ace-jump-char-mode ace-jump-word-mode ace-jump-line-mode))))
 
 (user-package ack-and-a-half
   :if (not noninteractive)
