@@ -29,14 +29,9 @@
 Disables all packages that are member of the
 `my:disabled-packages' list by injecting membership into
 `use-package' :if keyword ."
-  (let ((pred (plist-get args :if)))
-    (when pred
-      (plist-put args :if
-                 `(when (not (memq ',name my:disabled-packages))
-                    ,pred))))
-  `(use-package ,name ,@args))
-
-(put 'user-package 'lisp-indent-function 1)
+  (declare (indent 1))
+  (when (not (memq name my:disabled-packages))
+    `(use-package ,name ,@args)))
 
 (defconst user-package-font-lock-keywords
   '(("(\\(user-package\\)\\_>[ \t']*\\(\\sw+\\)?"
@@ -72,7 +67,8 @@ Disables all packages that are member of the
   "Don't use el-get for making packages available for use.")
 
 (dolist (pkg el-get-sources)
-  (unless (el-get-package-is-installed pkg)
+  (unless (or (memq pkg my:disabled-packages)
+              (el-get-package-is-installed pkg))
     (el-get-install pkg)))
 
 
@@ -80,7 +76,6 @@ Disables all packages that are member of the
 (let ((bindir (expand-file-name "~/bin")))
   (setenv "PATH" (concat bindir  ":" (getenv "PATH")))
   (add-to-list 'exec-path bindir))
-
 
 
 ;;; Packages and config
