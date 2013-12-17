@@ -88,6 +88,12 @@ variable.
 (setq my:disabled-packages '(mu4e o-blog org-mode))
 #+END_SRC
 
+If you plan byte-compiling the init file (which is recommended) via
+the =byte-compile-file= or =emacs-lisp-byte-compile= command (i.e. not
+in batch mode), be sure to eval =my:disabled-packages= new value and
+then eval the whole init.el buffer, so the =user-package= macro is
+expanded properly for newly enabled/disabled packages.
+
 * Bug Reports
 
   If you find a configuration bug please report it in the github
