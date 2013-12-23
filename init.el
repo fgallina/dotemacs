@@ -61,7 +61,7 @@ Disables all packages that are member of the
       (cddr (directory-files el-get-dir)))
 
 (setq el-get-sources
-      '(emms-info-mediainfo jquery-doc mu4e mu4e-multi python rcirc-groups))
+      '(mu4e mu4e-multi python))
 
 (defalias 'el-get-init 'ignore
   "Don't use el-get for making packages available for use.")
@@ -198,7 +198,8 @@ Disables all packages that are member of the
   :defer t
   :config
   (progn
-    (user-package emms-info-mediainfo)
+    (user-package emms-info-mediainfo
+      :ensure emms-info-mediainfo)
     (emms-devel)
     (emms-default-players)
 
@@ -399,7 +400,8 @@ adding files."
   :if (not noninteractive)
   :config
   (progn
-    (user-package jquery-doc)
+    (user-package jquery-doc
+      :ensure jquery-doc)
     (add-hook 'js-mode-hook 'jquery-doc-setup)))
 
 (user-package lisp-mode
@@ -612,7 +614,7 @@ adding files."
 (user-package rcirc
   :config (progn
             (user-package rcirc-groups
-              :ensure rcirc-notify)
+              :ensure rcirc-groups)
             (setq rcirc-log-flag t)
             (setq rcirc-time-format "%Y-%m-%d %H:%M ")
             (rcirc-track-minor-mode -1)))
