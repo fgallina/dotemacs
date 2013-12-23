@@ -886,7 +886,10 @@ If the current buffer is:
 (user-package zencoding-mode
   :if (not noninteractive)
   :ensure zencoding-mode
-  :config (add-hook 'sgml-mode-hook 'zencoding-mode))
+  :config
+  (progn
+    (define-key zencoding-mode-keymap (kbd "C-j") nil)
+    (add-hook 'sgml-mode-hook 'zencoding-mode)))
 
 
 ;;; Random utilities
