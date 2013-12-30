@@ -101,7 +101,8 @@ Disables all packages that are member of the
             (defalias 'ack-find-file 'ack-and-a-half-find-file)
             (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
             (setq ack-and-a-half-prompt-for-directory t)
-            (setq ack-and-a-half-use-ido t)))
+            (setq ack-and-a-half-use-ido t)
+            (setq ack-and-a-half-executable "ag")))
 
 (user-package auto-complete
   :if (not noninteractive)
