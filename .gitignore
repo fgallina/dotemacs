@@ -19,6 +19,10 @@ bin/emms-print-metadata
 elpa/
 emms/
 url/
+gnus/
+gnus-init.el
+.cask/
+custom.el
 image-dired/
 semanticdb/
 el-get/
