@@ -60,8 +60,7 @@ Disables all packages that are member of the
             (setq load-path (cons filename load-path)))))
       (cddr (directory-files el-get-dir)))
 
-(setq el-get-sources
-      '(mu4e mu4e-multi python))
+(setq el-get-sources '(python))
 
 (defalias 'el-get-init 'ignore
   "Don't use el-get for making packages available for use.")
@@ -446,58 +445,193 @@ adding files."
   :bind ("M-k" . kill-this-buffer)
   :config (menu-bar-mode 1))
 
-(user-package mu4e
+(user-package gnus
   :if (not noninteractive)
-  :bind ("<f1>" . mu4e)
-  :init (let ((mu4e-dir (expand-file-name "mu4e" el-get-dir)))
-          (add-to-list 'load-path (expand-file-name "mu4e" mu4e-dir))
-          (setq mu4e-mu-binary (expand-file-name "mu" (expand-file-name "mu" mu4e-dir))))
+  :bind ("<f1>" . gnus)
+  :pre-load (setq gnus-home-directory "~/.emacs.d/gnus"
+                  gnus-inhibit-startup-message t
+                  gnus-init-file "~/.emacs.d/gnus-init")
   :config
   (progn
     (user-package message
       :config (setq
                message-kill-buffer-on-exit t
                message-send-mail-function 'message-send-mail-with-sendmail
+               message-send-mail-partially-limit nil
                message-sendmail-envelope-from 'header))
     (user-package sendmail
       :config (setq sendmail-program (executable-find "msmtp")))
-    (setq
-     mail-user-agent 'mu4e
-     mu4e-attachment-dir (expand-file-name "~/Downloads")
-     mu4e-compose-complete-addresses t
-     mu4e-confirm-quit nil
-     mu4e-get-mail-command "offlineimap -o"
-     mu4e-headers-date-format "%b, %d %Y. %H:%M"
-     mu4e-headers-fields '((:maildir . 12)
-                           (:human-date . 20)
-                           (:flags . 6)
-                           (:mailing-list . 10)
-                           (:from . 20)
-                           (:subject . nil))
-     mu4e-headers-include-related nil
-     mu4e-headers-leave-behavior 'ask
-     mu4e-headers-results-limit 500
-     mu4e-headers-skip-duplicates t
-     mu4e-html2text-command "w3m -o display_link_number=1 -dump -T text/html"
-     mu4e-maildir (expand-file-name "~/Maildir")
-     mu4e-sent-messages-behavior 'delete
-     mu4e-use-fancy-chars t
-     mu4e-view-image-max-width 800
-     mu4e-view-prefer-html t
-     mu4e-view-show-addresses t
-     mu4e-view-show-images nil)
+    (user-package gnus-art)
 
-    (defun my:mu4e-toggle-headers-include-related ()
-      "Toggle `mu4e-headers-include-related' and refresh."
-      (interactive)
-      (setq mu4e-headers-include-related
-            (not mu4e-headers-include-related))
-      (mu4e-headers-rerun-search))
+    (setq gnus-novice-user t
+          gnus-interactive-exit nil
+          gnus-large-newsgroup 2000
+          gnus-permanently-visible-groups ".*INBOX"
+          gnus-prompt-before-saving t
+          gnus-thread-hide-subtree t
+          gnus-thread-sort-functions '(gnus-thread-sort-by-number)
+          gnus-treat-display-smileys nil
+          gnus-treat-strip-cr t
+          mm-attachment-override-types (cons "image/.*"
+                                             mm-attachment-override-types)
+          ;; I don't use news servers, speed up a bit.
+          gnus-read-active-file nil
+          gnus-save-newsrc-file nil
+          gnus-read-newsrc-file nil
+          gnus-check-new-newsgroups nil)
 
-    (define-key 'mu4e-headers-mode-map "o"
-      'my:mu4e-toggle-headers-include-related)
+    (defvar my:gnus-archive-folder nil
+      "The archive folder for this group.
+Intended to be set via `gnus-parameters'.")
+    (defvar my:gnus-followup-folder nil
+      "The follow up folder for this group.
+Intended to be set via `gnus-parameters'.")
+    (defvar my:gnus-hold-folder nil
+      "The hold folder for this group.
+Intended to be set via `gnus-parameters'.")
+    (defvar my:gnus-trash-folder nil
+      "The archive trash for this group.
+Intended to be set via `gnus-parameters'.")
 
-    (user-package mu4e-multi)))
+    (defun my:gnus-summary-archive (&optional n)
+      "Move the current article to the archive folder.
+Uses the `my:gnus-archive-folder' value to detect the folder.
+Optional argument N works the same as in
+`gnus-summary-move-article'."
+      (interactive "P")
+      (gnus-summary-move-article n my:gnus-archive-folder))
+
+    (defun my:gnus-summary-followup (&optional n)
+      "Move the current article to the follow up folder.
+Uses the `my:gnus-followup-folder' value to detect the folder.
+Optional argument N works the same as in
+`gnus-summary-move-article'."
+      (interactive "P")
+      (gnus-summary-move-article n my:gnus-followup-folder))
+
+    (defun my:gnus-summary-hold (&optional n)
+      "Move the current article to the hold folder.
+Uses the `my:gnus-hold-folder' value to detect the folder.
+Optional argument N works the same as in
+`gnus-summary-move-article'."
+      (interactive "P")
+      (gnus-summary-move-article n my:gnus-hold-folder))
+
+    (defun my:gnus-summary-trash (&optional n)
+      "Move the current article to the trash folder.
+Uses the `my:gnus-trash-folder' value to detect the folder.
+Optional argument N works the same as in
+`gnus-summary-move-article'."
+      (interactive "P")
+      (gnus-summary-move-article n my:gnus-trash-folder))
+
+    (defvar my:gnus-group-sync-programs nil
+      "List of programs (with switches) executed for syncing email.")
+    (defvar my:gnus-group-sync-running-processes 0
+      "Internal counter for executed sync processes.")
+    (defvar my:gnus-group-sync-buffer-name "*mailsync*"
+      "Buffer name for sync processes to use for output.")
+    (defvar my:gnus-group-sync-window nil
+      "Window used to show the sync progress.")
+
+    (defun my:gnus-group-sync-sentinel (process signal)
+      "Sentinel for sync processes."
+      (when (memq (process-status process) '(exit signal))
+        (message "%S: %s."
+                 (mapconcat 'identity (process-command process) " ")
+                 (substring signal 0 -1))
+        (setq my:gnus-group-sync-running-processes
+              (1- my:gnus-group-sync-running-processes))
+        (when (and (zerop my:gnus-group-sync-running-processes)
+                   (window-live-p my:gnus-group-sync-window))
+          (delete-window my:gnus-group-sync-window)
+          (when (buffer-live-p (get-buffer gnus-group-buffer))
+            (gnus-group-get-new-news))
+          (message "Sync finished."))))
+
+    ;; Shamelessly stolen from mu4e.
+    (defun my:gnus-group-sync-make-window (buf height)
+      "Create a temporary window for BUF with HEIGHT.
+The window is set at the bottom of the screen."
+      (let ((win
+             (split-window
+              (frame-root-window)
+              (- (window-height (frame-root-window)) height))))
+        (set-window-buffer win buf)
+        (set-window-dedicated-p win t)
+        win))
+
+    (defun my:gnus-group-sync (&optional nosync)
+      "Sync all group emails using external programs.
+External programs are defined in `my:gnus-group-sync-programs'.
+With optional argument NOSYNC, call `gnus-group-get-new-news'
+instead and do not execute any external program."
+      (interactive "P")
+      (if nosync
+          (when (buffer-live-p (get-buffer gnus-group-buffer))
+            (gnus-group-get-new-news))
+        (gnus-group-get-new-news)
+        (message "Syncing groups...")
+        (when (not (zerop my:gnus-group-sync-running-processes))
+          (user-error "Syncing already in progress..."))
+        (let ((buf (current-buffer)))
+          (dolist (command my:gnus-group-sync-programs)
+            (let* ((_ (split-string-and-unquote command))
+                   (program (car _))
+                   (args (cdr _))
+                   (process (apply #'start-process
+                                   program
+                                   my:gnus-group-sync-buffer-name
+                                   program
+                                   args)))
+              (setq my:gnus-group-sync-running-processes
+                    (1+ my:gnus-group-sync-running-processes))
+              (set-process-sentinel process #'my:gnus-group-sync-sentinel)))
+          (when (not (window-live-p my:gnus-group-sync-window))
+            (setq my:gnus-group-sync-window
+                  (my:gnus-group-sync-make-window my:gnus-group-sync-buffer-name 8))))))
+
+    (defun gnus-group-set-keys-hook ()
+      (local-set-key "g" #'my:gnus-group-sync))
+
+    (defun gnus-summary-set-keys-hook ()
+      (local-set-key (kbd "S-<tab>") 'gnus-summary-prev-unread-article)
+      (local-set-key (kbd "<tab>") 'gnus-summary-next-unread-article)
+      (local-set-key "n" 'gnus-summary-next-article)
+      (local-set-key "p" 'gnus-summary-prev-article)
+
+      (local-set-key "!" 'gnus-summary-put-mark-as-ticked-next)
+      (local-set-key "d" 'gnus-summary-put-mark-as-expirable-next)
+      (local-set-key "u" 'gnus-summary-clear-mark-forward)
+      (local-set-key "U" 'gnus-summary-unmark-all-processable)
+
+      (local-set-key "c" 'gnus-summary-mail-other-window)
+      (local-set-key "F" 'gnus-summary-mail-forward)
+      (local-set-key "r" 'gnus-summary-reply-with-original)
+      (local-set-key "R" 'gnus-summary-reply-to-list-with-original)
+
+      (local-set-key "a" 'my:gnus-summary-archive)
+      (local-set-key "d" 'my:gnus-summary-trash)
+      (local-set-key "f" 'my:gnus-summary-followup)
+      (local-set-key "h" 'my:gnus-summary-hold)
+      (local-set-key "D" 'gnus-summary-delete-article)
+      (local-set-key "m" 'gnus-summary-mark-as-processable)
+
+      (local-set-key "g" 'gnus-summary-rescan-group)
+      (local-set-key "?" 'gnus-info-find-node)
+
+      (local-set-key "va" 'gnus-summary-save-parts)
+      (local-set-key "vv" 'gnus-article-view-part)
+
+      (local-set-key "$f" 'gnus-summary-sort-by-author)
+      (local-set-key "$a" 'gnus-summary-sort-by-original)
+      (local-set-key "$d" 'gnus-summary-sort-by-date)
+      (local-set-key "$s" 'gnus-summary-sort-by-subject)
+      (local-set-key "$z" 'gnus-summary-sort-by-chars)
+      (local-set-key "$e" 'gnus-summary-sort-by-score))
+
+    (add-hook 'gnus-group-mode-hook #'gnus-group-set-keys-hook)
+    (add-hook 'gnus-summary-mode-hook #'gnus-summary-set-keys-hook)))
 
 (user-package multiple-cursors
   :bind (("M-m" . mc/mark-more-like-this-extended)
