@@ -453,6 +453,18 @@ adding files."
                   gnus-init-file "~/.emacs.d/gnus-init")
   :config
   (progn
+    (user-package bbdb
+      :ensure bbdb
+      :config
+      (progn
+        (setq bbdb-complete-name-full-completion t
+              bbdb-file "~/.emacs.d/gnus/bbdb.db"
+              bbdb-mail-user-agent 'gnus-user-agent
+              bbdb-mua-pop-up 'horiz
+              bbdb-pop-up-layout 'pop-up-multi-line
+              bbdb-pop-up-window-size 0.5
+              bbdb-complete-mail-allow-cycling t)
+        (bbdb-initialize 'gnus)))
     (user-package message
       :config (setq
                message-kill-buffer-on-exit t
