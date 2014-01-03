@@ -474,6 +474,17 @@ adding files."
     (user-package sendmail
       :config (setq sendmail-program (executable-find "msmtp")))
     (user-package gnus-art)
+    (user-package nnmairix
+      :config
+      (progn
+        (defvar my:nnmairix-call-mairix-binary-folder "~/Maildir/mairix")
+        (defadvice nnmairix-call-mairix-binary
+          (around my:nnmairix-call-mairix-binary
+                  (command folder searchquery threads)
+                  activate compile)
+          "Fix folder path for local imap."
+          (setq folder (expand-file-name folder my:nnmairix-call-mairix-binary-folder))
+          ad-do-it)))
 
     (setq gnus-novice-user t
           gnus-interactive-exit nil
