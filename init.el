@@ -182,6 +182,11 @@ Disables all packages that are member of the
   :config (progn
             (dired-details-install)))
 
+(user-package eldoc
+  :config
+  (progn
+    (add-hook 'prog-mode-hook #'turn-on-eldoc-mode)))
+
 (user-package emerge
   :config (setq emerge-diff-ok-lines-regexp
                 (concat "^\\(" "[0-9,]+[acd][0-9,]+\C-m?$" "\\|[<>] "
