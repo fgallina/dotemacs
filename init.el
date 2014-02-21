@@ -133,6 +133,8 @@ Disables all packages that are member of the
       :ensure cider-tracing)
     (user-package ac-nrepl
       :ensure ac-nrepl)
+    (user-package align-cljlet
+      :ensure align-cljlet)
     (user-package clojure-cheatsheet
       :ensure clojure-cheatsheet)
     (user-package clj-refactor
