@@ -732,6 +732,74 @@ instead and do not execute any external program."
       :ensure jedi)
     (setq jedi:complete-on-dot t)
     (remove-hook 'python-mode-hook 'wisent-python-default-setup)
+
+    (defun python-util-list-files (dir &optional predicate)
+      "List files in DIR, filtering with PREDICATE.
+Argument PREDICATE must be a function taking one argument (a full
+path) and must return non-nil for allowed files."
+      (let ((dir-name (file-name-as-directory dir)))
+        (apply #'nconc
+               (mapcar (lambda (file-name)
+                         (let ((file-name (expand-file-name file-name dir-name)))
+                           (when (funcall predicate file-name)
+                             (list file-name))))
+                       (cddr (directory-files dir-name))))))
+
+    (defun python-util--list-subdirs (to-scan tally step max-depth)
+      "Internal implementation for `python-util-list-subdirs'.
+Argument TO-SCAN keeps a tally of all the directories to be
+scanned.  Argument TALLY keeps all explored subdirs.  Argument
+STEP keeps track of the current processing depth.  Argument
+MAX-DEPTH limits the depth of subdirectory search."
+      (if (null to-scan)
+          (reverse tally)
+        (let* ((dir (car to-scan))
+               (subdirs (when (< step max-depth)
+                          (python-util-list-files dir #'file-directory-p))))
+          (python-util--list-subdirs
+           (append (cdr to-scan) subdirs) (cons dir tally) (1+ step) max-depth))))
+
+    (defun python-util-list-subdirs (dir &optional max-depth)
+      "List subdirectories of DIR, limited by MAX-DEPTH."
+      (python-util--list-subdirs (list dir) nil 0 (or max-depth 1.0e+INF)))
+
+    (defun python-util-list-packages (dir &optional max-depth)
+      "List packages in DIR, limited by MAX-DEPTH."
+      (let* ((parent-dir (file-name-directory
+                          (directory-file-name
+                           (file-name-directory
+                            (file-name-as-directory dir)))))
+             (subpath-length (length parent-dir)))
+        (mapcar
+         (lambda (file-name)
+           (replace-regexp-in-string
+            (rx (or ?\\ ?/)) "." (substring file-name subpath-length)))
+         (python-util-list-subdirs (directory-file-name dir) max-depth))))
+
+    (defvar python-shell--package-depth 4)
+
+    (defun python-shell-enable-package (directory package)
+      "Add DIRECTORY parent to path and enable PACKAGE."
+      (interactive
+       (let* ((dir (expand-file-name
+                    (read-directory-name
+                     "Package root: "
+                     (file-name-directory
+                      (or (buffer-file-name) default-directory)))))
+              (name (completing-read
+                     "Package: "
+                     (python-util-list-packages
+                      dir python-shell--package-depth))))
+         (list dir name)))
+      (python-shell-send-string
+       (format
+        (concat
+         "import os.path;import sys;"
+         "sys.path.append(os.path.dirname(os.path.dirname('''%s''')));"
+         "__package__ = '''%s''';"
+         "import %s")
+        directory package package)))
+
     (add-hook 'python-mode-hook 'jedi:setup)))
 
 (user-package python-django
