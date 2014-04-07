@@ -103,6 +103,10 @@ Disables all packages that are member of the
             (setq ack-and-a-half-use-ido t)
             (setq ack-and-a-half-executable "ag")))
 
+(user-package alert
+  :ensure alert
+  :config (setq alert-default-style 'libnotify))
+
 (user-package auto-complete
   :if (not noninteractive)
   :ensure auto-complete
@@ -845,12 +849,16 @@ MAX-DEPTH limits the depth of subdirectory search."
             (region-bindings-mode-enable)))
 
 (user-package rcirc
-  :config (progn
-            (user-package rcirc-groups
-              :ensure rcirc-groups)
-            (setq rcirc-log-flag t)
-            (setq rcirc-time-format "%Y-%m-%d %H:%M ")
-            (rcirc-track-minor-mode -1)))
+  :config
+  (progn
+    (user-package rcirc-groups
+      :ensure rcirc-groups)
+    (user-package rcirc-alertify
+      :ensure rcirc-alertify)
+    (rcirc-alertify-enable)
+    (setq rcirc-log-flag t)
+    (setq rcirc-time-format "%Y-%m-%d %H:%M ")
+    (rcirc-track-minor-mode -1)))
 
 (user-package savehist
   :config (progn
