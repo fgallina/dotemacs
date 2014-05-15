@@ -1227,7 +1227,8 @@ If the current buffer is:
 
 (setq inhibit-startup-screen t
       initial-scratch-message ""
-      x-select-enable-clipboard t)
+      x-select-enable-clipboard t
+      x-select-enable-primary t)
 
 (load "~/.emacs.d/secrets.el" 'noerror)
 (load "~/.emacs.d/post-startup.el" 'noerror)
