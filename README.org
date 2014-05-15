@@ -24,31 +24,22 @@ These are the necessary packages for all enabled plugins.
   + Git: for package downloads and magit.
   + Mercurial: for package downloads.
   + SVN: for package downloads.
-  + GNU Make: for package builds.
-  + GNU texinfo 4.13[0]: for building builds.
   + leiningen 2.x: for nrepl and friends.
-  + taglib (development files): For emms-print-metadata build.
   + python (2.6 or 2.7): for building jedi.
-  + xapian-core: for building mu (mu4e).
-  + libtool: for building mu (mu4e).
-  + gmime: for building mu (mu4e).
-  + sqlite3: for building mu (mu4e).
-  + gtk2: for building mu (mu4e).
-  + webkitgtk2: for building mu (mu4e).
 
 See "Disabling packages" section for a way to avoid some requirements.
-
-[0] Version may (or may not) 5.0 break when building some docs, so far
-this elpa based config seems to work just fine as I have installed all
-packages from scratch using it.
 
 ** Arch GNU/Linux
 Installation of all requirements in Arch is quite simple.
 
 #+BEGIN_SRC sh
-sudo pacman -S emacs bzr cvs git mercurial subversion\
- make texinfo taglib python2 xapian-core libtool gmime\
- sqlite3 gtk2 webkitgtk2
+sudo pacman -S bzr cvs git mercurial subversion emacs python2
+#+END_SRC
+
+** Ubuntu
+
+#+BEGIN_SRC sh
+sudo apt-get install bzr cvs git mercurial subversion emacs python
 #+END_SRC
 
 * Installation
@@ -68,13 +59,18 @@ There are 3 non-required important files you might want to check out:
     that's intended to be run *after* all packages are loaded and
     initialized.
 
-Also, if you are using jedi, you need to install a python
-environment for it to use. You can do so like this:
+If you are using jedi, you need to install a python environment for it
+to use. You can do so like this:
 
 #+BEGIN_SRC sh
 cd ~/.emacs.d/elpa/jedi-*
 make requirements PYTHON=python2  # or the python interpreter of your preference.
 #+END_SRC
+
+If you plan to use the clojure related packages you need to install
+leiningen. Generally you want to do this manually by adding the
+executable in your =$PATH=. See http://leiningen.org/ for
+instructions.
 
 * Disabling packages
 
@@ -85,7 +81,7 @@ variable.
 #+BEGIN_SRC emacs-lisp
 ;;; pre-startup.el
 ;; Avoid installing/loading some packages.
-(setq my:disabled-packages '(mu4e o-blog org-mode))
+(setq my:disabled-packages '(ace-jump-mode jedi clojure-mode))
 #+END_SRC
 
 If you plan byte-compiling the init file (which is recommended) via
@@ -102,7 +98,6 @@ expanded properly for newly enabled/disabled packages.
 
 * License
 
-  See each package located at ~/.emacs.d/el-get/* for their licenses.
-  The ~/.emacs.d/init.el is on the public domain.  All
-  ~/.emacs.d/init-*.el and ~/.emacs.d/startup.d/*.el are on the public
-  domain unless otherwise stated in the header.
+  See each package located at =~/.emacs.d/el-get/= and
+  =~/.emacs.d/elpa/= for their licenses.  The =~/.emacs.d/init.el=
+  file is on the public domain.
