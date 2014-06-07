@@ -294,7 +294,8 @@ adding files."
 
 (user-package expand-region
   :if (not noninteractive)
-  :bind ("S-SPC" . er/expand-region)
+  :bind (("C-M-SPC" . er/expand-region)
+         ("C-M-@" . er/expand-region))
   :ensure expand-region)
 
 (user-package files
@@ -833,21 +834,22 @@ MAX-DEPTH limits the depth of subdirectory search."
   :if (not noninteractive)
   :ensure region-bindings-mode
   :config (progn
-            (define-key region-bindings-mode-map "a" 'mc/mark-all-like-this)
-            (define-key region-bindings-mode-map "P" 'mc/skip-to-previous-like-this)
-            (define-key region-bindings-mode-map "N" 'mc/skip-to-next-like-this)
-            (define-key region-bindings-mode-map "p" 'mc/mark-previous-like-this)
-            (define-key region-bindings-mode-map "n" 'mc/mark-next-like-this)
-            (define-key region-bindings-mode-map "P" 'mc/unmark-previous-like-this)
-            (define-key region-bindings-mode-map "N" 'mc/unmark-next-like-this)
-            (define-key region-bindings-mode-map "m" 'mc/mark-more-like-this-extended)
-            (define-key region-bindings-mode-map "f" 'er/expand-region)
-            (define-key region-bindings-mode-map "b" 'er/contract-region)
+            (bind-key "f" 'mc/mmlte--right mc/mark-more-like-this-extended-keymap)
+            (bind-key "b" 'mc/mmlte--left mc/mark-more-like-this-extended-keymap)
+            (bind-key "n" 'mc/mmlte--down mc/mark-more-like-this-extended-keymap)
+            (bind-key "p" 'mc/mmlte--up mc/mark-more-like-this-extended-keymap)
+            (bind-key "m" 'mc/mark-more-like-this-extended region-bindings-mode-map)
+            (bind-key "a" 'mc/mark-all-like-this region-bindings-mode-map)
+            (bind-key "p" 'mc/mark-previous-like-this region-bindings-mode-map)
+            (bind-key "n" 'mc/mark-next-like-this region-bindings-mode-map)
+            (bind-key "b" 'mc/skip-to-previous-like-this region-bindings-mode-map)
+            (bind-key "f" 'mc/skip-to-next-like-this region-bindings-mode-map)
+            (bind-key "P" 'mc/unmark-previous-like-this region-bindings-mode-map)
+            (bind-key "N" 'mc/unmark-next-like-this region-bindings-mode-map)
+            (bind-key "u" 'er/contract-region region-bindings-mode-map)
             (setq region-bindings-mode-disabled-modes '(term-mode))
             (setq region-bindings-mode-disable-predicates
-                  (list
-                   (lambda ()
-                     buffer-read-only)))
+                  (list (lambda () buffer-read-only)))
             (region-bindings-mode-enable)))
 
 (user-package rcirc
