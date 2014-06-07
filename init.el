@@ -870,13 +870,28 @@ MAX-DEPTH limits the depth of subdirectory search."
   :config (scroll-bar-mode -1))
 
 (user-package simple
-  :config (progn
-            ;; http://www.emacswiki.org/emacs/DefaultKillingAndYanking
-            (defun yank-pop-backwards ()
-              "Yank backwards."
-              (interactive)
-              (yank-pop -1))
-            (bind-key "M-Y" 'yank-pop-backwards)))
+  :config
+  (progn
+    ;; http://www.emacswiki.org/emacs/DefaultKillingAndYanking
+    (defun yank-pop-backwards ()
+      "Yank backwards."
+      (interactive)
+      (yank-pop -1))
+    (bind-key "M-Y" 'yank-pop-backwards)
+    (when (executable-find "xsel")
+      ;; From: http://bit.ly/1mpoA5o
+      (defun xsel-cut-function (text &optional push)
+        (with-temp-buffer
+          (insert text)
+          (call-process-region
+           (point-min) (point-max) "xsel" nil 0 nil "--clipboard" "--input")))
+      (defun xsel-paste-function()
+        (let ((xsel-output
+               (shell-command-to-string "xsel --clipboard --output")))
+          (unless (string= (car kill-ring) xsel-output)
+            xsel-output)))
+      (setq interprogram-cut-function 'xsel-cut-function)
+      (setq interprogram-paste-function 'xsel-paste-function))))
 
 (user-package smartparens
   :if (not noninteractive)
