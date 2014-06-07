@@ -454,7 +454,7 @@ adding files."
 
 (user-package menu-bar
   :bind ("M-k" . kill-this-buffer)
-  :config (menu-bar-mode 1))
+  :config (menu-bar-mode -1))
 
 (user-package gnus
   :if (not noninteractive)
