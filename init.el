@@ -1202,13 +1202,6 @@ If the current buffer is:
 
 ;;; Global
 
-(bind-key "M-3" 'split-window-horizontally)
-(bind-key "M-2" 'split-window-vertically)
-(bind-key "M-1" 'delete-other-windows)
-(bind-key "M-0" 'delete-window)
-(bind-key "M-o" 'other-window)
-(bind-key "M-O" 'other-window-backward)
-
 (put 'narrow-to-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
