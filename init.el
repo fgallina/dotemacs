@@ -447,7 +447,7 @@ adding files."
       (interactive)
       (setq magit-diff-options (remove "-w" magit-diff-options))
       (magit-refresh))
-    (define-key magit-status-mode-map (kbd "W") 'magit-diff-toggle-whitespace)))
+    (bind-key "W" 'magit-diff-toggle-whitespace magit-status-mode-map)))
 
 (user-package markdown-mode
   :if (not noninteractive)
@@ -1097,7 +1097,7 @@ MAX-DEPTH limits the depth of subdirectory search."
   :ensure zencoding-mode
   :config
   (progn
-    (define-key zencoding-mode-keymap (kbd "C-j") nil)
+    (bind-key "C-j" nil zencoding-mode-keymap)
     (add-hook 'sgml-mode-hook 'zencoding-mode)))
 
 
