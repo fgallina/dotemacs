@@ -1194,6 +1194,40 @@ MAX-DEPTH limits the depth of subdirectory search."
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 
+;; Fixes for xterm keys
+(bind-key "\e[7~" [home] function-key-map)
+(bind-key "\e[8~" [end] function-key-map)
+(bind-key "\e[11~" [f1] function-key-map)
+(bind-key "\e[12~" [f2] function-key-map)
+(bind-key "\e[13~" [f3] function-key-map)
+(bind-key "\e[14~" [f4] function-key-map)
+
+(bind-key "\033[1;5A" [(control up)] function-key-map)
+(bind-key "\033[1;5B" [(control down)] function-key-map)
+(bind-key "\033[1;5D" [(control left)] function-key-map)
+(bind-key "\033[1;5C" [(control right)] function-key-map)
+(bind-key "\033[5;5~" [(control home)] function-key-map)
+(bind-key "\033[6;5~" [(control end)] function-key-map)
+(bind-key "\033[3;5~" [(control delete)] function-key-map)
+(bind-key "\033[1;5F" [(control prior)] function-key-map)
+(bind-key "\033[1;5H" [(control next)] function-key-map)
+(bind-key "\033[1;5H" [(control next)] function-key-map)
+
+(bind-key "\033[1;3A" [(meta up)] function-key-map)
+(bind-key "\033[1;3B" [(meta down)] function-key-map)
+(bind-key "\033[1;3D" [(meta left)] function-key-map)
+(bind-key "\033[1;3C" [(meta right)] function-key-map)
+(bind-key "\033[1;3H" [(meta home)] function-key-map)
+(bind-key "\033[1;3F" [(meta end)] function-key-map)
+(bind-key "\033[3;3~" [(meta delete)] function-key-map)
+(bind-key "\033[5;3~" [(meta prior)] function-key-map)
+(bind-key "\033[6;3~" [(meta next)] function-key-map)
+
+(bind-key "\033[1;2A" [(shift up)] function-key-map)
+(bind-key "\033[1;2B" [(shift down)] function-key-map)
+(bind-key "\033[1;2D" [(shift left)] function-key-map)
+(bind-key "\033[1;2C" [(shift right)] function-key-map)
+
 ;; Local Variables:
 ;; mode: emacs-lisp
 ;; mode: hs-minor
