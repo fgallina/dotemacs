@@ -306,6 +306,62 @@ adding files."
                              (concat user-emacs-directory "backups")))))
             (add-hook 'before-save-hook 'delete-trailing-whitespace)))
 
+(user-package god-mode
+  :if (not noninteractive)
+  :ensure god-mode
+  :config
+  (progn
+    (defvar my:god-mode-terminal-cursor-color "#818177"
+      "Cursor color to use in terminal when god-mode is enabled.")
+
+    (defun my:terminal-set-cursor-color (color)
+      "Send escapes for changing cursor COLOR in tmux and xterm."
+      ;; tmux
+      (send-string-to-terminal
+       (format "\033Ptmux;\033\033]12;%s\007\033\\" color))
+      ;; xterm
+      (send-string-to-terminal (format "\033]12;%s\007" color)))
+
+    (defun my:god-toggle-on-overwrite ()
+      "Toggle god-mode on overwrite-mode."
+      (if (bound-and-true-p overwrite-mode)
+          (god-local-mode-pause)
+        (god-local-mode-resume)))
+
+    (defun god-gnus-mode-p ()
+      "Return non-nil if major-mode is a gnus mode."
+      (string-match-p "^gnus-.*-mode$" (symbol-name major-mode)))
+
+    (defun vc-mode-p ()
+      "Return non-nil if major-mode is a vc mode."
+      (string-match-p "^vc-.*-mode$" (symbol-name major-mode)))
+
+    (defun my:god-update-cursor-enabled ()
+      (my:terminal-set-cursor-color my:god-mode-terminal-cursor-color)
+      (setq cursor-type 'hollow))
+
+    (defun my:god-update-cursor-disabled ()
+      (my:terminal-set-cursor-color
+       (internal-get-lisp-face-attribute 'cursor :background))
+      (setq cursor-type 'box))
+
+    (mapc (lambda (mode)
+            (add-to-list 'god-exempt-major-modes mode))
+          '(git-commit-mode log-edit-mode rcirc-mode))
+    (mapc (lambda (mode)
+            (add-to-list 'god-exempt-predicates mode))
+          '(god-gnus-mode-p vc-mode-p))
+
+    (add-hook 'god-mode-enabled-hook 'my:god-update-cursor-enabled)
+    (add-hook 'god-mode-disabled-hook 'my:god-update-cursor-disabled)
+    (add-hook 'overwrite-mode-hook 'my:god-toggle-on-overwrite)
+
+    (bind-key "<f1>" 'god-mode-all)
+    (bind-key "i" 'god-local-mode god-local-mode-map)
+
+    (when (not god-global-mode)
+      (god-mode-all))))
+
 (user-package ido
   :if (not noninteractive)
   :config (progn
@@ -459,7 +515,7 @@ adding files."
 
 (user-package gnus
   :if (not noninteractive)
-  :bind ("<f1>" . gnus)
+  :bind ("<f2>" . gnus)
   :pre-load (setq gnus-home-directory "~/.emacs.d/gnus"
                   gnus-inhibit-startup-message t
                   gnus-init-file "~/.emacs.d/gnus-init")
