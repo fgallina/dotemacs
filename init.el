@@ -948,8 +948,8 @@ MAX-DEPTH limits the depth of subdirectory search."
                (shell-command-to-string "xsel --clipboard --output")))
           (unless (string= (car kill-ring) xsel-output)
             xsel-output)))
-      (setq interprogram-cut-function 'xsel-cut-function)
-      (setq interprogram-paste-function 'xsel-paste-function))))
+      (setq interprogram-cut-function 'xsel-cut-function
+            interprogram-paste-function 'xsel-paste-function))))
 
 (user-package smartparens
   :if (not noninteractive)
@@ -1034,8 +1034,8 @@ MAX-DEPTH limits the depth of subdirectory search."
                         (when (memq major-mode sp--lisp-modes)
                           (smartparens-strict-mode 1))))
 
-            (smartparens-global-mode t)
-            (show-smartparens-global-mode t)))
+            (smartparens-global-mode 1)
+            (show-smartparens-global-mode 1)))
 
 (user-package smex
   :if (not noninteractive)
