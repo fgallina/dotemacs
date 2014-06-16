@@ -90,6 +90,59 @@ in batch mode), be sure to eval =my:disabled-packages= new value and
 then eval the whole init.el buffer, so the =user-package= macro is
 expanded properly for newly enabled/disabled packages.
 
+* Confusing stuff
+
+While this dotemacs is maintained with the idea that it could be
+reused by anyone, it's still my dotemacs and it's configured the way I
+like it. This means that there may be some stuff you could consider
+weird, so here is a non extensive listing of those and the ways you
+can prevent them.
+
+** God mode
+
+God mode is awesome, it brings the modal bindings paradigm to Emacs
+without trying to change the bindings you've learned during all this
+time. The thing is that `god-mode` can be confusing, especially if you
+haven't set it up yourself and are using this config out of the
+box. You can disable it by adding `god-mode` to your
+`my:disabled-packages` in the `pre-startup.el` file.
+
+** Smartparens
+
+If you feel some bindings are doing weird things when working with
+parens or sexps, please check the `smartparens` configuration. If you
+are still not convinced about smartparens just add the following to
+You can disable it by adding `smartparens` to your
+`my:disabled-packages` in the `pre-startup.el` file.
+
+** Errors when copying or pasting stuff
+
+I use Emacs on the terminal for the most part, and I have integrated
+it with the `xsel` utility to make it populate my X system clipboard
+when sending doing copy/cut/paste.
+
+If you are experiencing errors with this: either install xsel, change
+the integration to use whatever utility you'd like or just disable the
+feature completely and let Emacs behave by default by adding this code
+in your `post-startup.el` file:
+
+#+BEGIN_SRC emacs-lisp
+(setq interprogram-cut-function nil
+      interprogram-paste-function nil)
+#+END_SRC
+
+** Menu bar, scroll bar and tool bar
+
+If you are new to Emacs you will probably want to have these things
+activated again, to restore then add the following in your
+`post-startup.el`:
+
+#+BEGIN_SRC emacs-lisp
+(menu-bar-mode 1)
+(scroll-bar-mode 1)
+(tool-bar-mode 1)
+#+END_SRC
+
 * Bug Reports
 
   If you find a configuration bug please report it in the github
