@@ -91,17 +91,9 @@ Disables all packages that are member of the
     (setq ace-jump-mode-submode-list
           '(ace-jump-word-mode ace-jump-char-mode ace-jump-line-mode))))
 
-(user-package ack-and-a-half
+(user-package ag
   :if (not noninteractive)
-  :ensure ack-and-a-half
-  :config (progn
-            (defalias 'ack 'ack-and-a-half)
-            (defalias 'ack-same 'ack-and-a-half-same)
-            (defalias 'ack-find-file 'ack-and-a-half-find-file)
-            (defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)
-            (setq ack-and-a-half-prompt-for-directory t)
-            (setq ack-and-a-half-use-ido t)
-            (setq ack-and-a-half-executable "ag")))
+  :ensure ag)
 
 (user-package alert
   :ensure alert
