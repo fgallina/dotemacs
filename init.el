@@ -316,11 +316,12 @@ adding files."
 
     (defun my:terminal-set-cursor-color (color)
       "Send escapes for changing cursor COLOR in tmux and xterm."
-      ;; tmux
-      (send-string-to-terminal
-       (format "\033Ptmux;\033\033]12;%s\007\033\\" color))
-      ;; xterm
-      (send-string-to-terminal (format "\033]12;%s\007" color)))
+      (unless window-system
+        ;; tmux
+        (send-string-to-terminal
+         (format "\033Ptmux;\033\033]12;%s\007\033\\" color))
+        ;; xterm
+        (send-string-to-terminal (format "\033]12;%s\007" color))))
 
     (defun my:god-toggle-on-overwrite ()
       "Toggle god-mode on overwrite-mode."
