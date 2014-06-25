@@ -905,7 +905,17 @@ MAX-DEPTH limits the depth of subdirectory search."
     (rcirc-alertify-enable)
     (setq rcirc-log-flag t)
     (setq rcirc-time-format "%Y-%m-%d %H:%M ")
-    (rcirc-track-minor-mode -1)))
+    (rcirc-track-minor-mode -1)
+    ;; Based on http://www.emacswiki.org/emacs/rcircAll
+    (defun-rcirc-command all (input)
+      "Run the arguments as a command for all connections."
+      (interactive "s")
+      (mapc (lambda (process)
+              (with-current-buffer (process-buffer process)
+                (goto-char (point-max))
+                (insert "/" input)
+                (rcirc-send-input)))
+            (rcirc-process-list)))))
 
 (user-package savehist
   :config (progn
