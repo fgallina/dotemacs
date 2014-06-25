@@ -303,18 +303,6 @@ adding files."
   :ensure god-mode
   :config
   (progn
-    (defvar my:god-mode-terminal-cursor-color "#818177"
-      "Cursor color to use in terminal when god-mode is enabled.")
-
-    (defun my:terminal-set-cursor-color (color)
-      "Send escapes for changing cursor COLOR in tmux and xterm."
-      (unless window-system
-        ;; tmux
-        (send-string-to-terminal
-         (format "\033Ptmux;\033\033]12;%s\007\033\\" color))
-        ;; xterm
-        (send-string-to-terminal (format "\033]12;%s\007" color))))
-
     (defun my:god-toggle-on-overwrite ()
       "Toggle god-mode on overwrite-mode."
       (if (bound-and-true-p overwrite-mode)
@@ -330,13 +318,15 @@ adding files."
       (string-match-p "^vc-.*-mode$" (symbol-name major-mode)))
 
     (defun my:god-update-cursor-enabled ()
-      (my:terminal-set-cursor-color my:god-mode-terminal-cursor-color)
       (setq cursor-type 'hollow))
 
     (defun my:god-update-cursor-disabled ()
-      (my:terminal-set-cursor-color
-       (internal-get-lisp-face-attribute 'cursor :background))
       (setq cursor-type 'box))
+
+    (defun my:god-update-cursor ()
+      (if (and god-global-mode god-local-mode)
+          (my:god-update-cursor-enabled)
+        (my:god-update-cursor-disabled)))
 
     (mapc (lambda (mode)
             (add-to-list 'god-exempt-major-modes mode))
@@ -345,9 +335,13 @@ adding files."
             (add-to-list 'god-exempt-predicates mode))
           '(god-gnus-mode-p vc-mode-p))
 
-    (add-hook 'god-mode-enabled-hook 'my:god-update-cursor-enabled)
-    (add-hook 'god-mode-disabled-hook 'my:god-update-cursor-disabled)
-    (add-hook 'overwrite-mode-hook 'my:god-toggle-on-overwrite)
+    (add-hook 'god-mode-enabled-hook #'my:god-update-cursor-enabled)
+    (add-hook 'god-mode-disabled-hook #'my:god-update-cursor-disabled)
+    (add-hook 'overwrite-mode-hook #'my:god-toggle-on-overwrite)
+
+    (defadvice select-window (after my:god-update activate)
+      "Trigger cursor changes for god mode after selecting a window."
+      (my:god-update-cursor))
 
     (bind-key "<f1>" 'god-mode-all)
     (bind-key "i" 'god-local-mode god-local-mode-map)
