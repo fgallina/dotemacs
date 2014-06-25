@@ -932,21 +932,19 @@ MAX-DEPTH limits the depth of subdirectory search."
       "Yank backwards."
       (interactive)
       (yank-pop -1))
-    (bind-key "M-Y" 'yank-pop-backwards)
-    (defun xsel-cut-function (text &optional push)
-      (when (and (executable-find "xsel") (getenv "DISPLAY"))
-        (with-temp-buffer
-          (insert text)
-          (call-process-region
-           (point-min) (point-max) "xsel" nil 0 nil "--clipboard" "--input"))))
-    (defun xsel-paste-function()
-      (when (and (executable-find "xsel") (getenv "DISPLAY"))
-        (let ((xsel-output
-               (shell-command-to-string "xsel --clipboard --output")))
-          (unless (string= (car kill-ring) xsel-output)
-            xsel-output))))
-    (setq interprogram-cut-function 'xsel-cut-function
-          interprogram-paste-function 'xsel-paste-function)))
+    (bind-key "M-Y" 'yank-pop-backwards)))
+
+(user-package xclip
+  :ensure xclip
+  :if (getenv "DISPLAY")
+  :config
+  (progn
+    (condition-case err
+        (progn (xclip-mode 1)
+               (turn-on-xclip))
+      (file-error
+       (message
+        "Failed to find %s program, not using xclip.el." xclip-program)))))
 
 (user-package smartparens
   :if (not noninteractive)
