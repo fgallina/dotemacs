@@ -135,6 +135,8 @@ Disables all packages that are member of the
       :ensure clojure-cheatsheet)
     (user-package clj-refactor
       :ensure clj-refactor)
+    (user-package slamhound
+      :ensure slamhound)
     (setq
      cider-lein-command (executable-find "lein")
      cider-popup-stacktraces t
