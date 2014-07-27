@@ -350,18 +350,21 @@ adding files."
 
 (user-package ido
   :if (not noninteractive)
-  :config (progn
-            (ido-mode 1)
-            (ido-everywhere 1)
-            (setq ido-enable-flex-matching t)
-            (setq ido-use-faces nil)
-            (user-package flx
-              :ensure flx
-              :config (user-package flx-ido
-                        :ensure flx-ido
-                        :config (progn
-                                  (flx-ido-mode 1)
-                                  (setq flx-ido-use-faces t))))))
+  :config
+  (progn
+    (user-package ido-vertical-mode
+      :ensure ido-vertical-mode)
+    (user-package flx
+      :ensure flx)
+    (user-package flx-ido
+      :ensure flx-ido)
+    (setq ido-enable-flex-matching t
+          ido-use-faces nil
+          flx-ido-use-faces t)
+    (ido-mode 1)
+    (ido-everywhere 1)
+    (ido-vertical-mode 1)
+    (flx-ido-mode 1)))
 
 (user-package flycheck
   :ensure flycheck
