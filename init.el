@@ -1114,12 +1114,30 @@ instead and do not execute any external program."
   exactly as it appears in the minibuffer prompt."
   ;; Based on insert-file in Emacs -- ashawley 20080926
   (interactive "*fInsert file name: \np")
-  (cond ((<= 1 arg)
+  (cond ((<= arg 1)
          (insert (file-relative-name filename)))
-        ((<= 4 arg)
+        ((<= arg 4)
          (insert (expand-file-name filename)))
         (t
          (insert filename))))
+
+(defun kill-ring-save-file-name (&optional arg)
+  "Save file name for current buffer to `kill-ring'.
+
+  With \\[universal-argument] ARG <= 1, save filename's relative
+  path.  See `file-relative-name' for details.
+
+  With 1 < \\[universal-argument] ARG <= 4, save filename's fully
+  canocalized path.  See `expand-file-name'.
+
+  With \\[universal-argument] ARG > 4, save the current value of
+  `buffer-file-name' unmodified."
+  (interactive "p")
+  (when buffer-file-name
+    (let ((file-name buffer-file-name))
+      (with-temp-buffer
+        (insert-file-name file-name (or arg 1))
+        (kill-region (point-min) (point-max))))))
 
 (defun other-window-backward (count &optional all-frames)
   (interactive "p")
