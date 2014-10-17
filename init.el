@@ -722,13 +722,15 @@ instead and do not execute any external program."
          ("C-S-c C-a" . mc/edit-beginnings-of-lines))
   :defines (multiple-cursors-mode
             mc--read-char
-            mc--read-char
             multiple-cursors-mode
-            mc--read-quoted-char
-            mc--read-quoted-char
-            rectangular-region-mode
-            rectangular-region-mode)
-  :ensure multiple-cursors)
+            mc--read-quoted-char)
+  :ensure multiple-cursors
+  :config
+  (progn
+    (bind-key "f" 'mc/mmlte--right mc/mark-more-like-this-extended-keymap)
+    (bind-key "b" 'mc/mmlte--left mc/mark-more-like-this-extended-keymap)
+    (bind-key "n" 'mc/mmlte--down mc/mark-more-like-this-extended-keymap)
+    (bind-key "p" 'mc/mmlte--up mc/mark-more-like-this-extended-keymap)))
 
 (user-package multi-web-mode
   :if (not noninteractive)
@@ -811,10 +813,6 @@ instead and do not execute any external program."
   :if (not noninteractive)
   :ensure region-bindings-mode
   :config (progn
-            (bind-key "f" 'mc/mmlte--right mc/mark-more-like-this-extended-keymap)
-            (bind-key "b" 'mc/mmlte--left mc/mark-more-like-this-extended-keymap)
-            (bind-key "n" 'mc/mmlte--down mc/mark-more-like-this-extended-keymap)
-            (bind-key "p" 'mc/mmlte--up mc/mark-more-like-this-extended-keymap)
             (bind-key "m" 'mc/mark-more-like-this-extended region-bindings-mode-map)
             (bind-key "a" 'mc/mark-all-like-this region-bindings-mode-map)
             (bind-key "p" 'mc/mark-previous-like-this region-bindings-mode-map)
