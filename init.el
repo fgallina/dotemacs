@@ -158,9 +158,61 @@ Disables all packages that are member of the
 (user-package cus-theme
   :config
   (progn
+    (defun my:unload-themes (&optional msg)
+      "Unload all custom enabled themes."
+      (interactive "p")
+      (mapc #'disable-theme custom-enabled-themes)
+      (when msg
+        (message "Unloaded all themes.")))
+    (defun my:load-single-theme (theme &optional no-confirm no-enable)
+      "Load a single custom theme."
+      (interactive
+       (list
+        (intern (completing-read "Load custom theme: "
+                                 (mapcar 'symbol-name
+                                         (custom-available-themes))))
+        nil nil))
+      (my:unload-themes)
+      (load-theme theme no-confirm no-enable))
+    (defun my:load-random-theme (&optional msg)
+      "Load a random theme."
+      (interactive "p")
+      (let ((success))
+        (while (not success)
+          (let* ((themes (custom-available-themes))
+                 (random-theme
+                  (progn
+                    (random t)
+                    (nth (random (length themes)) themes))))
+            (condition-case err
+                (progn
+                  (my:load-single-theme random-theme t)
+                  (setq success t))
+              (error
+               (message "Failed to load %s. Retrying..." random-theme)))
+            (when (and success msg)
+              (message "Loaded theme %s" random-theme))))))
+    (user-package ample-theme
+      :ensure ample-theme
+      :defer t)
+    (user-package color-theme-sanityinc-solarized
+      :ensure color-theme-sanityinc-solarized
+      :defer t)
+    (user-package color-theme-sanityinc-tomorrow
+      :ensure color-theme-sanityinc-tomorrow
+      :defer t)
     (user-package cyberpunk-theme
-      :ensure cyberpunk-theme)
-    (load-theme 'cyberpunk t)))
+      :ensure cyberpunk-theme
+      :defer t)
+    (user-package leuven-theme
+      :ensure leuven-theme
+      :defer t)
+    (user-package monokai-theme
+      :ensure monokai-theme
+      :defer t)
+    (user-package zenburn-theme
+      :ensure zenburn-theme
+      :defer t)))
 
 (user-package deft
   :if (not noninteractive)
