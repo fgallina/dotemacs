@@ -125,8 +125,6 @@ Disables all packages that are member of the
     (user-package cider
       :ensure cider
       :diminish cider-mode)
-    (user-package cider-tracing
-      :ensure cider-tracing)
     (user-package ac-nrepl
       :ensure ac-nrepl)
     (user-package align-cljlet
