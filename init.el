@@ -1252,7 +1252,12 @@ instead and do not execute any external program."
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 
-;; Fixes for xterm keys
+;;; Global bindings
+;; Use shell-like backspace C-h, rebind help to F1
+(define-key key-translation-map [?\C-h] [?\C-?])
+(bind-key "<f1>" #'help-command)
+
+;;; Fixes for xterm keys
 (bind-key "\e[7~" [home] function-key-map)
 (bind-key "\e[8~" [end] function-key-map)
 (bind-key "\e[11~" [f1] function-key-map)
