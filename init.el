@@ -392,11 +392,8 @@ adding files."
       "Trigger cursor changes for god mode after selecting a window."
       (my:god-update-cursor))
 
-    (bind-key "<f1>" 'god-mode-all)
-    (bind-key "i" 'god-local-mode god-local-mode-map)
-
-    (when (not god-global-mode)
-      (god-mode-all))))
+    (bind-key "<escape>" 'god-mode-all)
+    (bind-key "i" 'god-local-mode god-local-mode-map)))
 
 (user-package ido
   :if (not noninteractive)
