@@ -395,6 +395,28 @@ adding files."
     (bind-key "<escape>" 'god-mode-all)
     (bind-key "i" 'god-local-mode god-local-mode-map)))
 
+(user-package helm
+  :if (not noninteractive)
+  :ensure helm
+  :config
+  (progn
+    (bind-key "<RET>" #'helm-maybe-exit-minibuffer helm-map)
+    (bind-key "C-i" #'helm-execute-persistent-action helm-map)
+    (bind-key "C-j" #'helm-maybe-exit-minibuffer helm-map)
+    (bind-key "C-x b" #'helm-mini)
+    (bind-key "C-x C-f" #'helm-find-files)
+    (bind-key "C-z" #'helm-select-action helm-map)
+    (bind-key "M-y" #'helm-show-kill-ring)
+    (setq helm-buffers-fuzzy-matching t
+          helm-ff-auto-update-initial-value t
+          helm-ff-file-name-history-use-recentf t
+          helm-ff-search-library-in-sexp t
+          helm-ff-skip-boring-files t
+          helm-move-to-line-cycle-in-source t
+          helm-scroll-amount 8
+          helm-split-window-in-side-p t)
+    (helm-mode 1)))
+
 (user-package ido
   :if (not noninteractive)
   :config
