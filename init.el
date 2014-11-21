@@ -906,24 +906,22 @@ instead and do not execute any external program."
 (user-package simple
   :config
   (progn
-    ;; http://www.emacswiki.org/emacs/DefaultKillingAndYanking
-    (defun yank-pop-backwards ()
-      "Yank backwards."
-      (interactive)
-      (yank-pop -1))
-    (bind-key "M-Y" 'yank-pop-backwards)))
-
-(user-package xclip
-  :ensure xclip
-  :if (getenv "DISPLAY")
-  :config
-  (progn
-    (condition-case err
-        (progn (xclip-mode 1)
-               (turn-on-xclip))
-      (file-error
-       (message
-        "Failed to find %s program, not using xclip.el." xclip-program)))))
+    (let ((xsel-program (executable-find "xsel")))
+      (when xsel-program
+        (defun xsel-cut-function (text &optional push)
+          (when (getenv "DISPLAY")
+            (with-temp-buffer
+              (insert text)
+              (call-process-region
+               (point-min) (point-max) "xsel" nil 0 nil "--clipboard" "--input"))))
+        (defun xsel-paste-function()
+          (when (getenv "DISPLAY")
+            (let ((xsel-output
+                   (shell-command-to-string "xsel --clipboard --output")))
+              (unless (string= (car kill-ring) xsel-output)
+                xsel-output))))
+        (setq interprogram-cut-function 'xsel-cut-function
+              interprogram-paste-function 'xsel-paste-function)))))
 
 (user-package smartparens
   :if (not noninteractive)
