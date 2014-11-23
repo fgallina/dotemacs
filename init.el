@@ -41,40 +41,43 @@ Disables all packages that are member of the
 (font-lock-add-keywords 'emacs-lisp-mode user-package-font-lock-keywords)
 
 
-;;; el-get integration
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-    (let (el-get-master-branch)
-      (goto-char (point-max))
-      (eval-print-last-sexp))))
-
-(add-to-list 'el-get-recipe-path "~/.emacs.d/recipes")
-
-(mapc (lambda (filename)
-        (let ((filename (expand-file-name filename el-get-dir)))
-          (when (file-directory-p filename)
-            (setq load-path (cons filename load-path)))))
-      (cddr (directory-files el-get-dir)))
-
-(setq el-get-sources '(python))
-
-(defalias 'el-get-init 'ignore
-  "Don't use el-get for making packages available for use.")
-
-(dolist (pkg el-get-sources)
-  (unless (or (memq pkg my:disabled-packages)
-              (el-get-package-is-installed pkg))
-    (el-get-install pkg)))
-
-
 ;;; Environment
 (let ((bindir (expand-file-name "~/bin")))
   (setenv "PATH" (concat bindir  ":" (getenv "PATH")))
   (add-to-list 'exec-path bindir))
+
+
+;;; Install python.el development version
+
+(add-to-list 'load-path user-emacs-directory)
+
+(defun my:ensure-python.el (&optional branch overwrite)
+  "Install python.el from BRANCH.
+After the first install happens the file is not overwritten again
+unless the optional argument OVERWRITE is non-nil.  When called
+interactively python.el will always be overwritten with the
+latest version."
+  (interactive
+   (list
+    (completing-read "Install python.el from branch: "
+                     (list "master" "emacs-24")
+                     nil t)
+    t))
+  (let* ((branch (or branch "master"))
+         (url (format
+               (concat "http://git.savannah.gnu.org/cgit/emacs.git/plain"
+                       "/lisp/progmodes/python.el?h=%s") branch))
+         (destination (expand-file-name "python.el" user-emacs-directory))
+         (write (or (not (file-exists-p destination)) overwrite)))
+    (when write
+      (with-current-buffer
+          (url-retrieve-synchronously url)
+        (delete-region (point-min) (1+ url-http-end-of-headers))
+        (write-file destination))
+      (byte-compile-file destination t)
+      destination)))
+
+(my:ensure-python.el)
 
 
 ;;; Packages and config

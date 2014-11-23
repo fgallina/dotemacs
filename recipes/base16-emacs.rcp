@@ -1,6 +1,0 @@
-(:name base16-emacs
-       :website "https://github.com/milkypostman/base16-emacs"
-       :description "Base16 for Emacs"
-       :type github
-       :pkgname "milkypostman/base16-emacs"
-       :post-init (add-to-list 'custom-theme-load-path default-directory))
