@@ -1106,6 +1106,20 @@ instead and do not execute any external program."
 (user-package warnings
   :config (setq warning-suppress-types nil))
 
+(user-package wgrep
+  :if (not noninteractive)
+  :ensure wgrep
+  :config
+  (progn
+    (setq wgrep-auto-save-buffer t
+          wgrep-enable-key "\C-x\C-q"
+          wgrep-change-readonly-file t)
+    (user-package wgrep-ag
+      :ensure wgrep-ag)
+    (add-hook 'ag-mode-hook #'wgrep-ag-setup)
+    (user-package wgrep-helm
+      :ensure wgrep-helm)))
+
 (user-package which-func
   :if (not noninteractive)
   :config (which-function-mode 1))
