@@ -415,7 +415,19 @@ adding files."
           helm-move-to-line-cycle-in-source t
           helm-scroll-amount 8
           helm-split-window-in-side-p t)
-    (helm-mode 1)))
+    (helm-mode 1)
+    (user-package helm-swoop
+      :ensure helm-swoop)
+    (bind-key "C-x M-i" #'helm-multi-swoop)
+    (bind-key "M-I" #'helm-swoop-back-to-last-point)
+    (bind-key "M-i" #'helm-multi-swoop-all-from-helm-swoop helm-swoop-map)
+    (bind-key "M-i" #'helm-swoop)
+    (bind-key "M-i" #'helm-swoop-from-isearch isearch-mode-map)
+    (setq helm-multi-swoop-edit-save t
+          helm-swoop-speed-or-color t
+          helm-swoop-split-direction #'split-window-horizontally
+          helm-swoop-split-with-multiple-windows nil
+          helm-swoop-use-line-number-face t)))
 
 (user-package ido
   :if (not noninteractive)
