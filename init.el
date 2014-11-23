@@ -161,22 +161,8 @@ latest version."
 (user-package cus-theme
   :config
   (progn
-    (defun my:unload-themes (&optional msg)
-      "Unload all custom enabled themes."
-      (interactive "p")
-      (mapc #'disable-theme custom-enabled-themes)
-      (when msg
-        (message "Unloaded all themes.")))
-    (defun my:load-single-theme (theme &optional no-confirm no-enable)
-      "Load a single custom theme."
-      (interactive
-       (list
-        (intern (completing-read "Load custom theme: "
-                                 (mapcar 'symbol-name
-                                         (custom-available-themes))))
-        nil nil))
-      (my:unload-themes)
-      (load-theme theme no-confirm no-enable))
+    (user-package helm-themes
+      :ensure helm-themes)
     (defun my:load-random-theme (&optional msg)
       "Load a random theme."
       (interactive "p")
@@ -189,7 +175,7 @@ latest version."
                     (nth (random (length themes)) themes))))
             (condition-case err
                 (progn
-                  (my:load-single-theme random-theme t)
+                  (helm-themes--load-theme (symbol-name random-theme))
                   (setq success t))
               (error
                (message "Failed to load %s. Retrying..." random-theme)))
