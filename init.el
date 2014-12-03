@@ -441,10 +441,10 @@ adding files."
   :config
   (progn
     ;; Add virtualenv support for checkers
-    (defadvice flycheck-check-executable
+    (defadvice flycheck-checker-executable
       (around python-flycheck-check-executable (checker)
               activate compile)
-      "`flycheck-check-executable' with virtualenv support."
+      "`flycheck-checker-executable' with virtualenv support."
       (if (eq major-mode 'python-mode)
           (let* ((process-environment (python-shell-calculate-process-environment))
                  (exec-path (python-shell-calculate-exec-path)))
@@ -452,7 +452,7 @@ adding files."
         ad-do-it))
 
     (defadvice flycheck-start-checker
-      (around python-flycheck-start-checker (checker)
+      (around python-flycheck-start-checker (checker callback)
               activate compile)
       "`flycheck-start-checker' with virtualenv support."
       (if (eq major-mode 'python-mode)
