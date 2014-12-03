@@ -1286,12 +1286,6 @@ instead and do not execute any external program."
       x-select-enable-clipboard t
       x-select-enable-primary t)
 
-(load "~/.emacs.d/secrets.el" 'noerror)
-(load "~/.emacs.d/post-startup.el" 'noerror)
-
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file 'noerror)
-
 ;;; Global bindings
 ;; Use shell-like backspace C-h, rebind help to F1
 (define-key key-translation-map [?\C-h] [?\C-?])
@@ -1330,6 +1324,12 @@ instead and do not execute any external program."
 (bind-key "\033[1;2B" [(shift down)] function-key-map)
 (bind-key "\033[1;2D" [(shift left)] function-key-map)
 (bind-key "\033[1;2C" [(shift right)] function-key-map)
+
+(load "~/.emacs.d/secrets.el" 'noerror)
+(load "~/.emacs.d/post-startup.el" 'noerror)
+
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
 
 ;; Local Variables:
 ;; mode: emacs-lisp
