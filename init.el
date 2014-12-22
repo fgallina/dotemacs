@@ -1261,7 +1261,6 @@ instead and do not execute any external program."
 (setq echo-keystrokes 0.01
       enable-recursive-minibuffers t
       max-specpdl-size 999999999
-      redisplay-dont-pause t
       visible-bell t)
 
 (setq-default
