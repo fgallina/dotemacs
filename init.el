@@ -1037,6 +1037,18 @@ instead and do not execute any external program."
             (smartparens-global-mode 1)
             (show-smartparens-global-mode 1)))
 
+(user-package smerge-mode
+  :if (not noninteractive)
+  :ensure smerge-mode
+  :config
+  (progn
+    (defun my:smerge-try ()
+      (save-excursion
+        (goto-char (point-min))
+        (when (re-search-forward "^<<<<<<< " nil t)
+          (smerge-mode 1))))
+    (add-hook 'find-file-hook 'my:smerge-try t)))
+
 (user-package smex
   :if (not noninteractive)
   :ensure smex
