@@ -949,8 +949,6 @@ instead and do not execute any external program."
 (user-package rcirc
   :config
   (progn
-    (user-package rcirc-groups
-      :ensure rcirc-groups)
     (user-package rcirc-alertify
       :ensure rcirc-alertify)
     (rcirc-alertify-enable)
