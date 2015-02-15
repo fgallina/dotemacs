@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t -*-
 (defvar package-archives)
 (defvar package-archive-contents)
 (defvar my:disabled-packages nil)
@@ -498,35 +499,78 @@ adding files."
   :bind ("C-x C-b" . ibuffer)
   :config
   (progn
-    (setq ibuffer-show-empty-filter-groups nil
-          ibuffer-saved-filter-groups
-          (list (append
-                 (cons "default"
-                       ;; Generate filters by major modes from the
-                       ;; auto-mode-alist
-                       (let ((mode-filters))
-                         (dolist (element auto-mode-alist)
-                           (when (ignore-errors (fboundp (cdr element)))
-                             (let* ((mode (cdr element))
-                                    (name (if (string-match "\\(-mode\\)?\\'"
-                                                            (symbol-name mode))
-                                              (capitalize
-                                               (substring (symbol-name mode)
-                                                          0 (match-beginning 0)))
-                                            (symbol-name mode))))
-                               (when (not (assoc-string name mode-filters))
-                                 (setq mode-filters
-                                       (cons (list name (cons 'mode mode))
-                                             mode-filters))))))
-                         mode-filters))
-                 ;; Custom added filters.
-                 '(("Magit" (name . "^\\*magit"))
-                   ("Irc" (mode . rcirc-mode))
-                   ("Css" (mode . scss-mode))
-                   ("W3m" (name . "^\\*w3m"))))))
-    (add-hook 'ibuffer-mode-hook
+    (user-package ibuffer-rcirc
+      :ensure ibuffer-rcirc)
+    (user-package ibuffer-tramp
+      :ensure ibuffer-tramp)
+    (user-package ibuffer-vc
+      :ensure ibuffer-vc)
+
+    (defun ibuffer-combine-filter-groups (&rest filter-groups)
+      "Return a command that's the combination of all given FILTER-GROUPS."
+      (lambda ()
+        (interactive)
+        (let ((accum)
+              (ibuffer-update-fn
+               (symbol-function #'ibuffer-update)))
+          (fset #'ibuffer-update (symbol-function #'ignore))
+          (mapc (lambda (filter-fn)
+                  (let (ibuffer-filter-groups)
+                    (funcall filter-fn)
+                    (setq accum (append accum ibuffer-filter-groups nil))))
+                filter-groups)
+          (setq ibuffer-filter-groups accum)
+          (fset #'ibuffer-update ibuffer-update-fn)
+          (ibuffer-update nil t))))
+
+    (defmacro define-ibuffer-combined-filter-groups (name &rest filter-groups)
+      "Return a command that's the combination of all given FILTER-GROUPS."
+      `(fset (intern (symbol-name ',name))
+             (ibuffer-combine-filter-groups
+              ,@filter-groups)))
+
+    (defun ibuffer-vc-include-if-file-has-buffer (file)
+      "Exclude buffers without associated file from vc grouping."
+      (get-file-buffer file))
+
+    (setq ibuffer-vc-include-function #'ibuffer-vc-include-if-file-has-buffer)
+
+    (defun ibuffer-set-filter-groups-by-visiting-file-p (&rest filter-groups)
+      "Group all buffers with file."
+      (interactive)
+      (setq ibuffer-filter-groups
+            '(("Files"
+               (predicate . buffer-file-name))))
+      (ibuffer-update nil t))
+
+    (define-ibuffer-combined-filter-groups
+      ibuffer-set-filter-groups-combined
+      #'ibuffer-rcirc-set-filter-groups-by-server
+      #'ibuffer-vc-set-filter-groups-by-vc-root
+      #'ibuffer-tramp-set-filter-groups-by-tramp-connection
+      #'ibuffer-set-filter-groups-by-visiting-file-p)
+
+    (bind-key "s c" #'ibuffer-do-sort-by-vc-status ibuffer-mode-map)
+    (bind-key "s r" #'ibuffer-do-sort-by-rcirc-activity-status ibuffer-mode-map)
+    (bind-key "1" #'ibuffer-set-filter-groups-combined ibuffer-mode-map)
+    (bind-key "2" #'ibuffer-set-filter-groups-by-mode ibuffer-mode-map)
+
+    (setq ibuffer-formats
+          '((mark modified read-only
+                  vc-status-mini rcirc-activity-status-one-char " "
+                  (name 18 18 :left :elide)
+                  " "
+                  (size 9 -1 :right)
+                  " "
+                  (mode 16 16 :left :elide)
+                  " "
+                  filename-and-process)))
+
+    (add-hook 'ibuffer-hook
               (lambda ()
-                (ibuffer-switch-to-saved-filter-groups "default")))))
+                (ibuffer-set-filter-groups-combined)
+                (unless (eq ibuffer-sorting-mode 'alphabetic)
+                  (ibuffer-do-sort-by-alphabetic))))))
 
 (user-package js
   :if (not noninteractive)
