@@ -122,6 +122,9 @@ latest version."
                                        ac-source-words-in-same-mode-buffers))
             (global-auto-complete-mode 1)))
 
+(user-package backup-walker
+  :ensure backup-walker)
+
 (user-package browse-url
   :config (setq browse-url-browser-function 'browse-url-generic
                 browse-url-generic-program "firefox"))
