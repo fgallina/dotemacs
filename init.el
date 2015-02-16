@@ -3,6 +3,11 @@
 (defvar package-archive-contents)
 (defvar my:disabled-packages nil)
 
+(defvar my:backup-directory
+  (expand-file-name (concat user-emacs-directory "backups/"))
+  "Directory storing all backups and auto-save files.
+Must end with a trailing slash.")
+
 
 ;;; Bootstrap
 (setq package-archives '(("sunrise" . "http://joseito.republika.pl/sunrise-commander/")
@@ -330,12 +335,27 @@ adding files."
   :ensure expand-region)
 
 (user-package files
-  :config (progn
-            (setq auto-save-default nil)
-            (setq backup-directory-alist
-                  `(("." . ,(expand-file-name
-                             (concat user-emacs-directory "backups")))))
-            (add-hook 'before-save-hook 'delete-trailing-whitespace)))
+  :config
+  (progn
+    (setq auto-save-file-name-transforms `((".*" ,my:backup-directory t))
+          auto-save-list-file-prefix my:backup-directory
+          backup-directory-alist `(("." . ,my:backup-directory))
+          auto-save-default t
+          auto-save-interval 200
+          auto-save-timeout 20
+          backup-by-copying t
+          delete-by-moving-to-trash t
+          delete-old-versions t
+          kept-new-versions 20
+          kept-old-versions 0
+          make-backup-files t
+          version-control t)
+    (defun force-backup-of-buffer ()
+      "Reset `buffer-backed-up' to nil."
+      (setq buffer-backed-up nil))
+    ;; Always create backups on save:
+    (add-hook 'before-save-hook #'delete-trailing-whitespace)
+    (add-hook 'before-save-hook #'force-backup-of-buffer)))
 
 (user-package god-mode
   :if (not noninteractive)

@@ -3,6 +3,7 @@ srecode-map.el
 swank/
 /history
 /auto-save-list
+/backups
 *.elc
 /customizations.el
 /secrets.el
