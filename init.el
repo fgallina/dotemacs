@@ -1014,7 +1014,16 @@ instead and do not execute any external program."
               (unless (string= (car kill-ring) xsel-output)
                 xsel-output))))
         (setq interprogram-cut-function 'xsel-cut-function
-              interprogram-paste-function 'xsel-paste-function)))))
+              interprogram-paste-function 'xsel-paste-function)))
+    ;; From http://david.rothlis.net/emacs/ergonomics.html
+    (defun kill-region-or-backward-kill-word (&optional arg region)
+      "`kill-region' if the region is active, otherwise `backward-kill-word'"
+      (interactive
+       (list (prefix-numeric-value current-prefix-arg) (use-region-p)))
+      (if region
+          (kill-region (region-beginning) (region-end))
+        (backward-kill-word arg)))
+    (bind-key "\C-w" #'kill-region-or-backward-kill-word)))
 
 (user-package smartparens
   :if (not noninteractive)
