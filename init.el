@@ -1368,6 +1368,7 @@ instead and do not execute any external program."
 
 (setq inhibit-startup-screen t
       initial-scratch-message ""
+      use-dialog-box nil
       x-select-enable-clipboard t
       x-select-enable-primary t)
 
