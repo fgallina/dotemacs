@@ -1363,8 +1363,6 @@ instead and do not execute any external program."
       x-select-enable-primary t)
 
 ;;; Global bindings
-;; Use shell-like backspace C-h, rebind help to F1
-(define-key key-translation-map [?\C-h] [?\C-?])
 (bind-key "<f1>" #'help-command)
 
 ;;; Fixes for xterm keys
