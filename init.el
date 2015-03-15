@@ -647,11 +647,11 @@ adding files."
 (user-package gnus
   :if (not noninteractive)
   :bind ("<f2>" . gnus)
-  :pre-load (setq gnus-home-directory "~/.emacs.d/gnus"
-                  gnus-inhibit-startup-message t
-                  gnus-init-file "~/.emacs.d/gnus-init")
   :config
   (progn
+    (setq gnus-home-directory "~/.emacs.d/gnus"
+	  gnus-inhibit-startup-message t
+	  gnus-init-file "~/.emacs.d/gnus-init")
     (user-package bbdb
       :ensure bbdb
       :config
@@ -1215,7 +1215,6 @@ instead and do not execute any external program."
 
 (user-package winner
   :if (not noninteractive)
-  :diminish winner-mode
   :init
   (progn
     (winner-mode 1)
